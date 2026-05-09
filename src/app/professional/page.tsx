@@ -336,19 +336,21 @@ export default function ProfessionalPage() {
                     </div>
                   </div>
 
-                  {/* Beam of light */}
-                  <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 shadow-[0_0_15px_cyan]"></div>
-
                   {/* Image Wrapper */}
-                  <div className="w-full h-[250px] md:h-[280px] p-6 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl overflow-hidden">
+                  <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl overflow-hidden">
                     
-                    {/* Base glowing circles */}
-                    <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 z-20 w-full h-8 origin-bottom scale-75 group-hover:scale-100">
-                      <div className="absolute w-[60%] h-[150%] rounded-[100%] border-[2px] border-cyan-500/10 shadow-[0_0_30px_cyan]"></div>
-                      <div className="absolute w-[80%] h-[200%] rounded-[100%] border-[1px] border-cyan-500/5"></div>
+                    {/* Beam of light (Now contained within the preview and ends at the base) */}
+                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 shadow-[0_0_15px_cyan]"></div>
+
+                    {/* Base glowing circles with smaller radius and ripple effect */}
+                    <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 z-20 w-[60%] h-8 origin-bottom scale-75 group-hover:scale-100">
+                      <div className="absolute w-[30%] h-[80%] rounded-[100%] border-[2px] border-cyan-400 shadow-[0_0_15px_cyan]"></div>
+                      <div className="absolute w-[50%] h-[120%] rounded-[100%] border-[1px] border-cyan-400/50 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                      <div className="absolute w-[70%] h-[160%] rounded-[100%] border-[1px] border-cyan-500/30"></div>
+                      <div className="absolute w-[90%] h-[200%] rounded-[100%] border-[1px] border-cyan-500/10"></div>
                     </div>
 
-                    <div className="w-[90%] h-[90%] rounded-t-xl overflow-hidden shadow-2xl relative z-30 flex">
+                    <div className="w-full h-full rounded-t-[14px] overflow-hidden shadow-2xl relative z-30 flex">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img 
                         src={project.image} 
@@ -389,8 +391,7 @@ export default function ProfessionalPage() {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              </motion.div>              </div>            ))}
           </div>
 
           {/* Explore More Button */}
@@ -399,10 +400,10 @@ export default function ProfessionalPage() {
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-4 px-10 py-5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 hover:bg-[#13182b] transition-colors group cursor-pointer"
+                className="flex items-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 hover:bg-[#13182b] transition-colors group cursor-pointer"
               >
-                <div className="w-3 h-3 rounded-full bg-[color:var(--accent)] shadow-[0_0_10px_var(--accent)]"></div>
-                <span className="font-mono text-white/90 text-xl font-bold tracking-wide">Explore more projects</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_10px_var(--accent)]"></div>
+                <span className="font-mono text-white/90 text-lg font-bold tracking-wide">Explore more projects</span>
               </motion.div>
             </Link>
           </div>
