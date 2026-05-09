@@ -100,7 +100,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 md:ml-12 lg:ml-24">
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">22</span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
