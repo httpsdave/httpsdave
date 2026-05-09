@@ -51,24 +51,24 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
-              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--glow)] transition duration-300 flex items-center gap-2">
+              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2">
                 VIEW CV <span>&gt;</span>
               </button>
               
               <div className="flex items-center gap-4">
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaFacebook size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaInstagram size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaYoutube size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaLinkedin size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaGithub size={16} />
                 </Link>
               </div>

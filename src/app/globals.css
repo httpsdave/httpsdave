@@ -64,12 +64,10 @@ a {
 
 .app-shell::before {
   background: radial-gradient(circle 800px at 0% 0%, #1b244a 0%, transparent 80%);
-  animation: spotLeft 14s ease-in-out infinite alternate;
 }
 
 .app-shell::after {
   background: radial-gradient(circle 900px at 100% 0%, #0d3f40 0%, transparent 80%);
-  animation: spotRight 18s ease-in-out infinite alternate;
 }
 
 .skip-link {
@@ -91,8 +89,8 @@ a {
 }
 
 .bg-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 160px 160px;
 }
 
