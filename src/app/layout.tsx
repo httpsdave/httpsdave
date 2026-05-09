@@ -17,9 +17,8 @@ const splineMono = Spline_Sans_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Radnaabazar Bulgan | Portfolio",
-  description:
-    "Software engineer portfolio featuring projects, experience, and timeline.",
+  title: "Dave Dominic Goze | Portfolio",
+  description: "Portfolio and CV website.",
 };
 
 export default function RootLayout({

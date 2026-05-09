@@ -84,8 +84,8 @@ export default function ProfessionalPage() {
             >
               {/* Rotating dashed ring built with SVG for segmented perfection */}
               <svg className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
-                <circle cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
+                <circle cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeLinecap="round" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
+                <circle cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
               </svg>
 
               <div className="w-[90%] h-[90%] rounded-full bg-[#e7eaf6] relative overflow-hidden transition-opacity duration-300 border-4 border-[#0a0b14]" key={imgIndex}>
