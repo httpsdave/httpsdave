@@ -1,231 +1,128 @@
-const highlights = [
-  {
-    title: "Intelligent Systems",
-    detail: "Studying Machine Learning and AI solutions for modern problems.",
-    metric: "Computer Science",
-  },
-  {
-    title: "Full-Stack Development",
-    detail: "Crafting web interfaces and backing them with scalable databases.",
-    metric: "Web & Mobile",
-  },
-  {
-    title: "Tech Stack",
-    detail: "Next.js, Vue, Laravel, Python, Flutter, Postgres, Firebase.",
-    metric: "Versatile",
-  },
-];
+"use client";
 
-const projects = [
-  {
-    title: "SocialDesk (Internship)",
-    role: "Frontend Developer Intern",
-    summary: "A robust social media management system built during my Ollopa Corp internship.",
-    stack: ["Next.js", "TypeScript", "Tailwind css"],
-  },
-  {
-    title: "AI tooling & Intelligent Systems",
-    role: "Computer Science Student",
-    summary: "Algorithms and models developed during coursework.",
-    stack: ["Python", "Flask", "Colab", "Java"],
-  },
-  {
-    title: "Web & Portals",
-    role: "Full-stack Developer",
-    summary: "Responsive, data-driven web applications.",
-    stack: ["Next.js", "Vue.js", "Laravel", "Tailwind"],
-  },
-  {
-    title: "Mobile App Projects",
-    role: "Cross-platform Developer",
-    summary: "Native-feeling apps synced with scalable backend databases.",
-    stack: ["Flutter", "Firebase", "SQLite", "Postgres"],
-  },
-  {
-    title: "Other Utilities",
-    role: "Software Developer",
-    summary: "Desktop applications and general programming.",
-    stack: ["C#", ".NET", "Java", "MySQL"],
-  },
-];
+import { useState } from "react";
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 
-const timeline = [
-  {
-    year: "2026",
-    items: [
-      {
-        date: "Feb 3 - Apr 20",
-        title: "Frontend Developer Intern",
-        note: "Ollopa Corporation (400 hrs). Built interfaces for SocialDesk.",
-      },
-      {
-        date: "2022 - 2026",
-        title: "Laguna State Polytechnic University",
-        note: "BS Computer Science (Intelligent Systems). Graduating soon.",
-      },
-    ],
-  },
-  {
-    year: "2022",
-    items: [
-      {
-        date: "2016 - 2022",
-        title: "Laguna College",
-        note: "Highschool and Senior Highschool.",
-      },
-    ],
-  },
-  {
-    year: "2016",
-    items: [
-      {
-        date: "2008 - 2016",
-        title: "Blue Danube School Inc.",
-        note: "Preschool and Elementary.",
-      },
-    ],
-  },
+// Placeholder images - you can drop your actual image paths here when ready!
+const images = [
+  "https://via.placeholder.com/600x600/ffffff/000000?text=Profile+1",
+  "https://via.placeholder.com/600x600/e0e0e0/000000?text=Profile+2",
+  "https://via.placeholder.com/600x600/c0c0c0/000000?text=Profile+3"
 ];
 
 export default function ProfessionalPage() {
+  const [imgIndex, setImgIndex] = useState(0);
+
+  const nextImage = () => {
+    setImgIndex((prev) => (prev + 1) % images.length);
+  };
+
   return (
-    <div className="bg-grid">
-      <section className="mx-auto w-full max-w-6xl px-6 pb-14 pt-16 md:pt-24">
-        <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-          <div className="space-y-6">
-            <span className="chip">Professional</span>
-            <h1 className="hero-title font-semibold">
-              Computer Science & Intelligent Systems.
-            </h1>
-            <p className="text-lg text-[color:var(--muted)]">
-              I focus on building AI algorithms alongside practical full-stack web and mobile applications. Currently finishing my BS degree.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                className="surface inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-                href="/contact"
-              >
-                Start a conversation
-              </a>
-              <a
-                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--stroke)] px-6 py-3 text-sm font-semibold"
-                href="#timeline"
-              >
-                View timeline
-              </a>
-            </div>
-          </div>
-          <div className="surface-soft grid gap-4 p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-              Core Skills
-            </p>
-            <ul className="space-y-3 text-sm text-[color:var(--muted)]">
-              <li>Intelligent Systems & Machine Learning</li>
-              <li>Frontend (Next.js, Vue, Tailwind) & Mobile (Flutter)</li>
-              <li>Backend (Laravel, Python, Databases)</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6 pb-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {highlights.map((item) => (
-            <article key={item.title} className="surface p-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--accent)]">
-                {item.metric}
-              </p>
-              <h2 className="mt-3 text-xl font-semibold">{item.title}</h2>
-              <p className="mt-3 text-sm text-[color:var(--muted)]">{item.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6 pb-20">
-        <div className="mb-8">
-          <p className="chip">Projects</p>
-          <h2 className="section-title font-semibold">Selected builds</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
-            <article key={project.title} className="surface p-6">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  <p className="text-sm text-[color:var(--muted)]">{project.role}</p>
-                </div>
-                <span className="chip">{project.stack[0]}</span>
-              </div>
-              <p className="mt-4 text-sm text-[color:var(--muted)]">
-                {project.summary}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.stack.map((item) => (
-                  <span key={item} className="chip">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="timeline" className="mx-auto w-full max-w-6xl px-6 pb-20">
-        <div className="mb-10">
-          <p className="chip">Timeline</p>
-          <h2 className="section-title font-semibold">Milestones and key dates</h2>
-        </div>
-        <div className="relative grid gap-8">
-          <div className="timeline-line absolute left-4 top-0 h-full w-px md:left-6" />
-          {timeline.map((block) => (
-            <div key={block.year} className="relative pl-12 md:pl-16">
-              <div className="surface absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-[color:var(--stroke)] text-xs font-semibold">
-                {block.year.slice(2)}
-              </div>
-              <h3 className="text-xl font-semibold">{block.year}</h3>
-              <div className="mt-4 space-y-4">
-                {block.items.map((item) => (
-                  <div key={item.title} className="surface p-4">
-                    <div className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">
-                      {item.date}
-                    </div>
-                    <div className="mt-2 text-lg font-semibold">{item.title}</div>
-                    <p className="text-sm text-[color:var(--muted)]">{item.note}</p>
-                  </div>
-                ))}
+    <div className="bg-grid flex-1 relative flex flex-col justify-center min-h-[85vh]">
+      <section className="mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-16 md:pt-24 z-10">
+        
+        {/* Main Hero Layout */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
+          
+          {/* Left Column: Text & Info */}
+          <div className="flex flex-col space-y-4 md:w-1/2">
+            <span className="font-mono text-sm tracking-widest text-[#e7eaf6] mb-2 uppercase">
+              Full-Stack Developer
+            </span>
+            <div className="flex flex-col leading-none">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-medium font-mono tracking-tight text-white mb-2">
+                Hello I'm
+              </h1>
+              <div className="group w-fit flex flex-col cursor-default">
+                <h1 className="relative px-2 -mx-2 overflow-hidden w-fit text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-medium font-mono tracking-tight text-[color:var(--accent)] transition-colors duration-500 drop-shadow-md group-hover:text-[#0a0b14] mb-2">
+                  <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+                  <span className="relative z-10">Dave Dominic</span>
+                </h1>
+                <h1 className="relative px-2 -mx-2 overflow-hidden w-fit text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-medium font-mono tracking-tight text-[color:var(--accent)] transition-colors duration-500 drop-shadow-md group-hover:text-[#0a0b14]">
+                  <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+                  <span className="relative z-10">Goze</span>
+                </h1>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24">
-        <div className="surface grid gap-6 p-8 md:grid-cols-[1.2fr_0.8fr] md:items-center">
-          <div>
-            <p className="chip">Working style</p>
-            <h2 className="section-title font-semibold">Reliable, thoughtful delivery</h2>
-            <p className="mt-3 text-sm text-[color:var(--muted)]">
-              I care about stable rollouts, crisp documentation, and a feedback loop
-              that keeps stakeholders in sync.
-            </p>
+            <div className="font-mono text-sm tracking-wide text-[color:var(--muted)] space-y-2 pt-6 max-w-xl">
+              <p>Computer Science | Full-Stack Developer | Philippines</p>
+            </div>
+
+            <div className="flex items-center gap-6 mt-12! pt-6">
+              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--glow)] transition duration-300 flex items-center gap-2">
+                VIEW CV <span>&gt;</span>
+              </button>
+              
+              <div className="flex items-center gap-4">
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                  <FaFacebook size={16} />
+                </Link>
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                  <FaInstagram size={16} />
+                </Link>
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                  <FaYoutube size={16} />
+                </Link>
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                  <FaLinkedin size={16} />
+                </Link>
+                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--glow)] transition duration-300">
+                  <FaGithub size={16} />
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <a
-              className="surface inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-              href="/contact"
+
+          {/* Right Column: Image Circle */}
+          <div className="md:w-1/2 flex justify-center md:justify-end relative">
+            <div 
+              className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95"
+              onClick={nextImage}
+              title="Click to change image!"
             >
-              Write a message
-            </a>
-            <a
-              className="inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] px-6 py-3 text-sm font-semibold"
-              href="/"
-            >
-              Back to home
-            </a>
+              {/* Rotating dashed ring built with SVG for segmented perfection */}
+              <svg className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
+                <circle cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
+              </svg>
+
+              <div className="w-[90%] h-[90%] rounded-full bg-[#e7eaf6] relative overflow-hidden transition-opacity duration-300 border-4 border-[#0a0b14]" key={imgIndex}>
+                  <img 
+                    src={images[imgIndex]} 
+                    alt="Profile" 
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Stats Row */}
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
+            <div className="flex items-center gap-4">
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">22</span>
+               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
+            </div>
+            
+            {/* hidden experience for now */}
+            <div className="hidden md:flex items-center gap-4 hidden-until-experience">
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">0</span>
+               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br/>experience</span>
+            </div>
+
+            <div className="flex items-center gap-4">
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">20</span>
+               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br/>on</span>
+            </div>
+
+            <div className="flex items-center gap-4">
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">10</span>
+               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br/>Deployed</span>
+            </div>
+        </div>
+
       </section>
     </div>
   );
