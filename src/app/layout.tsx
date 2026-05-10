@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Spline_Sans_Mono } from "next/font/google";
-import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -40,7 +39,6 @@ export default function RootLayout({
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <SiteFooter />
         </div>
       </body>
     </html>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
 
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
@@ -193,6 +193,12 @@ export default function ProfessionalPage() {
   const [hoveredEdu, setHoveredEdu] = useState<number | null>(null);
   const [showNav, setShowNav] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"]
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -397,7 +403,7 @@ export default function ProfessionalPage() {
 
         {/* Skills Section */}
         <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
-          <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-normal">
+          <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             Skills
           </h2>
           
@@ -575,31 +581,42 @@ export default function ProfessionalPage() {
 
         {/* Journey Section */}
         <div className="mt-32 mb-32 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-8">
-          <div className="mb-20">
+          <div className="mb-20 text-center flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight mb-6">
-              My journey report
+              My <span className="text-[color:var(--accent)]">journey</span> report
             </h2>
-            <p className="text-gray-400 font-sans max-w-2xl leading-relaxed text-sm md:text-base">
+            <p className="text-gray-400 font-sans max-w-2xl leading-relaxed text-sm md:text-base mx-auto">
               I've had the opportunity to develop software across a variety of settings – from small side-projects to large corporation, mostly building web systems. Here's my timeline of my journey
             </p>
           </div>
 
-          <div className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-12 space-y-24">
+          <div ref={timelineRef} className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-12 space-y-24">
+            {/* Animated vertical line */}
+            <motion.div 
+              className="absolute left-[-1px] md:left-[-1px] top-0 w-[2px] h-full bg-gradient-to-b from-blue-500 to-purple-500 origin-top z-0"
+              style={{ scaleY: scrollYProgress }}
+            />
+
             {journeyData.map((item, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-                className="relative"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-20%" }}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+                }}
+                className="relative group"
               >
                 {/* Timeline Dot */}
-                <div className="absolute -left-[42px] md:-left-[58px] top-2 w-5 h-5 rounded-full border-[4px] border-[#31364a] bg-[#0a0b14] shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+                <div 
+                  className="absolute -left-[42px] md:-left-[58px] top-2 w-5 h-5 rounded-full border-[4px] border-[#31364a] bg-[#0a0b14] shadow-[0_0_10px_rgba(255,255,255,0.05)] z-10" 
+                />
                 
-                <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+                <div className="flex flex-col md:flex-row gap-6 md:gap-12 relative z-10">
                   <div className="md:w-1/4 flex-shrink-0">
-                    <h3 className="text-3xl md:text-4xl font-mono font-bold text-white/50">{item.year}</h3>
+                    <h3 className="text-3xl md:text-4xl font-mono font-bold text-white/50 group-hover:text-white transition-colors duration-500">{item.year}</h3>
                   </div>
                   
                   <div className="md:w-3/4 flex flex-col gap-6">
@@ -629,38 +646,50 @@ export default function ProfessionalPage() {
 
         {/* Want To Section */}
         <div className="mt-40 mb-16 flex flex-col w-full max-w-[1200px] mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-sans font-light text-white mb-20 tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-mono font-bold text-white mb-20 tracking-tight">
             Want To
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 mb-32">
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">offer job opportunity?</h3>
-              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+              <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">offer job opportunity?</h3>
+              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
                 I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
               </p>
             </div>
             
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">Connect?</h3>
-              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+              <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Connect?</h3>
+              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
                 Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work. Let's grab a virtual coffee and see where the conversation takes us!
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">Build something?</h3>
-              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+              <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Build something?</h3>
+              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
                 I have a passion for developing innovative web applications that solve complex problems. Whether it's building a custom e-commerce platform or a cutting-edge web app, I'm always ready for a new challenge. Let's create something amazing together!
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
-            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">Email</Link>
-            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">GitHub</Link>
-            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">LinkedIn</Link>
-            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">Resume</Link>
+            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+              <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+              <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
+            </Link>
+            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+              <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+              <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
+            </Link>
+            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+              <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+              <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
+            </Link>
+            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+              <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
+              <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center gap-12">
@@ -715,6 +744,9 @@ export default function ProfessionalPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Absolute background grid fading in from transparent to bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
     </div>
   );
 }
