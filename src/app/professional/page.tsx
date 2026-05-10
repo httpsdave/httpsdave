@@ -2,8 +2,39 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+
+function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      const end = value;
+      const startTime = performance.now();
+      
+      const animate = (currentTime: number) => {
+        const elapsedTime = (currentTime - startTime) / 1000;
+        const progress = Math.min(elapsedTime / duration, 1);
+        
+        // easeOutQuart
+        const ease = 1 - Math.pow(1 - progress, 4);
+        setCount(Math.floor(ease * end));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setCount(end);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, value, duration]);
+
+  return <span ref={ref}>{count}</span>;
+}
 
 // Placeholder images - you can drop your actual image paths here when ready!
 const images = [
@@ -96,26 +127,64 @@ const experienceData = [
   {
     title: "Frontend Developer",
     description: "Developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind, etc.",
-    icon: <FaLaptopCode className="text-5xl md:text-6xl text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] z-10" />,
+    icon: <FaLaptopCode className="text-5xl md:text-6xl text-purple-400 z-10" />,
     delay: "0s",
   },
   {
     title: "Fullstack Developer",
     description: "Developed a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University (Thesis) using Laravel, MySQL, Vue, DOMPDF.",
-    icon: <FaServer className="text-5xl md:text-6xl text-orange-400 drop-shadow-[0_0_15px_rgba(251,146,60,0.5)] z-10" />,
+    icon: <FaServer className="text-5xl md:text-6xl text-orange-400 z-10" />,
     delay: "-1.5s",
   },
   {
     title: "Vibecoder",
-    description: "Been heavy on vibecoding recently, making clones of popular websites like Radio Garden (Ritmo) and Billboards Top 100 (Aux.).",
-    icon: <FaLightbulb className="text-5xl md:text-6xl text-pink-400 drop-shadow-[0_0_15px_rgba(244,114,182,0.5)] z-10" />,
+    description: (
+      <>
+        Been heavy on vibecoding recently, making clones of popular websites like Radio Garden, like <a href="#" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Ritmo</a>, and Billboards Top 100, like <a href="#" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Aux.</a>
+      </>
+    ),
+    icon: <FaLightbulb className="text-5xl md:text-6xl text-pink-400 z-10" />,
     delay: "-3s",
   },
   {
     title: "Mobile App Developer",
     description: "Some experience on mobile app development. Not much yet, though still exploring and building small projects.",
-    icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10" />,
+    icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 z-10" />,
     delay: "-4.5s",
+  }
+];
+
+const journeyData = [
+  {
+    year: "2025",
+    text: "Continuing to explore new technologies, focusing on vibecoding and building clones of popular platforms like Radio Garden (Ritmo) and Billboards Top 100 (Aux.). Preparing for mobile app development and expanding my full-stack expertise. Balancing everything has been challenging, but I'm loving every moment of growth and learning.",
+    images: [
+      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Ritmo+Clone",
+      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Aux.+Clone"
+    ]
+  },
+  {
+    year: "2024",
+    text: "Worked as a Fullstack Developer for my thesis, successfully implementing a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University. The system utilized Laravel, MySQL, Vue, and DOMPDF. This was my first major project implementation serving a real university office.",
+    images: [
+      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+1",
+      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+2"
+    ]
+  },
+  {
+    year: "Early 2024",
+    text: "(First job as 2nd year student) Worked as a Frontend Developer for Ollopa Corporation, where I developed a comprehensive social media management system.\n\n• Dashboard Development - developing dashboards that help keep track of social media metrics.\n• Frontend Architecture - utilizing Next.js, TypeScript, and Tailwind CSS to build a scalable and responsive interface.",
+    images: []
+  },
+  {
+    year: "2023",
+    text: "Focused heavily on mastering the fundamentals of Data Structures and Algorithms, while exploring modern web frameworks like React and Vue. Built several personal projects to solidify my understanding of state management and component-based architecture.",
+    images: []
+  },
+  {
+    year: "2022",
+    text: "Started my Computer Science degree at Laguna State Polytechnic University. Began my programming journey by learning C++ and Python, developing a strong foundation in logic and problem-solving. It was an exciting introduction to the world of software engineering.",
+    images: []
   }
 ];
 
@@ -231,23 +300,31 @@ export default function ProfessionalPage() {
         {/* Stats Row */}
         <div ref={statsRef} className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 md:ml-12 lg:ml-24">
             <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">22</span>
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+                 <AnimatedCounter value={22} />
+               </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
             </div>
             
             {/* hidden experience for now */}
             <div className="hidden md:flex items-center gap-4 hidden-until-experience">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">0</span>
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+                 <AnimatedCounter value={0} />
+               </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br/>experience</span>
             </div>
 
             <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">20</span>
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+                 <AnimatedCounter value={20} />
+               </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br/>on</span>
             </div>
 
             <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">10</span>
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+                 <AnimatedCounter value={10} />
+               </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br/>Deployed</span>
             </div>
         </div>
@@ -496,7 +573,129 @@ export default function ProfessionalPage() {
           </div>
         </div>
 
+        {/* Journey Section */}
+        <div className="mt-32 mb-32 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-8">
+          <div className="mb-20">
+            <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight mb-6">
+              My journey report
+            </h2>
+            <p className="text-gray-400 font-sans max-w-2xl leading-relaxed text-sm md:text-base">
+              I've had the opportunity to develop software across a variety of settings – from small side-projects to large corporation, mostly building web systems. Here's my timeline of my journey
+            </p>
+          </div>
+
+          <div className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-12 space-y-24">
+            {journeyData.map((item, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute -left-[42px] md:-left-[58px] top-2 w-5 h-5 rounded-full border-[4px] border-[#31364a] bg-[#0a0b14] shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+                
+                <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+                  <div className="md:w-1/4 flex-shrink-0">
+                    <h3 className="text-3xl md:text-4xl font-mono font-bold text-white/50">{item.year}</h3>
+                  </div>
+                  
+                  <div className="md:w-3/4 flex flex-col gap-6">
+                    <p className="text-gray-300 font-sans text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                      {item.text}
+                    </p>
+                    
+                    {item.images && item.images.length > 0 && (
+                      <div className={`grid gap-4 mt-4 ${item.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                        {item.images.map((img, i) => (
+                          <div key={i} className="rounded-xl overflow-hidden border border-white/10 group cursor-pointer bg-[#13182b]">
+                            <img 
+                              src={img} 
+                              alt={`${item.year} event`} 
+                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Want To Section */}
+        <div className="mt-40 mb-16 flex flex-col w-full max-w-[1200px] mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-sans font-light text-white mb-20 tracking-wide">
+            Want To
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 mb-32">
+            <div className="flex flex-col items-center text-center">
+              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">offer job opportunity?</h3>
+              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+                I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-center text-center">
+              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">Connect?</h3>
+              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+                Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work. Let's grab a virtual coffee and see where the conversation takes us!
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center">
+              <h3 className="text-2xl font-sans font-light text-[color:var(--accent)] mb-8 tracking-wide">Build something?</h3>
+              <p className="text-gray-300/80 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+                I have a passion for developing innovative web applications that solve complex problems. Whether it's building a custom e-commerce platform or a cutting-edge web app, I'm always ready for a new challenge. Let's create something amazing together!
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
+            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">Email</Link>
+            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">GitHub</Link>
+            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">LinkedIn</Link>
+            <Link href="#" className="text-xl md:text-2xl font-sans font-light text-gray-300 hover:text-[color:var(--accent)] transition-colors tracking-wide">Resume</Link>
+          </div>
+
+          <div className="flex flex-col items-center gap-12">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+              className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4"
+              aria-label="Scroll to top"
+            >
+              <svg className="w-8 h-8 md:w-10 md:h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M4 15l8-8 8 8" />
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M4 21l8-8 8 8" className="opacity-40" />
+              </svg>
+            </button>
+            
+            <p className="text-sm font-sans text-gray-400 tracking-wide">
+              © {new Date().getFullYear()}-present Dave Dominic Goze. All Rights Reserved
+            </p>
+          </div>
+        </div>
+
       </section>
+
+      {/* Fixed Left Social Sidebar */}
+      <div className="hidden lg:flex fixed left-10 bottom-0 flex-col items-center gap-7 z-40">
+        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+          <FaEnvelope size={26} />
+        </Link>
+        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+          <FaLinkedin size={26} />
+        </Link>
+        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+          <FaGithub size={26} />
+        </Link>
+        <div className="w-[3px] h-32 bg-white/80 mt-2" />
+      </div>
 
       {/* Floating Bottom Nav */}
       <AnimatePresence>
