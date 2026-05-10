@@ -50,25 +50,7 @@ a {
   z-index: 0;
 }
 
-.app-shell::before,
-.app-shell::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: -1;
-}
 
-.app-shell::before {
-  background: radial-gradient(circle 800px at 0% 0%, #1b244a 0%, transparent 80%);
-}
-
-.app-shell::after {
-  background: radial-gradient(circle 900px at 100% 0%, #0d3f40 0%, transparent 80%);
-}
 
 .skip-link {
   position: absolute;

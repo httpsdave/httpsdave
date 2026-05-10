@@ -222,6 +222,10 @@ export default function ProfessionalPage() {
 
   return (
     <div className="flex-1 relative flex flex-col justify-center min-h-[85vh]">
+      {/* Absolute background gradients for professional page only */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(circle_800px_at_0%_0%,#1b244a_0%,transparent_80%)]" />
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(circle_900px_at_100%_0%,#0d3f40_0%,transparent_80%)]" />
+
       {/* Absolute background grid with a smooth fade-out to transparent toward the bottom */}
       <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent_0%,transparent_10%,white_25%,white_40%,transparent_100%)]" />
 

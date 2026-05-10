@@ -1,3 +1,8 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 const interests = [
   {
     title: "Morning runs",
@@ -47,42 +52,95 @@ const moments = [
   },
 ];
 
+const adjectives = ["Disciplined", "Persistent", "Curious", "Resilient"];
+
 export default function PersonalPage() {
+  const [adjIndex, setAdjIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAdjIndex((prev) => (prev + 1) % adjectives.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="bg-grid">
-      <section className="mx-auto w-full max-w-6xl px-6 pb-14 pt-16 md:pt-24">
-        <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-          <div className="space-y-6">
-            <span className="chip">Personal</span>
-            <h1 className="hero-title font-semibold">
-              A calm life outside the terminal.
-            </h1>
-            <p className="text-lg text-[color:var(--muted)]">
-              I care about balance: movement, music, books, and time to reflect. It
-              keeps my engineering grounded and my design choices intentional.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                className="surface inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-                href="/contact"
-              >
-                Say hello
-              </a>
-              <a
-                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--stroke)] px-6 py-3 text-sm font-semibold"
-                href="/professional"
-              >
-                View professional
-              </a>
+    <div className="relative overflow-hidden bg-[#0a0b14] min-h-screen">
+      {/* CSS Spotlights (White) — top-left and top-right pointing towards center */}
+      <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_700px_at_15%_0%,rgba(255,255,255,0.06)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_700px_at_85%_0%,rgba(255,255,255,0.05)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
+
+      {/* Hero Section */}
+      <section className="relative z-10 w-full flex flex-col items-center justify-center text-center min-h-[70vh] px-4 pt-20 pb-16">
+        
+        <h1 className="text-4xl md:text-6xl font-mono text-gray-500 mb-6 tracking-tight">
+          Hello again.
+        </h1>
+
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-4xl md:text-6xl font-mono tracking-tight mb-12">
+          <span className="text-gray-300">People call me</span>
+          
+          <motion.div
+            whileHover="hover"
+            initial="rest"
+            animate="animate"
+            className="relative inline-flex items-center justify-center px-6 py-2 border border-white/20 border-dashed rounded-lg bg-[#0a0b14]/50 group cursor-crosshair overflow-hidden"
+          >
+            {/* Comets Background */}
+            <div className="absolute inset-0 pointer-events-none">
+              <motion.div
+                variants={{
+                  rest: { x: "-200%", opacity: 0 },
+                  animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 4, ease: "linear" } },
+                  hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 0.8, ease: "linear" } }
+                }}
+                className="absolute top-1/3 left-0 w-16 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent"
+              />
+              <motion.div
+                variants={{
+                  rest: { x: "-200%", opacity: 0 },
+                  animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 5, ease: "linear", delay: 1.5 } },
+                  hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 1, ease: "linear", delay: 0.2 } }
+                }}
+                className="absolute top-2/3 left-0 w-12 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+              />
             </div>
-          </div>
-          <div className="surface-soft p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-              Roots
-            </p>
-            <p className="mt-4 text-lg">
-              Born and raised in San Pablo City, Laguna, Philippines (4000). I balance coding with other aspects of life here.
-            </p>
+
+            <motion.span
+              variants={{
+                rest: { scale: 1, x: 0 },
+                animate: { scale: 1, x: 0 },
+                hover: { 
+                  scale: 0.9, 
+                  x: [0, -5, 5, -5, 5, 0], 
+                  transition: { 
+                    scale: { duration: 0.2 },
+                    x: { repeat: Infinity, duration: 0.2 } 
+                  } 
+                }
+              }}
+              className="relative z-10 text-white font-bold tracking-normal"
+            >
+              Dave
+            </motion.span>
+          </motion.div>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 text-xl md:text-3xl text-gray-500 font-mono">
+          <span>Dave is</span>
+          <div className="relative w-48 flex items-center justify-start text-left h-[40px]">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={adjIndex}
+                initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                exit={{ opacity: 0, filter: "blur(8px)", y: -10 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute left-0 font-bold text-white tracking-wide"
+              >
+                {adjectives[adjIndex]}
+              </motion.span>
+            </AnimatePresence>
           </div>
         </div>
       </section>
