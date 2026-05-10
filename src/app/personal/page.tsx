@@ -84,8 +84,14 @@ export default function PersonalPage() {
             whileHover="hover"
             initial="rest"
             animate="animate"
-            className="relative inline-flex items-center justify-center px-6 py-2 border border-white/20 border-dashed rounded-lg bg-[#0a0b14]/50 group cursor-crosshair overflow-hidden"
+            className="relative inline-flex items-center justify-center px-6 py-2 bg-[#05060a] rounded-none group cursor-crosshair overflow-hidden"
           >
+            {/* Corner Dots */}
+            <div className="absolute top-0 left-0 w-[2px] h-[2px] bg-gray-500"></div>
+            <div className="absolute top-0 right-0 w-[2px] h-[2px] bg-gray-500"></div>
+            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-gray-500"></div>
+            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-gray-500"></div>
+
             {/* Comets Background */}
             <div className="absolute inset-0 pointer-events-none">
               <motion.div
