@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
 
 // Placeholder images - you can drop your actual image paths here when ready!
 const images = [
@@ -92,9 +92,54 @@ const projectsData = [
   }
 ];
 
+const experienceData = [
+  {
+    title: "Frontend Developer",
+    description: "Developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind, etc.",
+    icon: <FaLaptopCode className="text-5xl md:text-6xl text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] z-10" />,
+    delay: "0s",
+  },
+  {
+    title: "Fullstack Developer",
+    description: "Developed a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University (Thesis) using Laravel, MySQL, Vue, DOMPDF.",
+    icon: <FaServer className="text-5xl md:text-6xl text-orange-400 drop-shadow-[0_0_15px_rgba(251,146,60,0.5)] z-10" />,
+    delay: "-1.5s",
+  },
+  {
+    title: "Vibecoder",
+    description: "Been heavy on vibecoding recently, making clones of popular websites like Radio Garden (Ritmo) and Billboards Top 100 (Aux.).",
+    icon: <FaLightbulb className="text-5xl md:text-6xl text-pink-400 drop-shadow-[0_0_15px_rgba(244,114,182,0.5)] z-10" />,
+    delay: "-3s",
+  },
+  {
+    title: "Mobile App Developer",
+    description: "Some experience on mobile app development. Not much yet, though still exploring and building small projects.",
+    icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10" />,
+    delay: "-4.5s",
+  }
+];
+
 export default function ProfessionalPage() {
   const [imgIndex, setImgIndex] = useState(0);
   const [hoveredEdu, setHoveredEdu] = useState<number | null>(null);
+  const [showNav, setShowNav] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (statsRef.current) {
+        const rect = statsRef.current.getBoundingClientRect();
+        if (rect.top < 100) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const nextImage = () => {
     setImgIndex((prev) => (prev + 1) % images.length);
@@ -184,7 +229,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 md:ml-12 lg:ml-24">
+        <div ref={statsRef} className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 md:ml-12 lg:ml-24">
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">22</span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
@@ -416,7 +461,61 @@ export default function ProfessionalPage() {
           </div>
         </div>
 
+        {/* My Experience Section */}
+        <div className="mt-20 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
+          <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
+            My <span className="text-[color:var(--accent)]">Experience</span>
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {experienceData.map((exp, idx) => (
+              <div key={idx} className="relative w-full group min-h-[160px] md:min-h-[200px]">
+                
+                <div className="relative w-full h-full rounded-2xl overflow-hidden p-[1px] bg-white/5 z-10 shadow-2xl transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(27,217,155,0.15)]">
+                  {/* Single moving border trail */}
+                  <div 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[conic-gradient(from_0deg,transparent_0_340deg,var(--accent)_360deg)] animate-[spin_12s_linear_infinite]"
+                    style={{ animationDelay: exp.delay }}
+                  ></div>
+                  
+                  {/* Inner Content */}
+                  <div className="relative w-full h-full bg-[#0b0e17]/85 backdrop-blur-2xl rounded-2xl p-6 md:p-8 z-20 flex flex-col md:flex-row gap-6 items-center transition-colors duration-500 hover:bg-[#0f1423]/90">
+                    
+                    <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                      {exp.icon}
+                    </div>
+                    
+                    <div className="flex flex-col text-center md:text-left">
+                      <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-3 group-hover:text-[color:var(--accent)] transition-colors duration-300">{exp.title}</h3>
+                      <p className="text-sm md:text-base font-sans text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{exp.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
+
+      {/* Floating Bottom Nav */}
+      <AnimatePresence>
+        {showNav && (
+          <motion.div 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#171e36]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl"
+          >
+            <Link href="/professional" className="px-6 py-2.5 rounded-full bg-[#3a4361]/60 text-[color:var(--accent)] font-mono font-bold text-sm tracking-wide shadow-sm">
+              Professional
+            </Link>
+            <Link href="/personal" className="px-6 py-2.5 rounded-full text-white/70 hover:text-white hover:bg-white/5 font-mono font-bold text-sm tracking-wide transition-all">
+              Personal
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
