@@ -402,12 +402,14 @@ export default function ProfessionalPage() {
                 whileTap={{ scale: 0.95 }}
                 className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
               >
-                {/* Expanding background dot */}
-                <div className="absolute left-[38px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] group-hover:scale-[60] transition-transform duration-500 ease-out z-0"></div>
-                
-                <div className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] group-hover:opacity-0 transition-opacity z-10 relative"></div>
-                <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-10 relative transition-colors duration-300">
-                  Explore more projects <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">-&gt;</span>
+                <span className="relative flex items-center gap-3 z-20">
+                  <span className="relative flex-none z-10">
+                    <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
+                  </span>
+
+                  <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+                    Explore more projects <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
+                  </span>
                 </span>
               </motion.div>
             </Link>
