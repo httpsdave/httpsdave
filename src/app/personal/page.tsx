@@ -87,29 +87,34 @@ export default function PersonalPage() {
             className="relative inline-flex items-center justify-center px-6 py-2 bg-[#05060a] rounded-none group cursor-crosshair overflow-hidden"
           >
             {/* Corner Dots */}
-            <div className="absolute top-0 left-0 w-[2px] h-[2px] bg-gray-500"></div>
-            <div className="absolute top-0 right-0 w-[2px] h-[2px] bg-gray-500"></div>
-            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-gray-500"></div>
-            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-gray-500"></div>
+            <div className="absolute top-0 left-0 w-[4px] h-[4px] bg-gray-500"></div>
+            <div className="absolute top-0 right-0 w-[4px] h-[4px] bg-gray-500"></div>
+            <div className="absolute bottom-0 left-0 w-[4px] h-[4px] bg-gray-500"></div>
+            <div className="absolute bottom-0 right-0 w-[4px] h-[4px] bg-gray-500"></div>
 
             {/* Comets Background */}
-            <div className="absolute inset-0 pointer-events-none">
-              <motion.div
-                variants={{
-                  rest: { x: "-200%", opacity: 0 },
-                  animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 4, ease: "linear" } },
-                  hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 0.8, ease: "linear" } }
-                }}
-                className="absolute top-1/3 left-0 w-16 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent"
-              />
-              <motion.div
-                variants={{
-                  rest: { x: "-200%", opacity: 0 },
-                  animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 5, ease: "linear", delay: 1.5 } },
-                  hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: 1, ease: "linear", delay: 0.2 } }
-                }}
-                className="absolute top-2/3 left-0 w-12 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
-              />
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* 7 Small Blue Comets */}
+              {[
+                { top: "15%", delay: 0, duration: 2.5, hoverDuration: 0.4 },
+                { top: "25%", delay: 0.8, duration: 3.2, hoverDuration: 0.5 },
+                { top: "40%", delay: 1.5, duration: 2.8, hoverDuration: 0.45 },
+                { top: "50%", delay: 0.4, duration: 3.5, hoverDuration: 0.6 },
+                { top: "65%", delay: 2.1, duration: 2.2, hoverDuration: 0.35 },
+                { top: "75%", delay: 1.1, duration: 3.0, hoverDuration: 0.5 },
+                { top: "85%", delay: 0.3, duration: 2.7, hoverDuration: 0.4 },
+              ].map((comet, i) => (
+                <motion.div
+                  key={i}
+                  variants={{
+                    rest: { x: "-100%", opacity: 0 },
+                    animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: comet.duration, ease: "linear", delay: comet.delay } },
+                    hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: comet.hoverDuration, ease: "linear" } }
+                  }}
+                  className="absolute left-0 w-6 h-[2px] bg-blue-500 rounded-full"
+                  style={{ top: comet.top, boxShadow: '0 0 4px rgba(59,130,246,0.8)' }}
+                />
+              ))}
             </div>
 
             <motion.span
@@ -118,10 +123,10 @@ export default function PersonalPage() {
                 animate: { scale: 1, x: 0 },
                 hover: { 
                   scale: 0.9, 
-                  x: [0, -5, 5, -5, 5, 0], 
+                  x: [0, -2, 2, -2, 2, 0], 
                   transition: { 
                     scale: { duration: 0.2 },
-                    x: { repeat: Infinity, duration: 0.2 } 
+                    x: { repeat: Infinity, duration: 0.15 } 
                   } 
                 }
               }}

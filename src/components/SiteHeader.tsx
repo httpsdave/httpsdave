@@ -13,7 +13,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="w-full z-50 pt-8 pb-4">
+    <header className="absolute top-0 left-0 w-full z-50 pt-8 pb-4">
       <div className="mx-auto flex w-full max-w-none items-center justify-between px-6 md:px-20 lg:px-32 xl:px-48">
         <Link href="/" className="flex items-center gap-1 text-5xl font-bold font-sans tracking-tight">
           Goze <span className="text-[color:var(--accent)]">.</span>

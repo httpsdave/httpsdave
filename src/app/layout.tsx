@@ -31,7 +31,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${splineMono.variable} h-full antialiased`}
     >
       <body className="min-h-full text-[color:var(--fg)]">
-        <div className="app-shell">
+        <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
           <a href="#main-content" className="skip-link">
             Skip to content
           </a>
