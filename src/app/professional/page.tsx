@@ -148,7 +148,7 @@ export default function ProfessionalPage() {
   return (
     <div className="flex-1 relative flex flex-col justify-center min-h-[85vh]">
       {/* Absolute background grid with a smooth fade-out to transparent toward the bottom */}
-      <div className="absolute inset-0 pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,white_40%,transparent_85%)]" />
+      <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,white_40%,transparent_100%)]" />
 
       <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-16 md:pt-24">
         
