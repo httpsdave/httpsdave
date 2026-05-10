@@ -223,7 +223,7 @@ export default function ProfessionalPage() {
   return (
     <div className="flex-1 relative flex flex-col justify-center min-h-[85vh]">
       {/* Absolute background grid with a smooth fade-out to transparent toward the bottom */}
-      <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,white_40%,transparent_100%)]" />
+      <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent_0%,transparent_10%,white_25%,white_40%,transparent_100%)]" />
 
       <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-16 md:pt-24">
         
@@ -270,10 +270,10 @@ export default function ProfessionalPage() {
                 <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaYoutube size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaLinkedin size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaGithub size={16} />
                 </Link>
               </div>
@@ -304,7 +304,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div ref={statsRef} className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 md:ml-12 lg:ml-24">
+        <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
                  <AnimatedCounter value={22} />
@@ -312,8 +312,8 @@ export default function ProfessionalPage() {
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
             </div>
             
-            {/* hidden experience for now */}
-            <div className="hidden md:flex items-center gap-4 hidden-until-experience">
+            {/* Years of experience */}
+            <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
                  <AnimatedCounter value={0} />
                </span>
@@ -333,6 +333,34 @@ export default function ProfessionalPage() {
                </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br/>Deployed</span>
             </div>
+
+            <div className="flex items-center gap-4">
+               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+                 <AnimatedCounter value={37} />
+               </span>
+               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
+            </div>
+        </div>
+
+        {/* Microcredentials Button */}
+        <div className="flex justify-center mt-4 mb-20">
+          <Link href="#">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
+            >
+              <span className="relative flex items-center gap-3 z-20">
+                <span className="relative flex-none z-10">
+                  <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
+                </span>
+
+                <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+                  View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
+                </span>
+              </span>
+            </motion.div>
+          </Link>
         </div>
 
         {/* Education Section */}
@@ -651,38 +679,38 @@ export default function ProfessionalPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 mb-32">
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">offer job opportunity?</h3>
-              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
+              <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
                 I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
               </p>
             </div>
             
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Connect?</h3>
-              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
+              <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
                 Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work. Let's grab a virtual coffee and see where the conversation takes us!
               </p>
             </div>
 
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Build something?</h3>
-              <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
+              <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
                 I have a passion for developing innovative web applications that solve complex problems. Whether it's building a custom e-commerce platform or a cutting-edge web app, I'm always ready for a new challenge. Let's create something amazing together!
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
-            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
             </Link>
-            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
             </Link>
-            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
             </Link>
@@ -714,13 +742,13 @@ export default function ProfessionalPage() {
 
       {/* Fixed Left Social Sidebar */}
       <div className="hidden lg:flex fixed left-10 bottom-0 flex-col items-center gap-7 z-40">
-        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+        <Link href="mailto:davedominc912@gmail.com" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
           <FaEnvelope size={26} />
         </Link>
-        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+        <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
           <FaLinkedin size={26} />
         </Link>
-        <Link href="#" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
+        <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
           <FaGithub size={26} />
         </Link>
         <div className="w-[3px] h-32 bg-white/80 mt-2" />
