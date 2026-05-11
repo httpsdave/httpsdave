@@ -96,7 +96,34 @@ const adjectives = ["Disciplined", "Persistent", "Curious", "Resilient"];
 export default function PersonalPage() {
   const [adjIndex, setAdjIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const outroRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const [activeFacet, setActiveFacet] = useState<typeof lifeFacets[0] | null>(null);
+  const [outroMousePos, setOutroMousePos] = useState({ x: 0, y: 0 });
+  const [isOutroHovered, setIsOutroHovered] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        if (rect.bottom < 100) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleOutroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!outroRef.current) return;
+    const rect = outroRef.current.getBoundingClientRect();
+    setOutroMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -146,7 +173,7 @@ export default function PersonalPage() {
       <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_700px_at_85%_0%,rgba(255,255,255,0.05)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
 
       {/* Hero Section */}
-      <section className="relative z-10 w-full flex flex-col items-center justify-center text-center min-h-[70vh] px-4 pt-20 pb-16">
+      <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-center text-center min-h-[70vh] px-4 pt-20 pb-16">
         
         <h1 className="text-4xl md:text-6xl font-mono text-gray-500 mb-6 tracking-tight">
           Hello again.
@@ -343,58 +370,32 @@ export default function PersonalPage() {
               I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
             </p>
             
-            {/* Cards cascade animation */}
-            <motion.div 
-              initial="rest"
-              whileHover="hover"
-              className="relative w-full flex-1 flex justify-center items-end mt-12 z-0 pb-8"
-            >
-              {/* Back Left Card */}
-              <motion.div 
-                variants={{
-                  rest: { rotate: -12, x: -40, y: 15, scale: 0.9 },
-                  hover: { rotate: -22, x: -80, y: 5, scale: 0.95 }
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="absolute w-32 h-48 bg-zinc-800 rounded-lg shadow-xl border border-zinc-700 overflow-hidden flex items-center justify-center"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-red-900/40 to-black flex items-center justify-center text-center p-2">
-                  <span className="text-xs text-red-500/50 font-bold tracking-widest uppercase">Horror</span>
+            {/* 3 Rows of Image Placeholders overlapping slightly like the reference image */}
+            <div className="relative w-full flex-1 flex flex-col justify-center items-center -space-y-4 sm:-space-y-6 md:-space-y-8 mt-12 z-0 pb-4 overflow-visible">
+              {[
+                [1, 2, 3, 4],     // Row 1
+                [5, 6, 7, 8, 9],  // Row 2
+                [10, 11, 12, 13]  // Row 3
+              ].map((row, rowIndex) => (
+                <div key={`row-${rowIndex}`} className="flex items-center justify-center -space-x-6 sm:-space-x-10 md:-space-x-16">
+                  {row.map((num, idx) => {
+                    const rotations = ['-rotate-3', 'rotate-2', '-rotate-6', 'rotate-3', '-rotate-2'];
+                    const rot = rotations[(num - 1) % rotations.length];
+                    return (
+                      <motion.div 
+                        key={`placeholder-${num}`}
+                        whileHover={{ y: -10, scale: 1.05, zIndex: 50 }}
+                        className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-zinc-800 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.8)] border-[1.5px] border-zinc-600/60 flex flex-col items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 ${rot}`}
+                        style={{ zIndex: 10 + rowIndex * 10 + idx }}
+                      >
+                         <div className="absolute inset-0 bg-gradient-to-br from-zinc-700/50 to-zinc-900/50" />
+                         <span className="relative z-10 text-zinc-500 font-mono text-xs md:text-sm drop-shadow-md font-bold tracking-widest text-center px-1">IMG<br/>{num}</span>
+                      </motion.div>
+                    );
+                  })}
                 </div>
-              </motion.div>
-              
-              {/* Back Right Card */}
-              <motion.div 
-                variants={{
-                  rest: { rotate: 12, x: 40, y: 15, scale: 0.9 },
-                  hover: { rotate: 22, x: 80, y: 5, scale: 0.95 }
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="absolute w-32 h-48 bg-zinc-800 rounded-lg shadow-xl border border-zinc-700 overflow-hidden flex items-center justify-center"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-indigo-900/40 to-black flex items-center justify-center text-center p-2">
-                  <span className="text-xs text-indigo-500/50 font-bold tracking-widest uppercase">Anime</span>
-                </div>
-              </motion.div>
-
-              {/* Front Center Card */}
-              <motion.div 
-                variants={{
-                  rest: { rotate: 0, x: 0, y: 0, scale: 1 },
-                  hover: { rotate: 0, x: 0, y: -15, scale: 1.05 }
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="relative w-36 h-52 bg-zinc-700 rounded-lg shadow-2xl shadow-black/80 border-2 border-zinc-500 overflow-hidden z-10 flex items-center justify-center"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-zinc-600 to-[#0a0b14] flex flex-col items-center justify-center p-3 text-center">
-                  <span className="text-xs font-mono text-zinc-300 mb-2">Interstellar</span>
-                  <div className="w-12 h-12 rounded-full border border-zinc-500 flex items-center justify-center mb-2">
-                    <div className="w-6 h-6 border-b border-r border-zinc-400 transform rotate-[-45deg]"></div>
-                  </div>
-                  <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase mt-auto">Sci-Fi</span>
-                </div>
-              </motion.div>
-            </motion.div>
+              ))}
+            </div>
           </article>
 
           {/* Box 3: Music */}
@@ -544,93 +545,177 @@ export default function PersonalPage() {
       </AnimatePresence>
 
       {/* Outro Section */}
-      <section className="relative w-full pt-12 pb-32 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 z-0 opacity-20 [mask-image:linear-gradient(to_bottom,black_10%,black_90%,transparent)]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,black,transparent)]" />
-        </div>
+      <section className="relative w-full pt-12 pb-40 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
+        {/* Animated Grid Background (consistent with professional tab) */}
+        <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
         
         {/* Ambient Glows */}
         <div className="absolute bottom-10 left-[20%] w-[300px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
         <div className="absolute bottom-[10%] right-[30%] w-[200px] h-[200px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none z-0" />
 
-        {/* Main Outro Card */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto h-[400px] border border-zinc-800/80 bg-[#0a0b14]/60 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center overflow-hidden shadow-2xl">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-mono text-white font-bold mb-4 z-10 text-center px-4">
-            For visiting my profile
-          </h2>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 z-10 pb-2">
-            Thank you.
-          </h2>
+        {/* Main Outro Container with border trail */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto group">
+          
+          {/* Subtle trail glow behind the container */}
+          <div className="absolute inset-[-6px] rounded-[calc(1.5rem+6px)] overflow-hidden z-0 blur-[6px] opacity-70 pointer-events-none transition-opacity duration-500 group-hover:opacity-100">
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)] animate-[spin_12s_linear_infinite]"></div>
+          </div>
 
-          {/* Sparkles / Dot groups (bottom left) */}
-          <div className="absolute bottom-10 left-10 md:left-24 grid grid-cols-3 gap-1.5 opacity-60">
-             {[...Array(9)].map((_, i) => (
+          <div className="relative p-[1px] rounded-3xl overflow-hidden shadow-2xl transition-shadow duration-500">
+            {/* Green trailing light */}
+            {/* Solid base layer behind everything else so trailing light does not bleed into the middle via blur */}
+            <div className="absolute inset-[1px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] z-0"></div>
+
+            <div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)] animate-[spin_12s_linear_infinite] z-[1]"></div>
+
+            {/* Main Outro Card */}
+            <div 
+              ref={outroRef}
+              onMouseMove={handleOutroMouseMove}
+              onMouseEnter={() => setIsOutroHovered(true)}
+              onMouseLeave={() => setIsOutroHovered(false)}
+              className="relative w-full h-[400px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none"
+            >
+              {/* Green Comets Top to Bottom with Splash */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+                {[
+                  { left: "15%", delay: 0, duration: 4.5 },
+                  { left: "30%", delay: 1.5, duration: 5.5 },
+                  { left: "45%", delay: 0.8, duration: 4.8 },
+                  { left: "60%", delay: 2.5, duration: 6.2 },
+                  { left: "75%", delay: 1.2, duration: 5.0 },
+                  { left: "90%", delay: 3.0, duration: 5.8 },
+                ].map((comet, i) => (
+                  <div key={`comet-wrap-${i}`} className="absolute inset-y-0 w-8 flex flex-col items-center pointer-events-none" style={{ left: comet.left }}>
+                    {/* Falling Comet */}
+                    <motion.div
+                      key={`comet-${i}`}
+                      animate={{ top: ["-10%", "100%", "100%", "100%"], opacity: [0, 1, 0, 0] }}
+                      transition={{ repeat: Infinity, duration: comet.duration, ease: "linear", delay: comet.delay, times: [0, 0.6, 0.61, 1] }}
+                      className="absolute flex flex-col items-center justify-end h-16 w-0.5"
+                    >
+                      <div className="w-[0.5px] flex-1 bg-gradient-to-b from-transparent to-emerald-500"></div>
+                      <div className="w-[1.5px] h-[1.5px] bg-emerald-300 rounded-full" style={{ boxShadow: '0 0 5px 1px rgba(16,185,129,0.8)' }}></div>
+                    </motion.div>
+                    
+                    {/* Multi-Particle Splash */}
+                    <motion.div
+                       key={`splash-${i}`}
+                       className="absolute bottom-0 w-24 h-12 flex items-end justify-center pb-0"
+                    >
+                       {[...Array(15)].map((_, j) => {
+                         const angle = (Math.PI / 1.5) * (j / 14) - (Math.PI / 3);
+                         const isFast = (j % 2 === 0);
+                         const velocity = isFast ? 20 + (j % 3) * 5 : 10 + (j % 4) * 3;
+                         const xTarget = Math.sin(angle) * velocity;
+                         const yTarget = -Math.cos(angle) * velocity - (j % 5) * 2;
+                         return (
+                           <motion.div
+                             key={j}
+                             animate={{
+                               x: [0, 0, xTarget, xTarget * 1.5],
+                               y: [0, 0, yTarget, yTarget + 20],
+                               scale: [0, 0, 1.2, 0],
+                               opacity: [0, 0, 1, 0]
+                             }}
+                             transition={{
+                               repeat: Infinity,
+                               duration: comet.duration,
+                               ease: "easeOut",
+                               delay: comet.delay,
+                               times: [0, 0.6, 0.9, 1]
+                             }}
+                             className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.9)]"
+                           />
+                         )
+                       })}
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 z-10 pb-2">
+                Thank you.
+              </h2>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-mono text-white font-bold mb-4 z-10 text-center px-4">
+                for visiting my profile
+            </h2>
+
+            {/* Floating 'Multiplayer' Cursor Effect - Tracks mouse */}
+            <AnimatePresence>
+              {isOutroHovered && (
                 <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0.3 }}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }}
-                  className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_5px_rgba(52,211,153,0.8)]"
-                />
-             ))}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1, x: outroMousePos.x, y: outroMousePos.y }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{
+                    opacity: { duration: 0.1 },
+                    scale: { duration: 0.1 },
+                    x: { type: "tween", ease: "linear", duration: 0 },
+                    y: { type: "tween", ease: "linear", duration: 0 }
+                  }}
+                  style={{ top: "0", left: "0", position: "absolute", zIndex: 50, pointerEvents: "none" }}
+                  className="flex flex-col items-start drop-shadow-lg"
+                >
+                  {/* Cursor Arrow */}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#3b82f6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="rotate-[-20deg] drop-shadow-md relative left-2">
+                    <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+                  </svg>
+                  <div className="flex items-center gap-2 bg-[#3b82f6] text-white px-3 py-1.5 rounded-full text-xs font-bold font-mono ml-4 shadow-lg border border-blue-400/50">
+                    <span className="flex items-center justify-center w-4 h-4 bg-white/20 rounded-full text-[10px]">✨</span>
+                    Dave Dominic Goze
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-
-          <div className="absolute bottom-8 right-1/3 flex gap-2 opacity-50">
-             <div className="w-4 h-[2px] bg-emerald-400/50 shadow-[0_0_8px_rgba(52,211,153,0.8)] rounded-full"></div>
-             <div className="w-2 h-[2px] bg-emerald-400/80 shadow-[0_0_8px_rgba(52,211,153,0.8)] rounded-full"></div>
-          </div>
-
-          {/* Floating 'Multiplayer' Cursor Effect */}
-          <motion.div 
-            animate={{ 
-              x: [0, -30, 10, -50, 0], 
-              y: [0, -20, 15, -10, 0] 
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-24 right-10 md:right-40 flex flex-col items-start drop-shadow-lg z-20 pointer-events-none"
-          >
-            {/* Cursor Arrow */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="#3b82f6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="rotate-[-20deg] drop-shadow-md relative left-2">
-              <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
-            </svg>
-            <div className="flex items-center gap-2 bg-[#3b82f6] text-white px-3 py-1.5 rounded-full text-xs font-bold font-mono ml-4 shadow-lg border border-blue-400/50">
-              <span className="flex items-center justify-center w-4 h-4 bg-white/20 rounded-full text-[10px]">✨</span>
-              Dave Dominic Goze
-            </div>
-          </motion.div>
         </div>
+      </div>
 
         {/* Bottom Footer Details */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 mt-16 flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-transparent">
-          <span className="font-mono font-bold text-white text-sm">Dave Dominic Goze</span>
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 mt-20 flex flex-col md:flex-row items-center justify-between gap-6 pb-4 border-b border-transparent">
+          <span className="font-mono font-bold text-white text-lg tracking-wide">Dave Dominic Goze</span>
             
-          {/* Toggle */}
-          <div className="flex items-center p-1 bg-[#16171d] border border-zinc-800 rounded-full relative">
-            <Link href="/professional" className="px-6 py-2 rounded-full text-xs font-mono text-zinc-400 hover:text-white transition-colors z-10">Professional</Link>
-            <Link href="/personal" className="px-6 py-2 rounded-full text-xs font-mono font-bold text-emerald-400 bg-zinc-700/50 shadow-sm z-10">Personal</Link>
-          </div>
-
           {/* Socials */}
-          <div className="flex items-center gap-3">
-             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <div className="flex items-center gap-4">
+             <Link href="#" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
              </Link>
-             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+             <Link href="#" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
              </Link>
-             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+             <Link href="#" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
              </Link>
-             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+             <Link href="#" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
              </Link>
-             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+             <Link href="#" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
              </Link>
           </div>
         </div>
       </section>
+
+      {/* Floating Bottom Nav */}
+      <AnimatePresence>
+        {showNav && (
+          <motion.div 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#171e36]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl pointer-events-auto"
+          >
+            <Link href="/professional" className="px-6 py-2.5 rounded-full text-white/70 hover:text-white hover:bg-white/5 font-mono font-bold text-sm tracking-wide transition-all">
+              Professional
+            </Link>
+            <Link href="/personal" className="px-6 py-2.5 rounded-full bg-[#3a4361]/60 text-[color:var(--accent)] font-mono font-bold text-sm tracking-wide shadow-sm">
+              Personal
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
