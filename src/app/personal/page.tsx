@@ -1,7 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
+const lifeFacets = [
+  {
+    id: "books",
+    category: "Books",
+    title: "Fiction Novels",
+    bgGradient: "from-emerald-900/60 to-[#0a0b14]",
+    content: "I love reading. If I played video games for about 3,000 hours, I probably read novels for maybe 20,000 hours. My favorite book is Shadow Slave. It has over 2,000 chapters.",
+  },
+  {
+    id: "music",
+    category: "Music",
+    title: "Musical Instruments, Band",
+    bgGradient: "from-orange-900/60 to-[#0a0b14]",
+    content: "I've been learning to play the guitar, exploring alternative rock and learning some of the riffs I love listening to.",
+  },
+  {
+    id: "tech",
+    category: "Computer, IT",
+    title: "Interest, Work",
+    bgGradient: "from-blue-900/60 to-[#0a0b14]",
+    content: "My brother introduced me to computers early on. I became fascinated with formatting, disassembling components, and understanding how the software logic connects with the hardware.",
+  },
+  {
+    id: "fitness",
+    category: "Fitness",
+    title: "Sports, Gym",
+    bgGradient: "from-zinc-800/80 to-[#0a0b14]",
+    content: "To replace gaming with a healthier method, I joined a gym in 10th grade. Being the smallest student, I found the motivation to work out consistently. Now, years later, it's just an integral part of my daily routine.",
+  },
+  {
+    id: "language",
+    category: "Foreign Languages",
+    title: "Foreign Languages",
+    bgGradient: "from-purple-900/60 to-[#0a0b14]",
+    content: "In my childhood, my English developed rapidly via internet immersion. I spent most my days watching anime, movies, and reading tracking tech news. I plan to learn more languages like German and Japanese in the future.",
+  }
+];
 
 const interests = [
   {
@@ -56,6 +95,42 @@ const adjectives = ["Disciplined", "Persistent", "Curious", "Resilient"];
 
 export default function PersonalPage() {
   const [adjIndex, setAdjIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeFacet, setActiveFacet] = useState<typeof lifeFacets[0] | null>(null);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -340, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 340, behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Translate vertical scrolling to horizontal scrolling based on boundaries
+      if (e.deltaY !== 0) {
+        const isAtStart = carousel.scrollLeft === 0;
+        const isAtEnd = Math.ceil(carousel.scrollLeft + carousel.clientWidth) >= carousel.scrollWidth;
+
+        // If scrolling down (right) and not at end, OR scrolling up (left) and not at start
+        if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
+          e.preventDefault();
+          carousel.scrollBy({ left: e.deltaY, behavior: "auto" });
+        }
+      }
+    };
+
+    carousel.addEventListener("wheel", handleWheel, { passive: false });
+    return () => carousel.removeEventListener("wheel", handleWheel);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -228,7 +303,7 @@ export default function PersonalPage() {
                 animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                 exit={{ opacity: 0, filter: "blur(8px)", y: -10 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute left-0 font-bold text-white tracking-wide"
+                className="absolute left-0 font-medium text-white tracking-wide"
               >
                 {adjectives[adjIndex]}
               </motion.span>
@@ -237,53 +312,322 @@ export default function PersonalPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-16">
-        <div className="mb-8">
-          <p className="chip">Interests</p>
-          <h2 className="section-title font-semibold">What refuels me</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {interests.map((item) => (
-            <article key={item.title} className="surface p-6">
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm text-[color:var(--muted)]">{item.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6 pb-16">
-        <div className="mb-8">
-          <p className="chip">Moments</p>
-          <h2 className="section-title font-semibold">Snapshots and rituals</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {moments.map((moment) => (
-            <article key={moment.title} className="surface-soft flex min-h-[220px] flex-col justify-end p-6">
-              <h3 className="text-lg font-semibold">{moment.title}</h3>
-              <p className="mt-2 text-sm text-[color:var(--muted)]">
-                {moment.caption}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
+      {/* Hobbies Section */}
       <section className="mx-auto w-full max-w-6xl px-6 pb-24">
-        <div className="surface grid gap-6 p-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-          <div>
-            <p className="chip">Values</p>
-            <h2 className="section-title font-semibold">How I try to show up</h2>
-          </div>
-          <div className="space-y-4">
-            {values.map((value) => (
-              <div key={value.title} className="surface-soft p-4">
-                <h3 className="text-lg font-semibold">{value.title}</h3>
-                <p className="mt-2 text-sm text-[color:var(--muted)]">
-                  {value.note}
-                </p>
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-4">Dave's Hobbies</h2>
+          <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          {/* Box 1: Cycling */}
+          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Jogs & Cycling</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-sm">
+              I have a Promax PR50 roadbike that I ride through the city and mostly around the Sampaloc Lake in San Pablo City, Laguna.
+            </p>
+            {/* Visual Placeholder for Video/Image */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0a0b14] via-transparent to-transparent opacity-80" />
+            <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-blue-900/20 to-transparent flex items-end p-6">
+              <div className="w-full h-32 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center overflow-hidden">
+                <span className="text-zinc-600 font-mono text-xs">[Cycling Image / Scenery Video]</span>
               </div>
+            </div>
+          </article>
+
+          {/* Box 2: Cinephile with Hover Effects */}
+          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col relative overflow-hidden group min-h-[420px] md:col-start-2 md:row-span-2">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 z-10 relative">Movies & Shows</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed z-10 relative">
+              I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
+            </p>
+            
+            {/* Cards cascade animation */}
+            <motion.div 
+              initial="rest"
+              whileHover="hover"
+              className="relative w-full flex-1 flex justify-center items-end mt-12 z-0 pb-8"
+            >
+              {/* Back Left Card */}
+              <motion.div 
+                variants={{
+                  rest: { rotate: -12, x: -40, y: 15, scale: 0.9 },
+                  hover: { rotate: -22, x: -80, y: 5, scale: 0.95 }
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="absolute w-32 h-48 bg-zinc-800 rounded-lg shadow-xl border border-zinc-700 overflow-hidden flex items-center justify-center"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-red-900/40 to-black flex items-center justify-center text-center p-2">
+                  <span className="text-xs text-red-500/50 font-bold tracking-widest uppercase">Horror</span>
+                </div>
+              </motion.div>
+              
+              {/* Back Right Card */}
+              <motion.div 
+                variants={{
+                  rest: { rotate: 12, x: 40, y: 15, scale: 0.9 },
+                  hover: { rotate: 22, x: 80, y: 5, scale: 0.95 }
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="absolute w-32 h-48 bg-zinc-800 rounded-lg shadow-xl border border-zinc-700 overflow-hidden flex items-center justify-center"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-indigo-900/40 to-black flex items-center justify-center text-center p-2">
+                  <span className="text-xs text-indigo-500/50 font-bold tracking-widest uppercase">Anime</span>
+                </div>
+              </motion.div>
+
+              {/* Front Center Card */}
+              <motion.div 
+                variants={{
+                  rest: { rotate: 0, x: 0, y: 0, scale: 1 },
+                  hover: { rotate: 0, x: 0, y: -15, scale: 1.05 }
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative w-36 h-52 bg-zinc-700 rounded-lg shadow-2xl shadow-black/80 border-2 border-zinc-500 overflow-hidden z-10 flex items-center justify-center"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-zinc-600 to-[#0a0b14] flex flex-col items-center justify-center p-3 text-center">
+                  <span className="text-xs font-mono text-zinc-300 mb-2">Interstellar</span>
+                  <div className="w-12 h-12 rounded-full border border-zinc-500 flex items-center justify-center mb-2">
+                    <div className="w-6 h-6 border-b border-r border-zinc-400 transform rotate-[-45deg]"></div>
+                  </div>
+                  <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase mt-auto">Sci-Fi</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </article>
+
+          {/* Box 3: Music */}
+          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Music Enthusiast</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 mb-6 max-w-sm">
+              I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
+            </p>
+            <div className="flex-1 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center relative overflow-hidden">
+              <div className="w-12 h-12 bg-red-600/90 rounded-xl flex items-center justify-center z-10 cursor-pointer hover:bg-red-500 transition-colors">
+                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[14px] border-l-white border-b-8 border-b-transparent ml-1"></div>
+              </div>
+              <span className="absolute bottom-4 left-4 text-xs font-mono text-zinc-500">[Guitar Video Snippet]</span>
+            </div>
+          </article>
+
+          {/* Box 4: Workout Routine */}
+          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group md:col-span-2">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Exercise & Workout</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl">
+              I've been consistent with it for years now, it's become more of a routine than a hobby. A core component of my life, keeping me grounded and energized.
+            </p>
+            {/* Visual Element */}
+            <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-20 pointer-events-none">
+              <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.4)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }}></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* Decorative abstract sphere grid to represent routine/consistency */}
+                <div className="w-64 h-64 rounded-full border border-dashed border-gray-400 animate-[spin_60s_linear_infinite]"></div>
+                <div className="absolute w-48 h-48 rounded-full border border-dotted border-gray-500 animate-[spin_40s_linear_infinite_reverse]"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      {/* Components of My Life Carousel Section */}
+      <section className="mx-auto w-full max-w-6xl py-24 relative overflow-hidden">
+        <div className="px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of my life</h2>
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={scrollLeft}
+              className="w-10 h-10 rounded-full border border-zinc-700 bg-zinc-800/50 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button 
+              onClick={scrollRight}
+              className="w-10 h-10 rounded-full bg-zinc-200 flex items-center justify-center text-zinc-900 hover:bg-white transition-colors"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div className="w-full relative">
+          {/* Edge Fade Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+
+          <div 
+            ref={carouselRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar px-6 pb-12 relative z-10"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {lifeFacets.map((facet) => (
+              <motion.div
+                key={facet.id}
+                whileHover={{ y: -10 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={() => setActiveFacet(facet)}
+                className={`min-w-[280px] md:min-w-[340px] snap-center h-[520px] md:h-[560px] rounded-2xl cursor-pointer relative overflow-hidden bg-gradient-to-b ${facet.bgGradient} border border-zinc-800/50 shadow-2xl flex flex-col p-6 group`}
+              >
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-0"></div>
+                <div className="relative z-10">
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest">{facet.category}</span>
+                  <h3 className="text-2xl font-bold font-mono text-white mt-2 leading-tight">{facet.title}</h3>
+                </div>
+                
+                {/* Visual placeholder inside card */}
+                <div className="mt-auto relative z-10 w-full h-1/2 opacity-30 group-hover:opacity-60 transition-opacity duration-500">
+                   <div className="absolute bottom-0 right-0 text-7xl opacity-20">★</div>
+                </div>
+                
+                {/* Subtle Hover Glare */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/5 to-transparent pointer-events-none transition-opacity duration-500"></div>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter Popup Modal */}
+      <AnimatePresence>
+        {activeFacet && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveFacet(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"
+            ></motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="relative w-full max-w-2xl bg-[#111218] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
+            >
+              <button 
+                onClick={() => setActiveFacet(null)}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800/80 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors z-20"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
+
+              <div className={`w-full h-32 md:h-48 bg-gradient-to-b ${activeFacet.bgGradient} p-6 md:p-10 flex flex-col justify-end`}>
+                <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">{activeFacet.category}</span>
+                <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mt-2">{activeFacet.title}</h3>
+              </div>
+
+              <div className="p-6 md:p-10 overflow-y-auto font-mono text-zinc-300 leading-relaxed text-sm md:text-base">
+                 <p className="whitespace-pre-line">{activeFacet.content}</p>
+                 
+                 {activeFacet.id === "fitness" && (
+                   <div className="mt-8 pt-8 border-t border-zinc-800 grid grid-cols-2 gap-4 text-xs">
+                     <div><span className="text-zinc-500">Height:</span> 180cm</div>
+                     <div><span className="text-zinc-500">Weight:</span> 70kg</div>
+                     <div><span className="text-zinc-500">Squat:</span> 100kg x 10</div>
+                     <div><span className="text-zinc-500">Pull-ups:</span> 17</div>
+                   </div>
+                 )}
+                 {activeFacet.id === "language" && (
+                   <div className="mt-8 pt-8 border-t border-zinc-800 flex flex-col gap-2 text-xs">
+                     <div><span className="text-zinc-500 w-24 inline-block">English</span> Fluent</div>
+                     <div><span className="text-zinc-500 w-24 inline-block">Japanese</span> Currently improving</div>
+                     <div><span className="text-zinc-500 w-24 inline-block">German</span> Planning to learn</div>
+                   </div>
+                 )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Outro Section */}
+      <section className="relative w-full pt-12 pb-32 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 z-0 opacity-20 [mask-image:linear-gradient(to_bottom,black_10%,black_90%,transparent)]">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,black,transparent)]" />
+        </div>
+        
+        {/* Ambient Glows */}
+        <div className="absolute bottom-10 left-[20%] w-[300px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute bottom-[10%] right-[30%] w-[200px] h-[200px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none z-0" />
+
+        {/* Main Outro Card */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto h-[400px] border border-zinc-800/80 bg-[#0a0b14]/60 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center overflow-hidden shadow-2xl">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-mono text-white font-bold mb-4 z-10 text-center px-4">
+            For visiting my profile
+          </h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 z-10 pb-2">
+            Thank you.
+          </h2>
+
+          {/* Sparkles / Dot groups (bottom left) */}
+          <div className="absolute bottom-10 left-10 md:left-24 grid grid-cols-3 gap-1.5 opacity-60">
+             {[...Array(9)].map((_, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0.3 }}
+                  animate={{ opacity: [0.3, 1, 0.3] }}
+                  transition={{ duration: 2 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }}
+                  className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_5px_rgba(52,211,153,0.8)]"
+                />
+             ))}
+          </div>
+
+          <div className="absolute bottom-8 right-1/3 flex gap-2 opacity-50">
+             <div className="w-4 h-[2px] bg-emerald-400/50 shadow-[0_0_8px_rgba(52,211,153,0.8)] rounded-full"></div>
+             <div className="w-2 h-[2px] bg-emerald-400/80 shadow-[0_0_8px_rgba(52,211,153,0.8)] rounded-full"></div>
+          </div>
+
+          {/* Floating 'Multiplayer' Cursor Effect */}
+          <motion.div 
+            animate={{ 
+              x: [0, -30, 10, -50, 0], 
+              y: [0, -20, 15, -10, 0] 
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-24 right-10 md:right-40 flex flex-col items-start drop-shadow-lg z-20 pointer-events-none"
+          >
+            {/* Cursor Arrow */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#3b82f6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="rotate-[-20deg] drop-shadow-md relative left-2">
+              <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+            </svg>
+            <div className="flex items-center gap-2 bg-[#3b82f6] text-white px-3 py-1.5 rounded-full text-xs font-bold font-mono ml-4 shadow-lg border border-blue-400/50">
+              <span className="flex items-center justify-center w-4 h-4 bg-white/20 rounded-full text-[10px]">✨</span>
+              Dave Dominic Goze
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Footer Details */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 mt-16 flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-transparent">
+          <span className="font-mono font-bold text-white text-sm">Dave Dominic Goze</span>
+            
+          {/* Toggle */}
+          <div className="flex items-center p-1 bg-[#16171d] border border-zinc-800 rounded-full relative">
+            <Link href="/professional" className="px-6 py-2 rounded-full text-xs font-mono text-zinc-400 hover:text-white transition-colors z-10">Professional</Link>
+            <Link href="/personal" className="px-6 py-2 rounded-full text-xs font-mono font-bold text-emerald-400 bg-zinc-700/50 shadow-sm z-10">Personal</Link>
+          </div>
+
+          {/* Socials */}
+          <div className="flex items-center gap-3">
+             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+             </Link>
+             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+             </Link>
+             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+             </Link>
+             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+             </Link>
+             <Link href="#" className="w-8 h-8 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+             </Link>
           </div>
         </div>
       </section>
