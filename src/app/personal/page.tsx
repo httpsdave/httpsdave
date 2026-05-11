@@ -548,10 +548,6 @@ export default function PersonalPage() {
       <section className="relative w-full pt-12 pb-40 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
         {/* Animated Grid Background (consistent with professional tab) */}
         <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
-        
-        {/* Ambient Glows */}
-        <div className="absolute bottom-10 left-[20%] w-[300px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
-        <div className="absolute bottom-[10%] right-[30%] w-[200px] h-[200px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none z-0" />
 
         {/* Main Outro Container with border trail */}
         <div className="relative z-10 w-full max-w-5xl mx-auto group">
@@ -604,8 +600,8 @@ export default function PersonalPage() {
                        key={`splash-${i}`}
                        className="absolute bottom-0 w-24 h-12 flex items-end justify-center pb-0"
                     >
-                       {[...Array(15)].map((_, j) => {
-                         const angle = (Math.PI / 1.5) * (j / 14) - (Math.PI / 3);
+                       {[...Array(8)].map((_, j) => {
+                         const angle = (Math.PI / 1.5) * (j / 7) - (Math.PI / 3);
                          const isFast = (j % 2 === 0);
                          const velocity = isFast ? 20 + (j % 3) * 5 : 10 + (j % 4) * 3;
                          const xTarget = Math.sin(angle) * velocity;
@@ -626,7 +622,8 @@ export default function PersonalPage() {
                                delay: comet.delay,
                                times: [0, 0.6, 0.9, 1]
                              }}
-                             className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.9)]"
+                             className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-emerald-400"
+                             style={{ willChange: "transform, opacity" }}
                            />
                          )
                        })}
