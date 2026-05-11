@@ -84,13 +84,13 @@ export default function PersonalPage() {
             whileHover="hover"
             initial="rest"
             animate="animate"
-            className="relative inline-flex items-center justify-center px-6 py-2 bg-[#05060a] rounded-none group cursor-crosshair overflow-hidden"
+            className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-crosshair overflow-hidden"
           >
             {/* Corner Dots */}
-            <div className="absolute top-0 left-0 w-[4px] h-[4px] bg-gray-500"></div>
-            <div className="absolute top-0 right-0 w-[4px] h-[4px] bg-gray-500"></div>
-            <div className="absolute bottom-0 left-0 w-[4px] h-[4px] bg-gray-500"></div>
-            <div className="absolute bottom-0 right-0 w-[4px] h-[4px] bg-gray-500"></div>
+            <div className="absolute top-0 left-0 w-2 h-2 bg-gray-400 rounded-full"></div>
+            <div className="absolute top-0 right-0 w-2 h-2 bg-gray-400 rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-2 h-2 bg-gray-400 rounded-full"></div>
+            <div className="absolute bottom-0 right-0 w-2 h-2 bg-gray-400 rounded-full"></div>
 
             {/* Comets Background */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -111,7 +111,7 @@ export default function PersonalPage() {
                     animate: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: comet.duration, ease: "linear", delay: comet.delay } },
                     hover: { x: "400%", opacity: [0, 1, 0], transition: { repeat: Infinity, duration: comet.hoverDuration, ease: "linear" } }
                   }}
-                  className="absolute left-0 w-6 h-[2px] bg-blue-500 rounded-full"
+                  className="absolute left-0 w-2 h-[2px] bg-blue-500 rounded-full"
                   style={{ top: comet.top, boxShadow: '0 0 4px rgba(59,130,246,0.8)' }}
                 />
               ))}
