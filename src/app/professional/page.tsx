@@ -221,7 +221,7 @@ export default function ProfessionalPage() {
   };
 
   return (
-    <div className="flex-1 relative flex flex-col justify-center min-h-[85vh]">
+    <div className="flex-1 relative flex flex-col justify-center min-h-[85vh] pt-20 md:pt-24">
       {/* Absolute background gradients for professional page only */}
       <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_800px_at_0%_0%,#1b244a_0%,transparent_80%)]" />
       <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_900px_at_100%_0%,#0d3f40_0%,transparent_80%)]" />
@@ -229,7 +229,7 @@ export default function ProfessionalPage() {
       {/* Absolute background grid with a smooth fade-out to transparent toward the bottom */}
       <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent_0%,transparent_10%,white_25%,white_40%,transparent_100%)]" />
 
-      <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-16 md:pt-24">
+      <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-6 md:pt-10 lg:pt-12">
         
         {/* Main Hero Layout */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
