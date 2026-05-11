@@ -169,8 +169,22 @@ export default function PersonalPage() {
   return (
     <div className="relative overflow-hidden bg-[#0a0b14] min-h-screen">
       {/* CSS Spotlights (White) — top-left and top-right pointing towards center */}
-      <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_700px_at_15%_0%,rgba(255,255,255,0.06)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-[0] bg-[radial-gradient(circle_700px_at_85%_0%,rgba(255,255,255,0.05)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
+      <div className="absolute top-0 left-0 w-full h-[100vh] pointer-events-none z-[0] overflow-hidden">
+        {/* Left Spotlight */}
+        <motion.div 
+          animate={{ y: [0, -30, 0], rotate: [-40, -35, -40] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-10%] w-[60vw] md:w-[45vw] h-[130vh] bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[50px] origin-top"
+          style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }}
+        />
+        {/* Right Spotlight */}
+        <motion.div 
+          animate={{ y: [0, -30, 0], rotate: [40, 35, 40] }}
+          transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] right-[-10%] w-[60vw] md:w-[45vw] h-[130vh] bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[50px] origin-top"
+          style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }}
+        />
+      </div>
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-center text-center min-h-[70vh] px-4 pt-20 pb-16">
