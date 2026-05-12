@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import spcImg from "../../SPC_7776.jpeg";
+import bubuImg from "../../bubududout.webp";
 
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -36,12 +38,7 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
   return <span ref={ref}>{count}</span>;
 }
 
-// Placeholder images - you can drop your actual image paths here when ready!
-const images = [
-  "https://via.placeholder.com/600x600/ffffff/000000?text=Profile+1",
-  "https://via.placeholder.com/600x600/e0e0e0/000000?text=Profile+2",
-  "https://via.placeholder.com/600x600/c0c0c0/000000?text=Profile+3"
-];
+const images = [spcImg.src, bubuImg.src];
 
 const educationData = [
   {
@@ -296,10 +293,25 @@ export default function ProfessionalPage() {
                 <circle cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
               </svg>
 
+              {/* Comet Trail */}
+              <div 
+                className="absolute inset-0 rounded-full pointer-events-none animate-[spin_10s_linear_infinite]"
+                style={{
+                  background: 'conic-gradient(from 0deg at 50% 50%, rgba(39, 243, 179, 0) 0%, rgba(39, 243, 179, 0) 65%, var(--accent) 100%)',
+                  WebkitMask: 'radial-gradient(closest-side, transparent 96.5%, black 97%, black 97.5%, transparent 98%)',
+                  mask: 'radial-gradient(closest-side, transparent 96.5%, black 97%, black 97.5%, transparent 98%)'
+                }}
+              ></div>
+              {/* Comet Head Dot */}
+              <div className="absolute inset-0 rounded-full pointer-events-none animate-[spin_10s_linear_infinite]">
+                 {/* Positioned at top-center, right on the comet trail track */}
+                 <div className="absolute top-[1.25%] left-1/2 -translate-x-1/2 w-1 h-1 bg-[color:var(--accent)] rounded-full shadow-[0_0_8px_2px_var(--accent)]" />
+              </div>
+
               <div className="w-[90%] h-[90%] rounded-full bg-[#e7eaf6] relative overflow-hidden transition-opacity duration-300 border-4 border-[#0a0b14]" key={imgIndex}>
                   <img 
                     src={images[imgIndex]} 
-                    alt="Profile" 
+                    alt={imgIndex === 0 ? "SPC portrait" : "Bubududout portrait"} 
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
               </div>
