@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -66,6 +66,9 @@ function HoverCard({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 export default function ContactPage() {
+  useEffect(() => {
+    document.title = "Dave Goze | Contact";
+  }, []);
   const [pageMousePos, setPageMousePos] = useState({ x: 0, y: 0 });
 
   const handlePageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -243,6 +246,23 @@ export default function ContactPage() {
             </Link>
           </form>
         </HoverCard>
+
+        {/* Back to Top Button */}
+        <div className="flex flex-col items-center gap-12 mt-20">
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
+            aria-label="Scroll to top"
+          >
+            <svg className="w-8 h-8 md:w-10 md:h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+              <path strokeLinecap="square" strokeLinejoin="miter" d="M4 15l8-8 8 8" />
+              <path strokeLinecap="square" strokeLinejoin="miter" d="M4 21l8-8 8 8" className="opacity-40" />
+            </svg>
+          </button>
+          <p className="text-sm font-sans text-gray-400 tracking-wide">
+            © {new Date().getFullYear()}-present Dave Dominic Goze. All Rights Reserved
+          </p>
+        </div>
       </section>
     </div>
   );

@@ -185,12 +185,24 @@ const journeyData = [
   }
 ];
 
+const calcMyAge = () => {
+  const birthDate = new Date("2004-02-05");
+  const diff_ms = Date.now() - birthDate.getTime();
+  const age_dt = new Date(diff_ms); 
+  return Math.abs(age_dt.getUTCFullYear() - 1970);
+};
+
 export default function ProfessionalPage() {
+  const myAge = calcMyAge();
   const [imgIndex, setImgIndex] = useState(0);
   const [hoveredEdu, setHoveredEdu] = useState<number | null>(null);
   const [showNav, setShowNav] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.title = "Dave Goze | Professional";
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -257,18 +269,18 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
-              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2">
+              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-grab active:cursor-grabbing">
                 VIEW CV <span>&gt;</span>
               </button>
               
               <div className="flex items-center gap-4">
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaFacebook size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaInstagram size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaYoutube size={16} />
                 </Link>
                 <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
@@ -284,9 +296,8 @@ export default function ProfessionalPage() {
           {/* Right Column: Image Circle */}
           <div className="md:w-1/2 flex justify-center md:justify-end relative">
             <div 
-              className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95"
+              className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95 group"
               onClick={nextImage}
-              title="Click to change image!"
             >
               <svg className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeLinecap="round" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
@@ -315,6 +326,11 @@ export default function ProfessionalPage() {
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
               </div>
+
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-[5%] py-2 px-5 bg-[#12131c]/90 border border-white/10 shadow-xl backdrop-blur-sm text-[#e7eaf6] text-xs md:text-sm font-bold font-mono tracking-widest rounded-[40px] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:-translate-y-0 transition-all duration-300 z-50 pointer-events-none">
+                {imgIndex === 0 ? "CLICK ME 👀" : "GLAD YOU'RE HERE ☄️"}
+              </div>
             </div>
           </div>
         </div>
@@ -323,7 +339,7 @@ export default function ProfessionalPage() {
         <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={22} />
+                 <AnimatedCounter value={myAge} duration={1.5} />
                </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
             </div>
@@ -338,7 +354,7 @@ export default function ProfessionalPage() {
 
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={20} />
+                 <AnimatedCounter value={14} />
                </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br/>on</span>
             </div>
@@ -352,7 +368,7 @@ export default function ProfessionalPage() {
 
             <div className="flex items-center gap-4">
                <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={37} />
+                 <AnimatedCounter value={43} />
                </span>
                <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
             </div>
@@ -456,7 +472,7 @@ export default function ProfessionalPage() {
               <div key={idx} className="flex flex-col gap-4">
                 <h3 className="text-2xl font-sans text-white/90">{category.category}</h3>
                 <motion.div 
-                  className="flex flex-wrap gap-4 md:gap-5"
+                  className="flex flex-wrap gap-4 md:gap-5 cursor-grab active:cursor-grabbing"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
@@ -473,7 +489,7 @@ export default function ProfessionalPage() {
                         hidden: { opacity: 0, x: -20 },
                         visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
                       }}
-                      className="px-6 py-3 bg-[#171e36] text-[color:var(--accent)] font-sans text-lg md:text-xl font-medium transition-colors hover:bg-[color:var(--accent)] hover:text-[#0a0b14] cursor-default"
+                      className="px-6 py-3 bg-[#171e36] text-[color:var(--accent)] font-sans text-lg md:text-xl font-medium transition-colors hover:bg-[color:var(--accent)] hover:text-[#0a0b14] cursor-grab active:cursor-grabbing"
                     >
                       {skill}
                     </motion.div>
@@ -499,7 +515,7 @@ export default function ProfessionalPage() {
                     whileHover={{ rotateX: 15, y: -10, scale: 0.96, transition: { type: "spring", stiffness: 350, damping: 20 } }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex flex-col bg-[#0b0e17] rounded-3xl border border-white/5 group shadow-2xl relative w-full origin-bottom"
+                  className="flex flex-col bg-[#0b0e17] rounded-3xl border border-white/5 group shadow-2xl relative w-full origin-bottom cursor-grab active:cursor-grabbing"
                 >
                   {/* Tooltip / Link Popup */}
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:-translate-y-2">
@@ -739,7 +755,7 @@ export default function ProfessionalPage() {
           <div className="flex flex-col items-center gap-12">
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-              className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4"
+              className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
               aria-label="Scroll to top"
             >
               <svg className="w-8 h-8 md:w-10 md:h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
