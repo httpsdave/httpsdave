@@ -591,7 +591,19 @@ export default function PersonalPage() {
       {/* Outro Section */}
       <section className="relative w-full pt-12 pb-40 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
         {/* Animated Grid Background (consistent with professional tab) */}
-        <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
+        <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
+          
+          {/* Subtle white gradients on the bottom of some grid cells */}
+          <div className="absolute bottom-0 left-0 w-[160px] h-[160px] bg-gradient-to-t from-white/[0.05] to-transparent" />
+          <div className="absolute bottom-[160px] left-[320px] w-[160px] h-[160px] bg-gradient-to-t from-white/[0.03] to-transparent" />
+          <div className="absolute bottom-0 left-[640px] w-[160px] h-[320px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+          <div className="absolute bottom-0 left-[960px] w-[160px] h-[160px] bg-gradient-to-t from-white/[0.06] to-transparent" />
+          <div className="absolute bottom-[160px] left-[1280px] w-[160px] h-[160px] bg-gradient-to-t from-white/[0.03] to-transparent" />
+          <div className="absolute bottom-0 left-[1600px] w-[160px] h-[160px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+          <div className="absolute bottom-[160px] left-[1920px] w-[160px] h-[320px] bg-gradient-to-t from-white/[0.05] to-transparent" />
+          <div className="absolute bottom-0 left-[2240px] w-[160px] h-[160px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+        </div>
 
         {/* Main Outro Container with border trail */}
         <div className="relative z-10 w-full max-w-5xl mx-auto group">
