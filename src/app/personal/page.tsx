@@ -169,7 +169,10 @@ export default function PersonalPage() {
   return (
     <div className="relative overflow-hidden bg-[#0a0b14] min-h-screen">
       {/* CSS Spotlights (White) — top-left and top-right pointing towards center */}
-      <div className="absolute top-0 left-0 w-full h-[100vh] pointer-events-none z-[0] overflow-hidden">
+      <div 
+        className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none z-[0] overflow-hidden"
+        style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }}
+      >
         {/* Left Spotlights Group */}
         <motion.div
           animate={{ rotate: [-35, -30, -35] }}
@@ -177,11 +180,17 @@ export default function PersonalPage() {
           className="absolute top-[-5%] -left-[30vw] md:-left-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
         >
           {/* Base soft layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent blur-[100px]" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          <div className="absolute inset-0 blur-[100px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          </div>
           {/* Middle layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[60px]" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          <div className="absolute inset-0 blur-[60px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          </div>
           {/* Core bright layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent blur-[30px]" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          <div className="absolute inset-0 blur-[30px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          </div>
         </motion.div>
 
         {/* Right Spotlights Group */}
@@ -191,11 +200,17 @@ export default function PersonalPage() {
           className="absolute top-[-5%] -right-[30vw] md:-right-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
         >
           {/* Base soft layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent blur-[100px]" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          <div className="absolute inset-0 blur-[100px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          </div>
           {/* Middle layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[60px]" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          <div className="absolute inset-0 blur-[60px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          </div>
           {/* Core bright layer */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent blur-[30px]" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          <div className="absolute inset-0 blur-[30px]">
+             <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          </div>
         </motion.div>
       </div>
 
