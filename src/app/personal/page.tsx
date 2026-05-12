@@ -143,15 +143,13 @@ export default function PersonalPage() {
 
     const handleWheel = (e: WheelEvent) => {
       // Translate vertical scrolling to horizontal scrolling based on boundaries
-      if (e.deltaY !== 0) {
-        const isAtStart = carousel.scrollLeft === 0;
-        const isAtEnd = Math.ceil(carousel.scrollLeft + carousel.clientWidth) >= carousel.scrollWidth;
-
-        // If scrolling down (right) and not at end, OR scrolling up (left) and not at start
-        if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
-          e.preventDefault();
-          carousel.scrollBy({ left: e.deltaY, behavior: "auto" });
-        }
+      // Prevent vertical page scroll when hovering over the carousel ALWAYS
+      e.preventDefault();
+      
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        carousel.scrollBy({ left: e.deltaY, behavior: "auto" });
+      } else {
+        carousel.scrollBy({ left: e.deltaX, behavior: "auto" });
       }
     };
 
@@ -170,20 +168,33 @@ export default function PersonalPage() {
     <div className="relative overflow-hidden bg-[#0a0b14] min-h-screen">
       {/* CSS Spotlights (White) — top-left and top-right pointing towards center */}
       <div className="absolute top-0 left-0 w-full h-[100vh] pointer-events-none z-[0] overflow-hidden">
-        {/* Left Spotlight */}
-        <motion.div 
-          animate={{ y: [0, -30, 0], rotate: [-40, -35, -40] }}
+        {/* Left Spotlights Group */}
+        <motion.div
+          animate={{ rotate: [-35, -30, -35] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-[-10%] w-[60vw] md:w-[45vw] h-[130vh] bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[50px] origin-top"
-          style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }}
-        />
-        {/* Right Spotlight */}
-        <motion.div 
-          animate={{ y: [0, -30, 0], rotate: [40, 35, 40] }}
+          className="absolute top-[-5%] -left-[30vw] md:-left-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
+        >
+          {/* Base soft layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent blur-[100px]" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          {/* Middle layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[60px]" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          {/* Core bright layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent blur-[30px]" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+        </motion.div>
+
+        {/* Right Spotlights Group */}
+        <motion.div
+          animate={{ rotate: [35, 30, 35] }}
           transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] right-[-10%] w-[60vw] md:w-[45vw] h-[130vh] bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[50px] origin-top"
-          style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }}
-        />
+          className="absolute top-[-5%] -right-[30vw] md:-right-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
+        >
+          {/* Base soft layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent blur-[100px]" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+          {/* Middle layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-[60px]" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
+          {/* Core bright layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent blur-[30px]" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+        </motion.div>
       </div>
 
       {/* Hero Section */}
