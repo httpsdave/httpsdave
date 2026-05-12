@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import bikeImage from "../../bike1.jpg";
 
 const lifeFacets = [
   {
@@ -371,30 +373,31 @@ export default function PersonalPage() {
           <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-5 md:grid-rows-2 gap-0 overflow-hidden border border-zinc-800/80 bg-[#0a0b14]/50 shadow-2xl min-h-[250px] lg:min-h-[300px]">
           
-          {/* Box 1: Cycling */}
-          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Jogs & Cycling</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-sm">
-              I have a Promax PR50 roadbike that I ride through the city and mostly around the Sampaloc Lake in San Pablo City, Laguna.
+          {/* Box 1 (Top Left): Workout Routine */}
+          <article className="border-b md:border-r border-zinc-800/80 bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-2 md:row-span-1">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Exercise & Workout</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl">
+              I've been consistent with it for years now, it's become more of a routine than a hobby. A core component of my life, keeping me grounded and energized.
             </p>
-            {/* Visual Placeholder for Video/Image */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0a0b14] via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-blue-900/20 to-transparent flex items-end p-6">
-              <div className="w-full h-32 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center overflow-hidden">
-                <span className="text-zinc-600 font-mono text-xs">[Cycling Image / Scenery Video]</span>
+            {/* Visual Element */}
+            <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-20 pointer-events-none">
+              <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.4)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }}></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* Decorative abstract sphere grid to represent routine/consistency */}
+                <div className="w-64 h-64 rounded-full border border-dashed border-gray-400 animate-[spin_60s_linear_infinite]"></div>
+                <div className="absolute w-48 h-48 rounded-full border border-dotted border-gray-500 animate-[spin_40s_linear_infinite_reverse]"></div>
               </div>
             </div>
           </article>
 
-          {/* Box 2: Cinephile with Hover Effects */}
-          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col relative overflow-hidden group min-h-[420px] md:col-start-2 md:row-span-2">
+          {/* Box 2 (Top Right): Cinephile with Hover Effects */}
+          <article className="border-b border-zinc-800/80 bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 z-10 relative">Movies & Shows</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed z-10 relative">
               I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
             </p>
-            
             {/* 3 Rows of Image Placeholders overlapping slightly like the reference image */}
             <div className="relative w-full flex-1 flex flex-col justify-center items-center -space-y-4 sm:-space-y-6 md:-space-y-8 mt-12 z-0 pb-4 overflow-visible">
               {[
@@ -423,8 +426,26 @@ export default function PersonalPage() {
             </div>
           </article>
 
-          {/* Box 3: Music */}
-          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group">
+          {/* Box 3 (Bottom Left): Cycling */}
+          <article className="border-b md:border-b-0 md:border-r border-zinc-800/80 bg-transparent p-6 md:p-12 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
+            <Image 
+              src={bikeImage} 
+              alt="Promax PR50 Roadbike" 
+              fill 
+              className="object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
+            />
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0a0b14] via-transparent to-[#0a0b14]/60 opacity-80" />
+            
+            <div className="relative z-10 flex flex-col h-full justify-end">
+              <h3 className="text-2xl md:text-4xl font-bold font-mono text-gray-100 mb-3 drop-shadow-lg">Jogs & Cycling</h3>
+              <p className="text-base md:text-lg text-gray-300 font-mono leading-relaxed max-w-lg drop-shadow-lg">
+                I have a Promax PR50 roadbike that I ride through the city and mostly around the Sampaloc Lake in San Pablo City, Laguna.
+              </p>
+            </div>
+          </article>
+
+          {/* Box 4 (Bottom Right): Music */}
+          <article className="bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-2 md:row-span-1">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Music Enthusiast</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 mb-6 max-w-sm">
               I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
@@ -437,30 +458,13 @@ export default function PersonalPage() {
             </div>
           </article>
 
-          {/* Box 4: Workout Routine */}
-          <article className="border border-zinc-800/80 bg-[#0a0b14]/50 p-6 md:p-8 flex flex-col min-h-[320px] relative overflow-hidden group md:col-span-2">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Exercise & Workout</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl">
-              I've been consistent with it for years now, it's become more of a routine than a hobby. A core component of my life, keeping me grounded and energized.
-            </p>
-            {/* Visual Element */}
-            <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-20 pointer-events-none">
-              <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.4)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }}></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Decorative abstract sphere grid to represent routine/consistency */}
-                <div className="w-64 h-64 rounded-full border border-dashed border-gray-400 animate-[spin_60s_linear_infinite]"></div>
-                <div className="absolute w-48 h-48 rounded-full border border-dotted border-gray-500 animate-[spin_40s_linear_infinite_reverse]"></div>
-              </div>
-            </div>
-          </article>
-
         </div>
       </section>
 
       {/* Components of My Life Carousel Section */}
       <section className="mx-auto w-full max-w-6xl py-24 relative overflow-hidden">
         <div className="px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of my life</h2>
+          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of <span className="text-emerald-500">my life</span></h2>
           <div className="flex items-center gap-3">
             <button 
               onClick={scrollLeft}
