@@ -6,6 +6,22 @@ import Link from "next/link";
 import Image from "next/image";
 import bikeImage from "../../bike1.jpg";
 
+import bcsImg from "../../movieposters/bettercallsaul.jpg";
+import bbImg from "../../movieposters/breakingbad.jpg";
+import b99Img from "../../movieposters/brooklyn99.webp";
+import himymImg from "../../movieposters/himym.jpg";
+import interstellarImg from "../../movieposters/interstellar.jpg";
+import martianImg from "../../movieposters/the martian.jpeg";
+import boysImg from "../../movieposters/theboys.jpg";
+import gdImg from "../../movieposters/thegooddoctor.webp";
+import hobbitImg from "../../movieposters/thehobbit.jpg";
+
+const moviePostersList = [
+  bcsImg, bbImg, b99Img, himymImg,
+  interstellarImg, martianImg, boysImg, gdImg, hobbitImg,
+  bcsImg, bbImg, b99Img, himymImg
+];
+
 const lifeFacets = [
   {
     id: "books",
@@ -432,11 +448,11 @@ export default function PersonalPage() {
                       <motion.div 
                         key={`placeholder-${num}`}
                         whileHover={{ y: -10, scale: 1.05, zIndex: 50 }}
-                        className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-zinc-800 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.8)] border-[1.5px] border-zinc-600/60 flex flex-col items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 ${rot}`}
+                        className={`group relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-zinc-800 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.8)] border-[1.5px] border-zinc-600/60 flex flex-col items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 ${rot}`}
                         style={{ zIndex: 10 + rowIndex * 10 + idx }}
                       >
-                         <div className="absolute inset-0 bg-gradient-to-br from-zinc-700/50 to-zinc-900/50" />
-                         <span className="relative z-10 text-zinc-500 font-mono text-xs md:text-sm drop-shadow-md font-bold tracking-widest text-center px-1">IMG<br/>{num}</span>
+                         <div className="absolute inset-0 bg-gradient-to-br from-zinc-700/50 to-zinc-900/50 z-10 opacity-30 group-hover:opacity-0 transition-opacity duration-300" />
+                         <Image src={moviePostersList[num - 1]} alt={`Movie Poster ${num}`} fill className="object-cover z-0" sizes="(max-width: 768px) 150px, 200px" />
                       </motion.div>
                     );
                   })}

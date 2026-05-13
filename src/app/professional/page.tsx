@@ -16,15 +16,15 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
     if (isInView) {
       const end = value;
       const startTime = performance.now();
-      
+
       const animate = (currentTime: number) => {
         const elapsedTime = (currentTime - startTime) / 1000;
         const progress = Math.min(elapsedTime / duration, 1);
-        
+
         // easeOutQuart
         const ease = 1 - Math.pow(1 - progress, 4);
         setCount(Math.floor(ease * end));
-        
+
         if (progress < 1) {
           requestAnimationFrame(animate);
         } else {
@@ -44,13 +44,13 @@ const educationData = [
   {
     title: "Preschool & Elementary",
     period: "Jun 5, 2008 - Mar 30, 2016",
-    status: "Pending",
-    desc: ["Blue Danube School Inc.", "Basic Education"],
+    status: "GWA: 90",
+    desc: ["Blue Danube School Inc.", "Basic Education", "Graduated with Honors"],
   },
   {
     title: "High School & Senior High School",
     period: "Jun 5, 2016 - Jul 30, 2022",
-    status: "Pending",
+    status: "GWA: 92.22 | 93.36",
     desc: ["Laguna College", "Science, Technology, Engineering, and Mathematics (STEM) Strand", "Graduated with Honors"],
   },
   {
@@ -87,7 +87,7 @@ const projectsData = [
     linkText: "Check Live Site",
     linkUrl: "#",
     image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=comexchange.mn",
-    icons: [<SiNextdotjs key="1"/>, <SiTypescript key="2"/>, <SiReact key="3"/>, <SiTailwindcss key="4"/>],
+    icons: [<SiNextdotjs key="1" />, <SiTypescript key="2" />, <SiReact key="3" />, <SiTailwindcss key="4" />],
     isGithub: false
   },
   {
@@ -97,7 +97,7 @@ const projectsData = [
     linkUrl: "https://github.com/RedonaNova/ai-agents-microservices-thesis",
     image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=Thesis+Project",
     tooltip: "https://github.com/RedonaNova/ai-agents-microservices-thesis",
-    icons: [<SiNextdotjs key="1"/>, <SiTailwindcss key="2"/>, <SiTypescript key="3"/>],
+    icons: [<SiNextdotjs key="1" />, <SiTailwindcss key="2" />, <SiTypescript key="3" />],
     isGithub: true
   },
   {
@@ -106,7 +106,7 @@ const projectsData = [
     linkText: "Check Live Site",
     linkUrl: "#",
     image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=Crypto+App",
-    icons: [<SiVuedotjs key="1"/>, <SiTailwindcss key="2"/>, <SiLaravel key="3"/>],
+    icons: [<SiVuedotjs key="1" />, <SiTailwindcss key="2" />, <SiLaravel key="3" />],
     isGithub: false
   },
   {
@@ -115,7 +115,7 @@ const projectsData = [
     linkText: "Check Live Site",
     linkUrl: "#",
     image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=GOBI+Deluxe+Hotel",
-    icons: [<SiNextdotjs key="1"/>, <SiReact key="2"/>, <SiTailwindcss key="3"/>],
+    icons: [<SiNextdotjs key="1" />, <SiReact key="2" />, <SiTailwindcss key="3" />],
     isGithub: false
   }
 ];
@@ -123,21 +123,21 @@ const projectsData = [
 const experienceData = [
   {
     title: "Frontend Developer",
-    description: "Developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind, etc.",
+    description: "Part of the frontend team that developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind, etc.",
     icon: <FaLaptopCode className="text-5xl md:text-6xl text-purple-400 z-10" />,
     delay: "0s",
   },
   {
     title: "Fullstack Developer",
-    description: "Developed a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University (Thesis) using Laravel, MySQL, Vue, DOMPDF.",
+    description: "Developed a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University using Laravel, MySQL, Vue, DOMPDF.",
     icon: <FaServer className="text-5xl md:text-6xl text-orange-400 z-10" />,
     delay: "-1.5s",
   },
   {
-    title: "Vibecoder",
+    title: "Vibecoding",
     description: (
       <>
-        Been heavy on vibecoding recently, making clones of popular websites like Radio Garden, like <a href="#" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Ritmo</a>, and Billboards Top 100, like <a href="#" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Aux.</a>
+        developing, creating, playing around with APIs, scraping, to make original works or cloning popular websites like <a href="https://ritmo-blond.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Ritmo</a>, and <a href="https://aux-cix8.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Aux.</a>
       </>
     ),
     icon: <FaLightbulb className="text-5xl md:text-6xl text-pink-400 z-10" />,
@@ -188,7 +188,7 @@ const journeyData = [
 const calcMyAge = () => {
   const birthDate = new Date("2004-02-05");
   const diff_ms = Date.now() - birthDate.getTime();
-  const age_dt = new Date(diff_ms); 
+  const age_dt = new Date(diff_ms);
   return Math.abs(age_dt.getUTCFullYear() - 1970);
 };
 
@@ -239,10 +239,10 @@ export default function ProfessionalPage() {
       <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent_0%,transparent_10%,white_25%,white_40%,transparent_100%)]" />
 
       <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-6 md:pt-10 lg:pt-12">
-        
+
         {/* Main Hero Layout */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
-          
+
           {/* Left Column: Text & Info */}
           <div className="flex flex-col space-y-4 md:w-1/2">
             <span className="font-mono text-sm tracking-widest text-[#e7eaf6] mb-2 uppercase">
@@ -272,7 +272,7 @@ export default function ProfessionalPage() {
               <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-grab active:cursor-grabbing">
                 VIEW CV <span>&gt;</span>
               </button>
-              
+
               <div className="flex items-center gap-4">
                 <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
                   <FaFacebook size={16} />
@@ -295,7 +295,7 @@ export default function ProfessionalPage() {
 
           {/* Right Column: Image Circle */}
           <div className="md:w-1/2 flex justify-center md:justify-end relative">
-            <div 
+            <div
               className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95 group"
               onClick={nextImage}
             >
@@ -305,7 +305,7 @@ export default function ProfessionalPage() {
               </svg>
 
               {/* Comet Trail */}
-              <div 
+              <div
                 className="absolute inset-0 rounded-full pointer-events-none animate-[spin_10s_linear_infinite]"
                 style={{
                   background: 'conic-gradient(from 0deg at 50% 50%, rgba(39, 243, 179, 0) 0%, rgba(39, 243, 179, 0) 65%, var(--accent) 100%)',
@@ -315,16 +315,16 @@ export default function ProfessionalPage() {
               ></div>
               {/* Comet Head Dot */}
               <div className="absolute inset-0 rounded-full pointer-events-none animate-[spin_10s_linear_infinite]">
-                 {/* Positioned at top-center, right on the comet trail track */}
-                 <div className="absolute top-[1.25%] left-1/2 -translate-x-1/2 w-1 h-1 bg-[color:var(--accent)] rounded-full shadow-[0_0_8px_2px_var(--accent)]" />
+                {/* Positioned at top-center, right on the comet trail track */}
+                <div className="absolute top-[1.25%] left-1/2 -translate-x-1/2 w-1 h-1 bg-[color:var(--accent)] rounded-full shadow-[0_0_8px_2px_var(--accent)]" />
               </div>
 
               <div className="w-[90%] h-[90%] rounded-full bg-[#e7eaf6] relative overflow-hidden transition-opacity duration-300 border-4 border-[#0a0b14]" key={imgIndex}>
-                  <img 
-                    src={images[imgIndex]} 
-                    alt={imgIndex === 0 ? "SPC portrait" : "Bubududout portrait"} 
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
+                <img
+                  src={images[imgIndex]}
+                  alt={imgIndex === 0 ? "SPC portrait" : "Bubududout portrait"}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
 
               {/* Tooltip Popup */}
@@ -337,47 +337,47 @@ export default function ProfessionalPage() {
 
         {/* Stats Row */}
         <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
-            <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={myAge} duration={1.5} />
-               </span>
-               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
-            </div>
-            
-            {/* Years of experience */}
-            <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={0} />
-               </span>
-               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br/>experience</span>
-            </div>
+          <div className="flex items-center gap-4">
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+              <AnimatedCounter value={myAge} duration={1.5} />
+            </span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
+          </div>
 
-            <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={14} />
-               </span>
-               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br/>on</span>
-            </div>
+          {/* Years of experience */}
+          <div className="flex items-center gap-4">
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+              <AnimatedCounter value={0} />
+            </span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br />experience</span>
+          </div>
 
-            <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={10} />
-               </span>
-               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br/>Deployed</span>
-            </div>
+          <div className="flex items-center gap-4">
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+              <AnimatedCounter value={14} />
+            </span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br />on</span>
+          </div>
 
-            <div className="flex items-center gap-4">
-               <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-                 <AnimatedCounter value={43} />
-               </span>
-               <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
-            </div>
+          <div className="flex items-center gap-4">
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+              <AnimatedCounter value={9} />
+            </span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br />Deployed</span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+              <AnimatedCounter value={43} />
+            </span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
+          </div>
         </div>
 
         {/* Microcredentials Button */}
         <div className="flex justify-center mt-4 mb-20">
-          <Link href="#">
-            <motion.div 
+          <Link href="https://www.credly.com/users/dave-dominic-goze" target="_blank" rel="noopener noreferrer">
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
@@ -398,16 +398,16 @@ export default function ProfessionalPage() {
         {/* Education Section */}
         <div className="mt-20 mb-32 flex flex-col items-center w-full">
           <h2 className="text-3xl md:text-5xl font-bold font-mono tracking-tight text-white mb-12 flex items-center gap-4">
-            <FaUserGraduate className="text-[color:var(--accent)]" /> 
+            <FaUserGraduate className="text-[color:var(--accent)]" />
             Education
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1300px] mx-auto">
             {educationData.map((edu, idx) => {
               const isHovered = hoveredEdu === idx;
-              
+
               return (
-                <div 
+                <div
                   key={idx}
                   className="relative rounded-2xl flex flex-col"
                   onMouseEnter={() => setHoveredEdu(idx)}
@@ -432,7 +432,7 @@ export default function ProfessionalPage() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  
+
                   {/* The outer outline when UNhovered */}
                   <div className={"absolute inset-0 rounded-2xl border border-[color:var(--stroke)] transition-opacity duration-300 z-10 pointer-events-none " + (isHovered ? "opacity-0" : "opacity-100")} />
 
@@ -440,7 +440,7 @@ export default function ProfessionalPage() {
                     <div className="relative z-30">
                       <h3 className="text-lg font-bold font-mono text-white mb-1 transition-colors duration-300">{edu.title}</h3>
                       <p className="text-sm font-mono transition-colors duration-300 text-[color:var(--muted)] mb-4">{edu.period}</p>
-                      
+
                       <div className="flex items-center justify-end text-[color:var(--accent)] text-lg font-mono font-bold mb-6 transition-colors duration-300">
                         <FaUserGraduate className="mr-2" /> {edu.status}
                       </div>
@@ -449,7 +449,7 @@ export default function ProfessionalPage() {
                         {edu.desc.map((line, lineIdx) => (
                           <span key={lineIdx}>
                             {line}
-                            {lineIdx < edu.desc.length - 1 && <br/>}
+                            {lineIdx < edu.desc.length - 1 && <br />}
                           </span>
                         ))}
                       </p>
@@ -466,12 +466,12 @@ export default function ProfessionalPage() {
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             Skills
           </h2>
-          
+
           <div className="flex flex-col gap-10 w-full">
             {skillsData.map((category, idx) => (
               <div key={idx} className="flex flex-col gap-4">
                 <h3 className="text-2xl font-sans text-white/90">{category.category}</h3>
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-4 md:gap-5 cursor-grab active:cursor-grabbing"
                   initial="hidden"
                   whileInView="visible"
@@ -505,14 +505,14 @@ export default function ProfessionalPage() {
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             A small selection of <span className="text-[color:var(--accent)]">recent projects</span>
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {projectsData.map((project, idx) => (
               <div key={idx} style={{ perspective: '1200px' }} className="flex">
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ rotateX: 15, y: -10, scale: 0.96, transition: { type: "spring", stiffness: 350, damping: 20 } }}
+                  whileHover={{ rotateX: 15, y: -10, scale: 0.96, transition: { type: "spring", stiffness: 350, damping: 20 } }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="flex flex-col bg-[#0b0e17] rounded-3xl border border-white/5 group shadow-2xl relative w-full origin-bottom cursor-grab active:cursor-grabbing"
@@ -526,7 +526,7 @@ export default function ProfessionalPage() {
 
                   {/* Image Wrapper */}
                   <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl overflow-hidden">
-                    
+
                     {/* Beam of light (Now contained within the preview and ends at the base) */}
                     <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 shadow-[0_0_15px_cyan]"></div>
 
@@ -540,52 +540,52 @@ export default function ProfessionalPage() {
 
                     <div className="w-full h-full rounded-t-[14px] overflow-hidden shadow-2xl relative z-30 flex">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={project.image} 
+                      <img
+                        src={project.image}
                         alt={project.title}
-                        className="object-cover w-full h-full object-top" 
+                        className="object-cover w-full h-full object-top"
                       />
                     </div>
                     {/* Faded bottom gradient so image blends softly at bottom edge if needed */}
                     <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0b0e17] to-transparent z-40" />
                   </div>
-                  
+
                   {/* Content */}
                   <div className="p-8 flex flex-col flex-1 relative z-50">
-                  <h3 className="text-2xl md:text-3xl font-bold font-mono text-white mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed mb-8 flex-1">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between mt-auto">
-                    {/* Tech Stack Bubbles */}
-                    <div className="flex items-center -space-x-2">
-                      {project.icons.map((icon, i) => (
-                        <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-[color:var(--accent)] text-lg z-10 relative shadow-md">
-                          {icon}
-                        </div>
-                      ))}
+                    <h3 className="text-2xl md:text-3xl font-bold font-mono text-white mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed mb-8 flex-1">
+                      {project.description}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-auto">
+                      {/* Tech Stack Bubbles */}
+                      <div className="flex items-center -space-x-2">
+                        {project.icons.map((icon, i) => (
+                          <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-[color:var(--accent)] text-lg z-10 relative shadow-md">
+                            {icon}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Link */}
+                      <Link
+                        href={project.linkUrl}
+                        className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
+                      >
+                        {project.linkText}
+                        {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
+                      </Link>
                     </div>
-                    
-                    {/* Link */}
-                    <Link 
-                      href={project.linkUrl}
-                      className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
-                    >
-                      {project.linkText}
-                      {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
-                    </Link>
                   </div>
-                </div>
-              </motion.div>              </div>            ))}
+                </motion.div>              </div>))}
           </div>
 
           {/* Explore More Button */}
           <div className="flex justify-center mt-20">
             <Link href="#">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
@@ -609,25 +609,25 @@ export default function ProfessionalPage() {
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             My <span className="text-[color:var(--accent)]">Experience</span>
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {experienceData.map((exp, idx) => (
               <div key={idx} className="relative w-full group min-h-[160px] md:min-h-[200px]">
-                
+
                 <div className="relative w-full h-full rounded-2xl overflow-hidden p-[1px] bg-white/5 z-10 shadow-2xl transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(27,217,155,0.15)]">
                   {/* Single moving border trail */}
-                  <div 
+                  <div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[conic-gradient(from_0deg,transparent_0_340deg,var(--accent)_360deg)] animate-[spin_12s_linear_infinite]"
                     style={{ animationDelay: exp.delay }}
                   ></div>
-                  
+
                   {/* Inner Content */}
                   <div className="relative w-full h-full bg-[#0b0e17]/85 backdrop-blur-2xl rounded-2xl p-6 md:p-8 z-20 flex flex-col md:flex-row gap-6 items-center transition-colors duration-500 hover:bg-[#0f1423]/90">
-                    
+
                     <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
                       {exp.icon}
                     </div>
-                    
+
                     <div className="flex flex-col text-center md:text-left">
                       <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-3 group-hover:text-[color:var(--accent)] transition-colors duration-300">{exp.title}</h3>
                       <p className="text-sm md:text-base font-sans text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{exp.description}</p>
@@ -652,13 +652,13 @@ export default function ProfessionalPage() {
 
           <div ref={timelineRef} className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-12 space-y-24">
             {/* Animated vertical line */}
-            <motion.div 
+            <motion.div
               className="absolute left-[-1px] md:left-[-1px] top-0 w-[2px] h-full bg-gradient-to-b from-blue-500 to-purple-500 origin-top z-0"
               style={{ scaleY: scrollYProgress }}
             />
 
             {journeyData.map((item, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial="hidden"
                 whileInView="visible"
@@ -670,28 +670,28 @@ export default function ProfessionalPage() {
                 className="relative group"
               >
                 {/* Timeline Dot */}
-                <div 
-                  className="absolute -left-[42px] md:-left-[58px] top-2 w-5 h-5 rounded-full border-[4px] border-[#31364a] bg-[#0a0b14] shadow-[0_0_10px_rgba(255,255,255,0.05)] z-10" 
+                <div
+                  className="absolute -left-[42px] md:-left-[58px] top-2 w-5 h-5 rounded-full border-[4px] border-[#31364a] bg-[#0a0b14] shadow-[0_0_10px_rgba(255,255,255,0.05)] z-10"
                 />
-                
+
                 <div className="flex flex-col md:flex-row gap-6 md:gap-12 relative z-10">
                   <div className="md:w-1/4 flex-shrink-0">
                     <h3 className="text-3xl md:text-4xl font-mono font-bold text-white/50 group-hover:text-white transition-colors duration-500">{item.year}</h3>
                   </div>
-                  
+
                   <div className="md:w-3/4 flex flex-col gap-6">
                     <p className="text-gray-300 font-sans text-sm md:text-base leading-relaxed whitespace-pre-wrap">
                       {item.text}
                     </p>
-                    
+
                     {item.images && item.images.length > 0 && (
                       <div className={`grid gap-4 mt-4 ${item.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                         {item.images.map((img, i) => (
                           <div key={i} className="rounded-xl overflow-hidden border border-white/10 group cursor-pointer bg-[#13182b]">
-                            <img 
-                              src={img} 
-                              alt={`${item.year} event`} 
-                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
+                            <img
+                              src={img}
+                              alt={`${item.year} event`}
+                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                             />
                           </div>
                         ))}
@@ -717,7 +717,7 @@ export default function ProfessionalPage() {
                 I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
               </p>
             </div>
-            
+
             <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Connect?</h3>
               <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
@@ -753,8 +753,8 @@ export default function ProfessionalPage() {
           </div>
 
           <div className="flex flex-col items-center gap-12">
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
               aria-label="Scroll to top"
             >
@@ -763,7 +763,7 @@ export default function ProfessionalPage() {
                 <path strokeLinecap="square" strokeLinejoin="miter" d="M4 21l8-8 8 8" className="opacity-40" />
               </svg>
             </button>
-            
+
             <p className="text-sm font-sans text-gray-400 tracking-wide">
               © {new Date().getFullYear()}-present Dave Dominic Goze. All Rights Reserved
             </p>
@@ -789,7 +789,7 @@ export default function ProfessionalPage() {
       {/* Floating Bottom Nav */}
       <AnimatePresence>
         {showNav && (
-          <motion.div 
+          <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
