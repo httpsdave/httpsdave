@@ -123,7 +123,7 @@ const projectsData = [
 const experienceData = [
   {
     title: "Frontend Developer",
-    description: "Part of the frontend team that developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind, etc.",
+    description: "Part of the frontend team that developed a social media management system for Ollopa Corporation, using Next.js, TypeScript, Tailwind.",
     icon: <FaLaptopCode className="text-5xl md:text-6xl text-purple-400 z-10" />,
     delay: "0s",
   },
@@ -137,15 +137,15 @@ const experienceData = [
     title: "Vibecoding",
     description: (
       <>
-        developing, creating, playing around with APIs, scraping, to make original works or cloning popular websites like <a href="https://ritmo-blond.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Ritmo</a>, and <a href="https://aux-cix8.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Aux.</a>
+        Developed, created, and played around with APIs and scraping to make original works or clone popular websites like <a href="https://ritmo-blond.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Ritmo</a>, and <a href="https://aux-cix8.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white border-b border-white hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors cursor-pointer pb-[1px]">Aux.</a>
       </>
     ),
     icon: <FaLightbulb className="text-5xl md:text-6xl text-pink-400 z-10" />,
     delay: "-3s",
   },
   {
-    title: "Mobile App Developer",
-    description: "Some experience on mobile app development. Not much yet, though still exploring and building small projects.",
+    title: "Android Apps",
+    description: "Experience in mobile app development using Flutter, Dart, React Native, and Expo Go, integrated with lightweight backends like SQLite.",
     icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 z-10" />,
     delay: "-4.5s",
   }
