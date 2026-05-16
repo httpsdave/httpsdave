@@ -63,6 +63,10 @@ const educationData = [
 
 const skillsData = [
   {
+    category: "Programming Languages",
+    skills: ["Python", "Java", "C#",],
+  },
+  {
     category: "Front End",
     skills: ["HTML", "JavaScript", "TypeScript", "React", "Next", "Vue", "Inertia"],
   },
@@ -72,11 +76,20 @@ const skillsData = [
   },
   {
     category: "Backend",
-    skills: ["Laravel", "MySQL", "PostgreSQL", "Firebase", "PHP"],
+    skills: ["Laravel", "MySQL", "PostgreSQL", "Firebase", "PHP", "Node.js", "Flask"],
+  },
+  {
+    category: "Machine Learning",
+    skills: [
+      "Jupyter Notebook", "Google Colab", "NumPy", "Pandas", "Scikit-Learn",
+      "PyTorch", "TensorFlow", "NLTK", "spaCy", "Neural Networks",
+      "Natural Language Processing", "LLMs", "Deep Learning",
+      "Supervised ML", "Unsupervised ML"
+    ],
   },
   {
     category: "Miscellaneous",
-    skills: ["Git", "Fluent in English and Filipino", "APIs"],
+    skills: ["Git", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva (Digital Art)"],
   }
 ];
 
