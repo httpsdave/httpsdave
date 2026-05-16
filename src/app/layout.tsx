@@ -37,6 +37,7 @@ export default function RootLayout({
           initialPosition={0.08}
           height={4}
           showSpinner={false}
+          template={'<div class="bar" role="bar"></div>'}
         />
         <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
           <a href="#main-content" className="skip-link">
