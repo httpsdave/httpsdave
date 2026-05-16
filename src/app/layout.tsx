@@ -35,13 +35,8 @@ export default function RootLayout({
         <NextTopLoader
           color="#166534"
           initialPosition={0.08}
-          crawlSpeed={200}
           height={4}
-          crawl={true}
           showSpinner={false}
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px #166534,0 0 5px #166534"
         />
         <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
           <a href="#main-content" className="skip-link">

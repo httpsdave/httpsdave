@@ -257,3 +257,27 @@ a {
 ::-webkit-scrollbar-corner {
   background: var(--bg);
 }
+
+/* NProgress / nextjs-toploader overrides: horizontal top bar with square ends */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #166534 !important;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 0 !important;
+}
+
+#nprogress .peg {
+  display: none !important;
+}
+
+#nprogress .spinner {
+  display: none !important;
+}
