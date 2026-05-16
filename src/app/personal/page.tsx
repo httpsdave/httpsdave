@@ -6,20 +6,26 @@ import Link from "next/link";
 import Image from "next/image";
 import bikeImage from "../../bike1.jpg";
 
+import avengersImg from "../../movieposters/Avengers_Infinity_war_poster.webp";
 import bcsImg from "../../movieposters/bettercallsaul.jpg";
 import bbImg from "../../movieposters/breakingbad.jpg";
 import b99Img from "../../movieposters/brooklyn99.webp";
+import harrypotterImg from "../../movieposters/harrypotter.jpg";
 import himymImg from "../../movieposters/himym.jpg";
 import interstellarImg from "../../movieposters/interstellar.jpg";
+import johnwickImg from "../../movieposters/johnwick.jpg";
+import narutoImg from "../../movieposters/naruto.jpg";
 import martianImg from "../../movieposters/the martian.jpeg";
 import boysImg from "../../movieposters/theboys.jpg";
 import gdImg from "../../movieposters/thegooddoctor.webp";
 import hobbitImg from "../../movieposters/thehobbit.jpg";
+import notebookImg from "../../movieposters/thenotebook.jpg";
+import twilightImg from "../../movieposters/twilight.jpg";
 
 const moviePostersList = [
-  bcsImg, bbImg, b99Img, himymImg,
-  interstellarImg, martianImg, boysImg, gdImg, hobbitImg,
-  bcsImg, bbImg, b99Img, himymImg
+  avengersImg, bcsImg, bbImg, b99Img, harrypotterImg,
+  himymImg, interstellarImg, johnwickImg, narutoImg, martianImg,
+  boysImg, gdImg, hobbitImg, notebookImg, twilightImg
 ];
 
 const lifeFacets = [
@@ -436,9 +442,9 @@ export default function PersonalPage() {
             {/* 3 Rows of Image Placeholders overlapping slightly like the reference image */}
             <div className="relative w-full flex-1 flex flex-col justify-center items-center -space-y-4 sm:-space-y-6 md:-space-y-8 mt-12 z-0 pb-4 overflow-visible">
               {[
-                [1, 2, 3, 4],     // Row 1
-                [5, 6, 7, 8, 9],  // Row 2
-                [10, 11, 12, 13]  // Row 3
+                [1, 2, 3, 4, 5],     // Row 1
+                [6, 7, 8, 9, 10],  // Row 2
+                [11, 12, 13, 14, 15]  // Row 3
               ].map((row, rowIndex) => (
                 <div key={`row-${rowIndex}`} className="flex items-center justify-center -space-x-6 sm:-space-x-10 md:-space-x-16">
                   {row.map((num, idx) => {

@@ -714,21 +714,21 @@ export default function ProfessionalPage() {
             <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">offer job opportunity?</h3>
               <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
-                I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
+                I am open to discussing potential job opportunities or collaborations. With experience in web development, software engineering, and machine learning, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Connect?</h3>
               <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
-                Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work. Let's grab a virtual coffee and see where the conversation takes us!
+                Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work.
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center group cursor-default">
               <h3 className="text-2xl md:text-3xl font-mono font-bold text-[color:var(--accent)] mb-8 tracking-tight">Build something?</h3>
               <p className="text-gray-400 group-hover:text-white transition-colors duration-300 font-sans text-base md:text-lg leading-relaxed px-2">
-                I have a passion for developing innovative web applications that solve complex problems. Whether it's building a custom e-commerce platform or a cutting-edge web app, I'm always ready for a new challenge. Let's create something amazing together!
+                I have a passion for developing innovative web applications and intelligent systems. I'm always ready for a new challenge. Let's create something amazing together!
               </p>
             </div>
           </div>
