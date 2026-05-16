@@ -680,21 +680,27 @@ export default function PersonalPage() {
                     {/* Multi-Particle Splash */}
                     <motion.div
                        key={`splash-${i}`}
-                       className="absolute bottom-0 w-24 h-12 flex items-end justify-center pb-0"
+                       className="absolute bottom-0 w-32 h-16 flex items-end justify-center pb-0"
                     >
-                       {[...Array(8)].map((_, j) => {
-                         const angle = (Math.PI / 1.5) * (j / 7) - (Math.PI / 3);
-                         const isFast = (j % 2 === 0);
-                         const velocity = isFast ? 20 + (j % 3) * 5 : 10 + (j % 4) * 3;
-                         const xTarget = Math.sin(angle) * velocity;
-                         const yTarget = -Math.cos(angle) * velocity - (j % 5) * 2;
+                       {[...Array(20)].map((_, j) => {
+                         const pseudoRandom = (j * 13 % 10) / 10;
+                         const spread = (j / 19) * 2 - 1; // -1 to 1
+                         const angle = spread * (Math.PI / 2.2); // Spread angle
+                         const speed = 20 + (j * 7 % 30); // varied speed
+                         const xTarget = Math.sin(angle) * speed;
+                         const yTarget = -Math.cos(angle) * speed - 5;
+                         
+                         // Physics-like trajectory: extends outward, then falls down
+                         const xEnd = xTarget * 1.3;
+                         const yEnd = yTarget + 25; 
+                         
                          return (
                            <motion.div
                              key={j}
                              animate={{
-                               x: [0, 0, xTarget, xTarget * 1.5],
-                               y: [0, 0, yTarget, yTarget + 20],
-                               scale: [0, 0, 1.2, 0],
+                               x: [0, 0, xTarget, xEnd],
+                               y: [0, 0, yTarget, yEnd],
+                               scale: [0, 0, pseudoRandom * 0.8 + 0.4, 0],
                                opacity: [0, 0, 1, 0]
                              }}
                              transition={{
@@ -702,10 +708,10 @@ export default function PersonalPage() {
                                duration: comet.duration,
                                ease: "easeOut",
                                delay: comet.delay,
-                               times: [0, 0.6, 0.9, 1]
+                               times: [0, 0.6, 0.8, 1]
                              }}
-                             className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-emerald-400"
-                             style={{ willChange: "transform, opacity" }}
+                             className="absolute bottom-1 w-[2px] h-[2px] rounded-full bg-emerald-400"
+                             style={{ willChange: "transform, opacity, scale", boxShadow: '0 0 4px rgba(52,211,153,0.8)' }}
                            />
                          )
                        })}
