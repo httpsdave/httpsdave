@@ -408,7 +408,7 @@ export default function PersonalPage() {
       </section>
 
       {/* Hobbies Section */}
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24">
+      <section className="mx-auto w-full max-w-6xl px-6 pt-56 md:pt-72 pb-24">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-4">Dave's Hobbies</h2>
           <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
