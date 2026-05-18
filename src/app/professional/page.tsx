@@ -166,8 +166,13 @@ const experienceData = [
 
 const journeyData = [
   {
+    year: "2026",
+    text: "Placeholder for future updates. This section is reserved for the next chapter of my professional journey.",
+    images: []
+  },
+  {
     year: "2025",
-    text: "Continuing to explore new technologies, focusing on vibecoding and building clones of popular platforms like Radio Garden (Ritmo) and Billboards Top 100 (Aux.). Preparing for mobile app development and expanding my full-stack expertise. Balancing everything has been challenging, but I'm loving every moment of growth and learning.",
+    text: "Placeholder for future updates. This space will eventually cover the next part of my journey in a concise timeline format.",
     images: [
       "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Ritmo+Clone",
       "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Aux.+Clone"
@@ -175,25 +180,20 @@ const journeyData = [
   },
   {
     year: "2024",
-    text: "Worked as a Fullstack Developer for my thesis, successfully implementing a web-based student organization information system for the Office of Student Affairs and Services at Laguna State Polytechnic University. The system utilized Laravel, MySQL, Vue, and DOMPDF. This was my first major project implementation serving a real university office.",
+    text: "Through my courses, I learned C++, C, and Python, with Python used mostly for machine learning. This was the period when our program began to focus more deeply on Intelligent Systems, which felt especially timely as AI continued to grow. I also started relying on Git for more than version control after learning the hard way how easy it is to lose progress, and I began building apps from start to finish instead of only isolated programs.",
     images: [
       "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+1",
       "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+2"
     ]
   },
   {
-    year: "Early 2024",
-    text: "(First job as 2nd year student) Worked as a Frontend Developer for Ollopa Corporation, where I developed a comprehensive social media management system.\n\n• Dashboard Development - developing dashboards that help keep track of social media metrics.\n• Frontend Architecture - utilizing Next.js, TypeScript, and Tailwind CSS to build a scalable and responsive interface.",
-    images: []
-  },
-  {
     year: "2023",
-    text: "Focused heavily on mastering the fundamentals of Data Structures and Algorithms, while exploring modern web frameworks like React and Vue. Built several personal projects to solidify my understanding of state management and component-based architecture.",
+    text: "After starting to move through the different courses in the program, I learned Java as a smooth transition from C#. That year also reinforced my understanding of object-oriented programming, advanced data representation, and application development.",
     images: []
   },
   {
     year: "2022",
-    text: "Started my Computer Science degree at Laguna State Polytechnic University. Began my programming journey by learning C++ and Python, developing a strong foundation in logic and problem-solving. It was an exciting introduction to the world of software engineering.",
+    text: "I started my Computer Science degree at Laguna State Polytechnic University - San Pablo City Campus. My first year focused on the fundamentals of programming, logic, and problem-solving, which made for an exciting introduction to the theories behind software development. C# was the first language I learned, along with the basics of web development using vanilla HTML and CSS, just before AI began to take off.",
     images: []
   }
 ];
