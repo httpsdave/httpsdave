@@ -378,16 +378,31 @@ export default function PersonalPage() {
           <span>Dave is</span>
           <div className="relative w-48 flex items-center justify-start text-left h-[40px]">
             <AnimatePresence mode="wait">
-              <motion.span
+              <motion.div
                 key={adjIndex}
-                initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
-                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                exit={{ opacity: 0, filter: "blur(8px)", y: -10 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute left-0 font-medium text-white tracking-wide"
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.04 } },
+                  exit: { opacity: 0, filter: "blur(8px)", y: -10, transition: { duration: 0.3 } }
+                }}
+                className="absolute left-0 font-medium text-white tracking-wide flex whitespace-pre"
               >
-                {adjectives[adjIndex]}
-              </motion.span>
+                {adjectives[adjIndex].split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0, filter: "blur(4px)", y: 10 },
+                      visible: { opacity: 1, filter: "blur(0px)", y: 0 }
+                    }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
@@ -790,12 +805,12 @@ export default function PersonalPage() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#171e36]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl pointer-events-auto"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-6 py-2.5 rounded-full text-white/70 hover:text-white hover:bg-white/5 font-mono font-bold text-sm tracking-wide transition-all">
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[#e7eaf6] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
               Professional
             </Link>
-            <Link href="/personal" className="px-6 py-2.5 rounded-full bg-[#3a4361]/60 text-[color:var(--accent)] font-mono font-bold text-sm tracking-wide shadow-sm">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold">
               Personal
             </Link>
           </motion.div>

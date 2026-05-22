@@ -311,9 +311,61 @@ export default function ProfessionalPage() {
               className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95 group"
               onClick={nextImage}
             >
+              <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes dash-morph-1 {
+                  0%, 65%, 100% {
+                    stroke-dasharray: 60 10 4 12 100 20 2 30 15 50;
+                    stroke-dashoffset: 0;
+                  }
+                  70% {
+                    stroke-dasharray: 20 40 20 4 50 30 40 10 60 10;
+                    stroke-dashoffset: -5;
+                  }
+                  75% {
+                    stroke-dasharray: 140 5 1 5 10 5 60 10 10 50;
+                    stroke-dashoffset: -10;
+                  }
+                  80% {
+                    stroke-dasharray: 10 10 120 20 2 10 80 5 2 40;
+                    stroke-dashoffset: -15;
+                  }
+                  85% {
+                    stroke-dasharray: 50 20 5 40 10 20 100 5 20 30;
+                    stroke-dashoffset: -10;
+                  }
+                  90% {
+                    stroke-dasharray: 30 20 10 30 90 10 10 5 10 80;
+                    stroke-dashoffset: -5;
+                  }
+                }
+                @keyframes dash-morph-2 {
+                  0%, 65%, 100% {
+                    stroke-dasharray: 4 25 1 10 6 40;
+                    stroke-dashoffset: 0;
+                  }
+                  72% {
+                    stroke-dasharray: 20 10 15 5 10 20;
+                    stroke-dashoffset: -5;
+                  }
+                  80% {
+                    stroke-dasharray: 5 15 5 25 30 5;
+                    stroke-dashoffset: -10;
+                  }
+                  88% {
+                    stroke-dasharray: 40 5 2 15 10 20;
+                    stroke-dashoffset: -5;
+                  }
+                }
+                .circle-morph-1 {
+                  animation: dash-morph-1 12s ease-in-out infinite;
+                }
+                .circle-morph-2 {
+                  animation: dash-morph-2 15s ease-in-out infinite;
+                }
+              `}} />
               <svg className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeLinecap="round" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
-                <circle cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
+                <circle className="circle-morph-1" cx="50" cy="50" r="49" fill="none" stroke="var(--accent)" strokeWidth="1" strokeLinecap="round" strokeDasharray="60 10 4 12 100 20 2 30 15 50" opacity="0.9" />
+                <circle className="circle-morph-2" cx="50" cy="50" r="47" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="4 25 1 10 6 40" opacity="0.5" />
               </svg>
 
               {/* Comet Trail */}
@@ -805,12 +857,12 @@ export default function ProfessionalPage() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#171e36]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-6 py-2.5 rounded-full bg-[#3a4361]/60 text-[color:var(--accent)] font-mono font-bold text-sm tracking-wide shadow-sm">
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold">
               Professional
             </Link>
-            <Link href="/personal" className="px-6 py-2.5 rounded-full text-white/70 hover:text-white hover:bg-white/5 font-mono font-bold text-sm tracking-wide transition-all">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[#e7eaf6] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
               Personal
             </Link>
           </motion.div>
