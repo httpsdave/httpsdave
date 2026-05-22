@@ -203,19 +203,12 @@ export default function PersonalPage() {
         <motion.div
           animate={{ rotate: [-35, -30, -35] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute top-[-5%] -left-[30vw] md:-left-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
         >
-          {/* Base soft layer */}
-          <div className="absolute inset-0 blur-[100px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
-          </div>
-          {/* Middle layer */}
-          <div className="absolute inset-0 blur-[60px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
-          </div>
-          {/* Core bright layer */}
-          <div className="absolute inset-0 blur-[30px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          {/* Optimized Single Layer Spotlight */}
+          <div className="absolute inset-0 blur-[60px]" style={{ transform: "translateZ(0)" }}>
+             <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/10 to-transparent" style={{ clipPath: 'polygon(50% 0, 85% 100%, 15% 100%)' }} />
           </div>
         </motion.div>
 
@@ -223,19 +216,12 @@ export default function PersonalPage() {
         <motion.div
           animate={{ rotate: [35, 30, 35] }}
           transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute top-[-5%] -right-[30vw] md:-right-[25vw] w-[80vw] md:w-[50vw] h-[140vh] origin-top"
         >
-          {/* Base soft layer */}
-          <div className="absolute inset-0 blur-[100px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/2 to-transparent" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
-          </div>
-          {/* Middle layer */}
-          <div className="absolute inset-0 blur-[60px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 90% 100%, 10% 100%)' }} />
-          </div>
-          {/* Core bright layer */}
-          <div className="absolute inset-0 blur-[30px]">
-             <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/5 to-transparent" style={{ clipPath: 'polygon(50% 0, 80% 100%, 20% 100%)' }} />
+          {/* Optimized Single Layer Spotlight */}
+          <div className="absolute inset-0 blur-[60px]" style={{ transform: "translateZ(0)" }}>
+             <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/10 to-transparent" style={{ clipPath: 'polygon(50% 0, 85% 100%, 15% 100%)' }} />
           </div>
         </motion.div>
       </div>
@@ -254,7 +240,7 @@ export default function PersonalPage() {
             whileHover="hover"
             initial="rest"
             animate="animate"
-            className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-crosshair overflow-hidden"
+            className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-grab active:cursor-grabbing overflow-hidden"
           >
             {/* Corner Dots */}
             <motion.div variants={{ animate: { opacity: [1, 0.4, 1], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" } } }} className="absolute top-0 left-0 w-2 h-2 bg-gray-400 rounded-full"></motion.div>
