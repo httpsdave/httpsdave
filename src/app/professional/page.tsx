@@ -2,10 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
+import credlyImg from "../../credly.png";
+import linkedinImg from "../../linkedin.png";
 
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -210,6 +213,7 @@ export default function ProfessionalPage() {
   const [imgIndex, setImgIndex] = useState(0);
   const [hoveredEdu, setHoveredEdu] = useState<number | null>(null);
   const [showNav, setShowNav] = useState(false);
+  const [showMicroPopup, setShowMicroPopup] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -277,7 +281,7 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="font-mono text-sm tracking-wide text-[color:var(--muted)] space-y-2 pt-6 max-w-xl">
-              <p>Computer Science | Full-Stack Developer | Philippines</p>
+              <p>Computer Science | Full-Stack Developer (Frontend-Focused) | Philippines</p>
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
@@ -439,24 +443,76 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Microcredentials Button */}
-        <div className="flex justify-center mt-4 mb-20">
-          <Link href="https://www.credly.com/users/dave-dominic-goze" target="_blank" rel="noopener noreferrer">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
-            >
-              <span className="relative flex items-center gap-3 z-20">
-                <span className="relative flex-none z-10">
-                  <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
-                </span>
-
-                <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
-                  View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
-                </span>
+        <div className="flex justify-center mt-4 mb-20 relative">
+          <motion.div
+            onClick={() => setShowMicroPopup(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
+          >
+            <span className="relative flex items-center gap-3 z-20">
+              <span className="relative flex-none z-10">
+                <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
               </span>
-            </motion.div>
-          </Link>
+
+              <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+                View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
+              </span>
+            </span>
+          </motion.div>
+
+          {/* Microcredentials Choice Popup */}
+          <AnimatePresence>
+            {showMicroPopup && (
+              <>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setShowMicroPopup(false)}
+                  className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm cursor-pointer"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-sm"
+                >
+                  <h3 className="text-xl font-mono text-white font-bold tracking-tight">Choose Platform</h3>
+                  <div className="flex items-center gap-6 w-full justify-center">
+                    <Link
+                      href="https://www.credly.com/users/dave-dominic-goze"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
+                    >
+                      <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
+                        <Image src={credlyImg} alt="Credly" className="w-full h-full object-contain drop-shadow-md" />
+                      </div>
+                      <span className="text-sm font-mono text-gray-300">Credly</span>
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/in/davegoze/details/certifications/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
+                    >
+                      <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
+                        <Image src={linkedinImg} alt="LinkedIn" className="w-full h-full object-contain drop-shadow-md" />
+                      </div>
+                      <span className="text-sm font-mono text-gray-300">LinkedIn</span>
+                    </Link>
+                  </div>
+                  <button 
+                    onClick={() => setShowMicroPopup(false)}
+                    className="mt-2 text-xs font-mono text-gray-500 hover:text-[color:var(--accent)] transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Education Section */}
@@ -859,7 +915,7 @@ export default function ProfessionalPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold">
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[#27f3b3] drop-shadow-[0_0_10px_rgba(39,243,179,0.45)] font-mono text-base tracking-wide font-semibold">
               Professional
             </Link>
             <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[#e7eaf6] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">

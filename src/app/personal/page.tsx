@@ -810,7 +810,7 @@ export default function PersonalPage() {
             <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[#e7eaf6] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[#27f3b3] drop-shadow-[0_0_10px_rgba(39,243,179,0.45)] font-mono text-base tracking-wide font-semibold">
               Personal
             </Link>
           </motion.div>
