@@ -1,41 +1,28 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+
+const TRAIL_LENGTH = 20;
 
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
-
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-
-  // Instant latency-free cursor head
-  const headX = mouseX;
-  const headY = mouseY;
-
-  // Create a snappy, light trailing effect (comet tail)
-  const t1x = useSpring(mouseX, { stiffness: 800, damping: 35 });
-  const t1y = useSpring(mouseY, { stiffness: 800, damping: 35 });
-  const t2x = useSpring(mouseX, { stiffness: 400, damping: 25 });
-  const t2y = useSpring(mouseY, { stiffness: 400, damping: 25 });
-  const t3x = useSpring(mouseX, { stiffness: 200, damping: 20 });
-  const t3y = useSpring(mouseY, { stiffness: 200, damping: 20 });
-  const t4x = useSpring(mouseX, { stiffness: 100, damping: 15 });
-  const t4y = useSpring(mouseY, { stiffness: 100, damping: 15 });
-  const t5x = useSpring(mouseX, { stiffness: 50, damping: 10 });
-  const t5y = useSpring(mouseY, { stiffness: 50, damping: 10 });
-  const t6x = useSpring(mouseX, { stiffness: 25, damping: 10 });
-  const t6y = useSpring(mouseY, { stiffness: 25, damping: 10 });
-
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+
+  // Directly track mouse positioning using React refs for 60fps mutability
+  const mouse = useRef({ x: -100, y: -100 });
+  const trail = useRef(Array.from({ length: TRAIL_LENGTH }, () => ({ x: -100, y: -100 })));
+  
+  // Element references for native DOM updating
+  const headRef = useRef<HTMLDivElement>(null);
+  const hoverTargetRef = useRef<HTMLDivElement>(null);
+  const pathSegments = useRef<(SVGPathElement | null)[]>([]);
 
   useEffect(() => {
     setMounted(true);
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      mouse.current = { x: e.clientX, y: e.clientY };
       if (!isVisible) setIsVisible(true);
       
       const target = e.target as HTMLElement;
@@ -54,15 +41,67 @@ export default function CustomCursor() {
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("mouseenter", handleMouseEnter);
 
+    let animationFrameId: number;
+
+    const render = () => {
+      const followSpeed = 0.5;
+
+      // Make the trail array elegantly chase the cursor node by node
+      trail.current[0].x += (mouse.current.x - trail.current[0].x) * followSpeed;
+      trail.current[0].y += (mouse.current.y - trail.current[0].y) * followSpeed;
+
+      for (let i = 1; i < TRAIL_LENGTH; i++) {
+        trail.current[i].x += (trail.current[i - 1].x - trail.current[i].x) * followSpeed;
+        trail.current[i].y += (trail.current[i - 1].y - trail.current[i].y) * followSpeed;
+      }
+
+      // Update Native DOM without forcing React to repeatedly re-render
+      if (headRef.current) {
+        headRef.current.style.transform = `translate(${mouse.current.x}px, ${mouse.current.y}px) translate(-50%, -50%)`;
+      }
+      if (hoverTargetRef.current) {
+        hoverTargetRef.current.style.transform = `translate(${mouse.current.x}px, ${mouse.current.y}px) translate(-50%, -50%)`;
+      }
+
+      // Generate a perfectly smooth Bezier spline by connecting midpoints, removing "polygonal" jagged edges
+      for (let i = 0; i < TRAIL_LENGTH - 1; i++) {
+        const p1 = trail.current[i];
+        const p2 = trail.current[i + 1];
+        const p0 = i === 0 ? mouse.current : trail.current[i - 1];
+        
+        let d = "";
+        if (i === 0) {
+          // Connect actual mouse position gracefully into the curve
+          d = `M ${mouse.current.x} ${mouse.current.y} Q ${p1.x} ${p1.y} ${(p1.x + p2.x) / 2} ${(p1.y + p2.y) / 2}`;
+        } else {
+          // Trace through quadratic curves over midpoints
+          const startX = (p0.x + p1.x) / 2;
+          const startY = (p0.y + p1.y) / 2;
+          const endX = (p1.x + p2.x) / 2;
+          const endY = (p1.y + p2.y) / 2;
+          d = `M ${startX} ${startY} Q ${p1.x} ${p1.y} ${endX} ${endY}`;
+        }
+        
+        if (pathSegments.current[i]) {
+          pathSegments.current[i].setAttribute("d", d);
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("mouseenter", handleMouseEnter);
+      cancelAnimationFrame(animationFrameId);
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [isVisible]);
 
   if (!mounted) return null;
 
@@ -71,49 +110,51 @@ export default function CustomCursor() {
       className="pointer-events-none fixed inset-0"
       style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.3s", zIndex: 10000 }}
     >
-      {!isHovering && (
-        <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ zIndex: -1 }}>
-          <motion.line x1={headX} y1={headY} x2={t1x} y2={t1y} stroke="rgba(39, 243, 179, 0.9)" strokeWidth="10" strokeLinecap="round" />
-          <motion.line x1={t1x} y1={t1y} x2={t2x} y2={t2y} stroke="rgba(39, 243, 179, 0.7)" strokeWidth="8" strokeLinecap="round" />
-          <motion.line x1={t2x} y1={t2y} x2={t3x} y2={t3y} stroke="rgba(39, 243, 179, 0.5)" strokeWidth="6" strokeLinecap="round" />
-          <motion.line x1={t3x} y1={t3y} x2={t4x} y2={t4y} stroke="rgba(39, 243, 179, 0.3)" strokeWidth="4" strokeLinecap="round" />
-          <motion.line x1={t4x} y1={t4y} x2={t5x} y2={t5y} stroke="rgba(39, 243, 179, 0.15)" strokeWidth="2" strokeLinecap="round" />
-          <motion.line x1={t5x} y1={t5y} x2={t6x} y2={t6y} stroke="rgba(39, 243, 179, 0.05)" strokeWidth="1" strokeLinecap="round" />
-        </svg>
-      )}
+      {/* Smooth bezier trailing comet tail */}
+      <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ opacity: isHovering ? 0 : 1, transition: "opacity 0.2s" }}>
+        {Array.from({ length: TRAIL_LENGTH - 1 }).map((_, i) => {
+          const width = Math.max(1, 10 - i * 0.5); 
+          const opacity = Math.max(0, 0.8 - i * 0.04);
+          return (
+            <path
+              key={i}
+              ref={(el) => { if (el) pathSegments.current[i] = el; }}
+              fill="none"
+              stroke="var(--accent)"
+              strokeWidth={width}
+              strokeOpacity={opacity}
+              strokeLinecap="round"
+            />
+          );
+        })}
+      </svg>
       
-      {/* Comet Head & Hover Target */}
-      <motion.div
-        className="fixed top-0 left-0 flex items-center justify-center rounded-full"
+      {/* Hover Target Envelope */}
+      <div
+        ref={hoverTargetRef}
+        className="fixed top-0 left-0 rounded-full"
         style={{ 
-          x: headX, 
-          y: headY, 
-          translateX: "-50%", 
-          translateY: "-50%",
-          backgroundColor: isHovering ? "rgba(39, 243, 179, 0.15)" : "var(--accent)",
+          backgroundColor: isHovering ? "rgba(39, 243, 179, 0.15)" : "transparent",
           border: isHovering ? "1px solid var(--accent)" : "none",
-          willChange: "transform",
-        }}
-        animate={{
           width: isHovering ? 56 : 14,
           height: isHovering ? 56 : 14,
-          boxShadow: isHovering 
-            ? "0 0 15px rgba(39, 243, 179, 0.6), inset 0 0 10px rgba(39, 243, 179, 0.4)" 
-            : "0 0 10px 1px var(--accent)"
+          transition: "width 0.2s, height 0.2s, background-color 0.2s, border 0.2s",
+          willChange: "transform",
         }}
-        transition={{ type: "spring", stiffness: 450, damping: 25 }}
-      >
-        <motion.div 
-          className="rounded-full"
-          style={{ backgroundColor: "var(--accent)" }}
-          animate={{
-            width: isHovering ? 8 : 0,
-            height: isHovering ? 8 : 0,
-            opacity: isHovering ? 1 : 0,
-          }}
-          transition={{ duration: 0.15 }}
-        />
-      </motion.div>
+      />
+
+      {/* Core Comet Cursor Head (No Glow) */}
+      <div
+        ref={headRef}
+        className="fixed top-0 left-0 rounded-full"
+        style={{ 
+          backgroundColor: "var(--accent)",
+          width: isHovering ? 8 : 14,
+          height: isHovering ? 8 : 14,
+          transition: "width 0.2s, height 0.2s",
+          willChange: "transform"
+        }}
+      />
     </div>
   );
 }
