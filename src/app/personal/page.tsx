@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import bikeImage from "../../bike1.jpg";
+import guitarImage from "../../guitar.png";
 
 import avengersImg from "../../movieposters/Avengers_Infinity_war_poster.webp";
 import bcsImg from "../../movieposters/bettercallsaul.jpg";
@@ -32,16 +33,16 @@ const lifeFacets = [
   {
     id: "books",
     category: "Books",
-    title: "Fiction Novels",
+    title: "Niche",
     bgGradient: "from-emerald-900/60 to-[#0a0b14]",
-    content: "I love reading. If I played video games for about 3,000 hours, I probably read novels for maybe 20,000 hours. My favorite book is Shadow Slave. It has over 2,000 chapters.",
+    content: "I do not really read fiction novels, but I do enjoy digging into niche topics, specific interests, and whatever subject ends up grabbing my attention for a long stretch.",
   },
   {
     id: "music",
     category: "Music",
-    title: "Musical Instruments, Band",
+    title: "Musical Instruments",
     bgGradient: "from-orange-900/60 to-[#0a0b14]",
-    content: "I've been learning to play the guitar, exploring alternative rock and learning some of the riffs I love listening to.",
+    content: "I play guitar and spend time learning riffs from songs I like. My guitar is an Arena 38C with EQ2, an acoustic electric guitar in natural color.",
   },
   {
     id: "tech",
@@ -53,9 +54,9 @@ const lifeFacets = [
   {
     id: "fitness",
     category: "Fitness",
-    title: "Sports, Gym",
+    title: "Sports, Exercise",
     bgGradient: "from-zinc-800/80 to-[#0a0b14]",
-    content: "To replace gaming with a healthier method, I joined a gym in 10th grade. Being the smallest student, I found the motivation to work out consistently. Now, years later, it's just an integral part of my daily routine.",
+    content: "To replace gaming with a healthier method, I started exercising in 10th grade. Being the smallest student, I found the motivation to keep at it consistently. Now, years later, it is just an integral part of my daily routine.",
   },
   {
     id: "language",
@@ -607,6 +608,18 @@ export default function PersonalPage() {
                      <div><span className="text-zinc-500 w-24 inline-block">English</span> Fluent</div>
                      <div><span className="text-zinc-500 w-24 inline-block">Japanese</span> Currently improving</div>
                      <div><span className="text-zinc-500 w-24 inline-block">German</span> Planning to learn</div>
+                   </div>
+                 )}
+                 {activeFacet.id === "music" && (
+                   <div className="mt-8 pt-8 border-t border-zinc-800">
+                     <div className="relative overflow-hidden rounded-xl border border-zinc-700/70 bg-[#0b0e17] aspect-16/10">
+                       <Image
+                         src={guitarImage}
+                         alt="Arena 38C guitar"
+                         fill
+                         className="object-cover"
+                       />
+                     </div>
                    </div>
                  )}
               </div>

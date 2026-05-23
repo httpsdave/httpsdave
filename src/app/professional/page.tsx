@@ -170,16 +170,13 @@ const experienceData = [
 const journeyData = [
   {
     year: "2026",
-    text: "Placeholder for future updates. This section is reserved for the next chapter of my professional journey.",
+    text: "Nothing for 2026 yet. For now I’m focused on finding a fulfilling job where I can pour my passion into meaningful work and keep growing as a developer.",
     images: []
   },
   {
     year: "2025",
-    text: "Placeholder for future updates. This space will eventually cover the next part of my journey in a concise timeline format.",
-    images: [
-      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Ritmo+Clone",
-      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Aux.+Clone"
-    ]
+    text: "The year really started to lean into our major, especially machine learning, and we began our thesis around March. Along with two of my groupmates, I worked on a Student Organization Information System for the Office of Student Affairs and Services at LSPU-SPCC. We used Laravel as the main framework on our adviser’s request for easier maintenance later on, with Vue.js for the frontend and MySQL for the database. The system later went live on Railway in early August.\n\nBefore that, we had Intersemester, so we did not really get a full summer break. Around May, we took robotics and mostly played around with an Arduino Uno kit. By the end of June, we built a smart trash bin called Binsense using an ultrasonic sensor, battery, wires, a few other parts, and an Arduino Uno board. It automatically opens when someone gets close enough to throw something away.\n\nOur thesis had a machine learning twist too. We took the NLP route, used OCR to scan event letters submitted as images, converted them into text, and then used spaCy transformer models to extract important event details like the date, time, location, event name, and a short description. Those details were then plotted into an event calendar inside the system with notifications for the different student organizations.\n\nThe main function of ORBIT, or Organized Records for Better Institutional Tracking, was to generate templates for the forms student organizations had to fill out, print, and return as scanned copies for submission and verification. Because the forms follow a very strict format, even tiny mistakes could mean redoing everything and collecting wet signatures all over again, which is a lot of work for people who are not always on campus. We defended the thesis in November 2025 and called it a day, with maintenance coming after.",
+    images: []
   },
   {
     year: "2024",
