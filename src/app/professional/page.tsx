@@ -502,7 +502,7 @@ export default function ProfessionalPage() {
                   </div>
                   <button 
                     onClick={() => setShowMicroPopup(false)}
-                    className="mt-2 text-xs font-mono text-gray-500 hover:text-[color:var(--accent)] transition-colors"
+                    className="mt-2 text-xs font-mono text-gray-500 hover:text-[color:var(--accent)] transition-colors cursor-grab active:cursor-grabbing"
                   >
                     Cancel
                   </button>
@@ -912,10 +912,15 @@ export default function ProfessionalPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[#27f3b3] drop-shadow-[0_0_10px_rgba(39,243,179,0.45)] font-mono text-base tracking-wide font-semibold">
+            <Link
+              href="/professional"
+              aria-current="page"
+              style={{ color: "var(--accent)" }}
+              className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold transition-colors duration-300"
+            >
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[#e7eaf6] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
               Personal
             </Link>
           </motion.div>
