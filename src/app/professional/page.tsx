@@ -282,9 +282,9 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
-              <button className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-grab active:cursor-grabbing">
+              <a href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer inline-block text-center">
                 VIEW CV <span>&gt;</span>
-              </button>
+              </a>
 
               <div className="flex items-center gap-4">
                 <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
@@ -701,7 +701,7 @@ export default function ProfessionalPage() {
 
           {/* Explore More Button */}
           <div className="flex justify-center mt-20">
-            <Link href="#">
+            <Link href="/projects">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -863,7 +863,7 @@ export default function ProfessionalPage() {
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
             </Link>
-            <Link href="#" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
             </Link>

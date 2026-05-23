@@ -122,7 +122,7 @@ export default function Home() {
               </a>
               <a
                 className="inline-flex items-center gap-2 rounded-full border border-[color:var(--stroke)] px-6 py-3 text-sm font-semibold"
-                href="/resume.pdf"
+                href="/DaveDominicGoze-Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
