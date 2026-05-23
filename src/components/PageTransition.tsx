@@ -24,7 +24,6 @@ export default function PageTransition({ children }: { children: React.ReactNode
               times: [0, 0.35, 0.65, 1],
               ease: "easeInOut",
               delay: i * 0.08,
-              transformOrigin: i % 2 === 0 ? "top" : "bottom",
             }}
             style={{ originY: i % 2 === 0 ? 0 : 1 }}
           />

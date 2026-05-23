@@ -667,6 +667,7 @@ export default function PersonalPage() {
               onMouseMove={handleOutroMouseMove}
               onMouseEnter={() => setIsOutroHovered(true)}
               onMouseLeave={() => setIsOutroHovered(false)}
+              data-hide-custom-cursor="true"
               className="relative w-full h-[400px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none"
             >
               {/* Green Comets Top to Bottom with Splash */}

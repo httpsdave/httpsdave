@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isCursorHidden, setIsCursorHidden] = useState(false);
 
   // Directly track mouse positioning using React refs for 60fps mutability
   const mouse = useRef({ x: -100, y: -100 });
@@ -26,8 +27,11 @@ export default function CustomCursor() {
       if (!isVisible) setIsVisible(true);
       
       const target = e.target as HTMLElement;
-      const clickable = target.closest('a, button, [role="button"], input, select, textarea');
+      const clickable = target?.closest('a, button, [role="button"], input, select, textarea');
       setIsHovering(!!clickable);
+
+      const hideCustom = !!(target && target.closest('[data-hide-custom-cursor="true"]'));
+      setIsCursorHidden(hideCustom);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -82,8 +86,9 @@ export default function CustomCursor() {
           d = `M ${startX} ${startY} Q ${p1.x} ${p1.y} ${endX} ${endY}`;
         }
         
-        if (pathSegments.current[i]) {
-          pathSegments.current[i].setAttribute("d", d);
+        const segment = pathSegments.current[i];
+        if (segment) {
+          segment.setAttribute("d", d);
         }
       }
 
@@ -108,7 +113,7 @@ export default function CustomCursor() {
   return (
     <div 
       className="pointer-events-none fixed inset-0"
-      style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.3s", zIndex: 10000 }}
+      style={{ opacity: isVisible && !isCursorHidden ? 1 : 0, transition: "opacity 0.3s", zIndex: 10000 }}
     >
       {/* Smooth bezier trailing comet tail */}
       <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ opacity: isHovering ? 0 : 1, transition: "opacity 0.2s" }}>
