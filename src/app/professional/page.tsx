@@ -215,7 +215,7 @@ export default function ProfessionalPage() {
   const timelineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "Dave Goze | Professional";
+    document.title = "Professional | Dave Goze";
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -278,7 +278,7 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="font-mono text-sm tracking-wide text-[color:var(--muted)] space-y-2 pt-6 max-w-xl">
-              <p>Computer Science | Full-Stack Developer (Frontend-Focused) | Philippines</p>
+              <p>Computer Science | STEM | Full-Stack Developer (Front-end Focused) | Philippines</p>
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">

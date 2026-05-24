@@ -67,7 +67,7 @@ function HoverCard({ children, className = "" }: { children: React.ReactNode; cl
 
 export default function ContactPage() {
   useEffect(() => {
-    document.title = "Dave Goze | Contact";
+    document.title = "Contact | Dave Goze";
   }, []);
   const [pageMousePos, setPageMousePos] = useState({ x: 0, y: 0 });
 

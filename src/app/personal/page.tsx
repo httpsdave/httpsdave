@@ -146,7 +146,7 @@ export default function PersonalPage() {
   const [showNav, setShowNav] = useState(false);
 
   useEffect(() => {
-    document.title = "Dave Goze | Personal";
+    document.title = "Personal | Dave Goze";
   }, []);
 
   useEffect(() => {
