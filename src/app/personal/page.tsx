@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
 import interestWorkImage from "../../interest,work.jpg";
@@ -485,8 +486,8 @@ export default function PersonalPage() {
           {/* Box 3 (Bottom Left): Cycling */}
           <article className="border-b md:border-b-0 md:border-r border-zinc-800/80 bg-transparent p-6 md:p-12 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
             <Image 
-              src={exerciseImage} 
-              alt="Sports and exercise cover image" 
+              src={bikeImage} 
+              alt="Promax PR50 Roadbike" 
               fill 
               className="object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
             />
