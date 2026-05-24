@@ -417,22 +417,38 @@ export default function ProfessionalPage() {
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br />experience</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <a href="#projects" onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} className="inline-flex items-center hover:text-[color:var(--accent)] transition-colors cursor-pointer">
-                <AnimatedCounter value={14} />
-              </a>
+          <div 
+            onClick={(e) => { 
+              e.preventDefault();
+              const el = document.getElementById('projects');
+              if (el) {
+                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+            }} 
+            className="flex items-center gap-4 cursor-pointer group"
+          >
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
+              <AnimatedCounter value={14} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br />on</span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects worked<br />on</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <a href="#projects" onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} className="inline-flex items-center hover:text-[color:var(--accent)] transition-colors cursor-pointer">
-                <AnimatedCounter value={9} />
-              </a>
+          <div 
+            onClick={(e) => { 
+              e.preventDefault();
+              const el = document.getElementById('projects');
+              if (el) {
+                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+            }} 
+            className="flex items-center gap-4 cursor-pointer group"
+          >
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
+              <AnimatedCounter value={9} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br />Deployed</span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
           </div>
 
           <div className="flex items-center gap-4">
