@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import bikeImage from "../../bike1.jpg";
-import guitarImage from "../../guitar.png";
+import nicheImage from "../../niche.png";
+import guitarImage from "../../guitarimage.jpg";
+import interestWorkImage from "../../interest,work.jpg";
+import exerciseImage from "../../exercise.jpg";
+import japaneseImage from "../../japanese.jpg";
 
 import avengersImg from "../../movieposters/Avengers_Infinity_war_poster.webp";
 import bcsImg from "../../movieposters/bettercallsaul.jpg";
@@ -35,6 +38,8 @@ const lifeFacets = [
     category: "Books",
     title: "Niche",
     bgGradient: "from-emerald-900/60 to-[#0a0b14]",
+    coverImage: nicheImage,
+    coverAlt: "Niche interests cover image",
     content: "I do not really read fiction novels, but I do enjoy digging into niche topics, specific interests, and whatever subject ends up grabbing my attention for a long stretch.",
   },
   {
@@ -42,6 +47,8 @@ const lifeFacets = [
     category: "Music",
     title: "Musical Instruments",
     bgGradient: "from-orange-900/60 to-[#0a0b14]",
+    coverImage: guitarImage,
+    coverAlt: "Guitar cover image",
     content: "I play guitar and spend time learning riffs from songs I like. My guitar is an Arena 38C with EQ2, an acoustic electric guitar in natural color.",
   },
   {
@@ -49,6 +56,8 @@ const lifeFacets = [
     category: "Computer, IT",
     title: "Interest, Work",
     bgGradient: "from-blue-900/60 to-[#0a0b14]",
+    coverImage: interestWorkImage,
+    coverAlt: "Interest and work cover image",
     content: "My brother introduced me to computers early on. I became fascinated with formatting, disassembling components, and understanding how the software logic connects with the hardware.",
   },
   {
@@ -56,6 +65,8 @@ const lifeFacets = [
     category: "Fitness",
     title: "Sports, Exercise",
     bgGradient: "from-zinc-800/80 to-[#0a0b14]",
+    coverImage: exerciseImage,
+    coverAlt: "Sports and exercise cover image",
     content: "To replace gaming with a healthier method, I started exercising in 10th grade. Being the smallest student, I found the motivation to keep at it consistently. Now, years later, it is just an integral part of my daily routine.",
   },
   {
@@ -63,6 +74,8 @@ const lifeFacets = [
     category: "Foreign Languages",
     title: "Foreign Languages",
     bgGradient: "from-purple-900/60 to-[#0a0b14]",
+    coverImage: japaneseImage,
+    coverAlt: "Foreign languages cover image",
     content: "In my childhood, my English developed rapidly via internet immersion. I spent most my days watching anime, movies, and reading tracking tech news. I plan to learn more languages like German and Japanese in the future.",
   }
 ];
@@ -472,8 +485,8 @@ export default function PersonalPage() {
           {/* Box 3 (Bottom Left): Cycling */}
           <article className="border-b md:border-b-0 md:border-r border-zinc-800/80 bg-transparent p-6 md:p-12 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
             <Image 
-              src={bikeImage} 
-              alt="Promax PR50 Roadbike" 
+              src={exerciseImage} 
+              alt="Sports and exercise cover image" 
               fill 
               className="object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
             />
@@ -540,21 +553,27 @@ export default function PersonalPage() {
                 whileHover={{ y: -10 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={() => setActiveFacet(facet)}
-                className={`min-w-[280px] md:min-w-[340px] snap-center h-[520px] md:h-[560px] rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden bg-gradient-to-b ${facet.bgGradient} border border-zinc-800/50 shadow-2xl flex flex-col p-6 group`}
+                className={`min-w-[320px] md:min-w-[400px] snap-center h-[560px] md:h-[640px] rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-6 md:p-8 group`}
               >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-0"></div>
-                <div className="relative z-10">
-                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest">{facet.category}</span>
-                  <h3 className="text-2xl font-bold font-mono text-white mt-2 leading-tight">{facet.title}</h3>
+                {/* Full-card Image Background */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                  <Image
+                    src={facet.coverImage}
+                    alt={facet.coverAlt}
+                    fill
+                    className="object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${facet.bgGradient} opacity-40 group-hover:opacity-20 transition-opacity duration-500`} />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80 group-hover:from-black/60 group-hover:via-black/10 transition-colors duration-500" />
                 </div>
                 
-                {/* Visual placeholder inside card */}
-                <div className="mt-auto relative z-10 w-full h-1/2 opacity-30 group-hover:opacity-60 transition-opacity duration-500">
-                   <div className="absolute bottom-0 right-0 text-7xl opacity-20">★</div>
+                <div className="relative z-10 mt-0">
+                  <span className="text-sm font-sans font-bold text-zinc-300 tracking-wide drop-shadow-md">{facet.category}</span>
+                  <h3 className="text-3xl font-bold font-mono text-white mt-2 leading-tight drop-shadow-md">{facet.title}</h3>
                 </div>
                 
                 {/* Subtle Hover Glare */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/5 to-transparent pointer-events-none transition-opacity duration-500"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/5 to-transparent pointer-events-none transition-opacity duration-500 z-20"></div>
               </motion.div>
             ))}
           </div>
@@ -587,9 +606,19 @@ export default function PersonalPage() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
 
-              <div className={`w-full h-32 md:h-48 bg-gradient-to-b ${activeFacet.bgGradient} p-6 md:p-10 flex flex-col justify-end`}>
-                <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">{activeFacet.category}</span>
-                <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mt-2">{activeFacet.title}</h3>
+              <div className="relative w-full h-40 md:h-56 overflow-hidden">
+                <Image
+                  src={activeFacet.coverImage}
+                  alt={activeFacet.coverAlt}
+                  fill
+                  className="object-cover"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-b ${activeFacet.bgGradient} opacity-80`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111218] via-transparent to-transparent" />
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
+                  <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">{activeFacet.category}</span>
+                  <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mt-2">{activeFacet.title}</h3>
+                </div>
               </div>
 
               <div className="p-6 md:p-10 overflow-y-auto font-mono text-zinc-300 leading-relaxed text-sm md:text-base">

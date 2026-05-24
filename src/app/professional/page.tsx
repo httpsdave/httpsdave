@@ -419,21 +419,27 @@ export default function ProfessionalPage() {
 
           <div className="flex items-center gap-4">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <AnimatedCounter value={14} />
+              <a href="#projects" onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} className="inline-flex items-center hover:text-[color:var(--accent)] transition-colors cursor-pointer">
+                <AnimatedCounter value={14} />
+              </a>
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects worked<br />on</span>
           </div>
 
           <div className="flex items-center gap-4">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <AnimatedCounter value={9} />
+              <a href="#projects" onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} className="inline-flex items-center hover:text-[color:var(--accent)] transition-colors cursor-pointer">
+                <AnimatedCounter value={9} />
+              </a>
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Projects<br />Deployed</span>
           </div>
 
           <div className="flex items-center gap-4">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <AnimatedCounter value={43} />
+              <button type="button" onClick={() => setShowMicroPopup(true)} className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors">
+                <AnimatedCounter value={43} />
+              </button>
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
           </div>
@@ -618,7 +624,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Projects Section */}
-        <div className="mt-12 mb-40 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0">
+        <div id="projects" className="mt-12 mb-40 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0 scroll-mt-28">
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             A small selection of <span className="text-[color:var(--accent)]">recent projects</span>
           </h2>
