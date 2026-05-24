@@ -737,10 +737,10 @@ export default function ProfessionalPage() {
             {experienceData.map((exp, idx) => (
               <div key={idx} className="relative w-full group min-h-[160px] md:min-h-[200px]">
 
-                <div className="relative w-full h-full rounded-2xl overflow-hidden p-[1px] bg-white/5 z-10 shadow-2xl transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(27,217,155,0.15)]">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden p-[2px] bg-white/5 z-10 shadow-[0_0_15px_rgba(27,217,155,0.08)] transition-shadow duration-500">
                   {/* Single moving border trail */}
                   <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[conic-gradient(from_0deg,transparent_0_340deg,var(--accent)_360deg)] animate-[spin_12s_linear_infinite]"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[conic-gradient(from_0deg,transparent_0_332deg,rgba(27,217,155,0.45)_350deg,var(--accent)_360deg)] animate-[spin_12s_linear_infinite]"
                     style={{ animationDelay: exp.delay }}
                   ></div>
 

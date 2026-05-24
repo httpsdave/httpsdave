@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import bikeImage from "../../bike1.jpg";
@@ -138,7 +138,10 @@ export default function PersonalPage() {
   const outroRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeFacet, setActiveFacet] = useState<typeof lifeFacets[0] | null>(null);
-  const [outroMousePos, setOutroMousePos] = useState({ x: 0, y: 0 });
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const smoothCursorX = useSpring(cursorX, { stiffness: 800, damping: 50 });
+  const smoothCursorY = useSpring(cursorY, { stiffness: 800, damping: 50 });
   const [isOutroHovered, setIsOutroHovered] = useState(false);
   const [showNav, setShowNav] = useState(false);
 
@@ -165,7 +168,8 @@ export default function PersonalPage() {
   const handleOutroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!outroRef.current) return;
     const rect = outroRef.current.getBoundingClientRect();
-    setOutroMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    cursorX.set(e.clientX - rect.left);
+    cursorY.set(e.clientY - rect.top);
   };
 
   const scrollLeft = () => {
@@ -676,7 +680,7 @@ export default function PersonalPage() {
         </div>
 
         {/* Main Outro Container with border trail */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto group">
+        <div className="relative z-10 w-full max-w-7xl mx-auto group">
           
           {/* Subtle trail glow behind the container */}
           <div className="absolute inset-[-6px] rounded-[calc(1.5rem+6px)] overflow-hidden z-0 blur-[6px] opacity-70 pointer-events-none transition-opacity duration-500 group-hover:opacity-100">
@@ -698,7 +702,7 @@ export default function PersonalPage() {
               onMouseEnter={() => setIsOutroHovered(true)}
               onMouseLeave={() => setIsOutroHovered(false)}
               data-hide-custom-cursor="true"
-              className="relative w-full h-[400px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none"
+              className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none"
             >
               {/* Green Comets Top to Bottom with Splash */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -714,9 +718,9 @@ export default function PersonalPage() {
                     {/* Falling Comet */}
                     <motion.div
                       key={`comet-${i}`}
-                      animate={{ top: ["-10%", "100%", "100%", "100%"], opacity: [0, 1, 0, 0] }}
+                      animate={{ top: ["-20%", "100%", "100%", "100%"], opacity: [0, 1, 0, 0] }}
                       transition={{ repeat: Infinity, duration: comet.duration, ease: "linear", delay: comet.delay, times: [0, 0.6, 0.61, 1] }}
-                      className="absolute flex flex-col items-center justify-end h-16 w-0.5"
+                      className="absolute flex flex-col items-center justify-end h-16 w-0.5 -translate-y-full"
                     >
                       <div className="w-[0.5px] flex-1 bg-gradient-to-b from-transparent to-emerald-500"></div>
                       <div className="w-[1.5px] h-[1.5px] bg-emerald-300 rounded-full" style={{ boxShadow: '0 0 5px 1px rgba(16,185,129,0.8)' }}></div>
@@ -777,15 +781,13 @@ export default function PersonalPage() {
               {isOutroHovered && (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1, x: outroMousePos.x, y: outroMousePos.y }}
+                  animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{
                     opacity: { duration: 0.1 },
-                    scale: { duration: 0.1 },
-                    x: { type: "tween", ease: "linear", duration: 0 },
-                    y: { type: "tween", ease: "linear", duration: 0 }
+                    scale: { duration: 0.1 }
                   }}
-                  style={{ top: "0", left: "0", position: "absolute", zIndex: 50, pointerEvents: "none" }}
+                  style={{ top: "0", left: "0", position: "absolute", zIndex: 50, pointerEvents: "none", x: smoothCursorX, y: smoothCursorY }}
                   className="flex flex-col items-start drop-shadow-lg"
                 >
                   {/* Cursor Arrow */}
