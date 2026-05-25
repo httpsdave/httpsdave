@@ -19,7 +19,7 @@ import harrypotterImg from "../../movieposters/harrypotter.jpg";
 import himymImg from "../../movieposters/himym.jpg";
 import interstellarImg from "../../movieposters/interstellar.jpg";
 import johnwickImg from "../../movieposters/johnwick.jpg";
-import narutoImg from "../../movieposters/naruto.jpg";
+import narutoImg from "../../movieposters/lucifer.webp";
 import martianImg from "../../movieposters/the martian.jpeg";
 import boysImg from "../../movieposters/theboys.jpg";
 import gdImg from "../../movieposters/thegooddoctor.webp";

@@ -480,7 +480,7 @@ export default function ProfessionalPage() {
 
               {/* Tooltip Popup */}
               <div className="absolute bottom-[5%] py-2 px-5 bg-[#12131c]/90 border border-white/10 shadow-xl backdrop-blur-sm text-[#e7eaf6] text-xs md:text-sm font-bold font-mono tracking-widest rounded-[40px] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:-translate-y-0 transition-all duration-300 z-50 pointer-events-none">
-                {imgIndex === 0 ? "CLICK ME 👀" : "GLAD YOU'RE HERE ☄️"}
+                {imgIndex === 0 ? "CLICK ME 👀" : "GLAD YOU'RE HERE ❤️"}
               </div>
             </div>
           </div>
