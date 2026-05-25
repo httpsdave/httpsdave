@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
+import confetti from "canvas-confetti";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
@@ -205,14 +206,72 @@ const calcMyAge = () => {
   return Math.abs(age_dt.getUTCFullYear() - 1970);
 };
 
+interface FloatingBalloon {
+  id: number;
+  x: number;
+  y: number;
+  color: string;
+  delay: number;
+  drift: number;
+}
+
+const BalloonSVG = ({ color }: { color: string }) => (
+  <svg width="40" height="80" viewBox="0 0 40 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 0C8.954 0 0 8.954 0 20C0 35 15 45 20 48C25 45 40 35 40 20C40 8.954 31.046 0 20 0Z" fill={color}/>
+    <path d="M17 48H23L21.5 50.5H18.5L17 48Z" fill={color}/>
+    {/* Balloon String */}
+    <path d="M20 50.5C20 60 15 65 20 70C25 75 20 80 20 80" stroke="white" strokeOpacity="0.3" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+    <ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(30 12 12)" fill="white" fillOpacity="0.3"/>
+  </svg>
+);
+
 export default function ProfessionalPage() {
   const myAge = calcMyAge();
   const [imgIndex, setImgIndex] = useState(0);
   const [hoveredEdu, setHoveredEdu] = useState<number | null>(null);
   const [showNav, setShowNav] = useState(false);
   const [showMicroPopup, setShowMicroPopup] = useState(false);
+  const [showBirthdate, setShowBirthdate] = useState(false);
+  const [balloons, setBalloons] = useState<FloatingBalloon[]>([]);
   const statsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  const handleAgeClick = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+    // 1. Large regular confetti spread
+    confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { x, y },
+      colors: ['#27f3b3', '#ffffff', '#12131c'], 
+      ticks: 200,
+    });
+
+    // 2. Generate smooth floating balloons using Framer Motion
+    const newBalloons = Array.from({ length: 7 }).map((_, i) => ({
+      id: Date.now() + i,
+      x: e.clientX,
+      y: e.clientY,
+      color: ['#ff4d4d', '#27f3b3', '#4d79ff', '#ffdf4d', '#cc4dff'][Math.floor(Math.random() * 5)],
+      delay: Math.random() * 0.4,
+      drift: (Math.random() - 0.5) * 150 // random horizontal drift
+    }));
+    
+    setBalloons(prev => [...prev, ...newBalloons]);
+
+    setShowBirthdate(true);
+    setTimeout(() => {
+      setShowBirthdate(false);
+    }, 2500);
+
+    // Clean up balloons after animation
+    setTimeout(() => {
+      setBalloons(prev => prev.filter(b => !newBalloons.find(nb => nb.id === b.id)));
+    }, 6000);
+  };
 
   useEffect(() => {
     document.title = "Professional | Dave Goze";
@@ -244,7 +303,34 @@ export default function ProfessionalPage() {
   };
 
   return (
-    <div className="flex-1 relative flex flex-col justify-center min-h-[85vh] pt-20 md:pt-24">
+    <div className="flex-1 relative flex flex-col justify-center min-h-[85vh] pt-20 md:pt-24 overflow-x-hidden">
+      
+      {/* Floating Balloons Portal */}
+      <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+        <AnimatePresence>
+          {balloons.map((b) => (
+            <motion.div
+              key={b.id}
+              initial={{ y: b.y - 20, x: b.x - 20, opacity: 0, scale: 0.5 }}
+              animate={{ 
+                y: -150, // fly up past the top of the viewport
+                x: b.x - 20 + b.drift, // slightly drift left/right
+                opacity: [0, 1, 1, 0],
+                scale: [0.5, 1, 1, 1.2]
+              }}
+              transition={{ 
+                duration: 4 + Math.random() * 2, 
+                delay: b.delay,
+                ease: "easeOut" 
+              }}
+              className="absolute"
+            >
+              <BalloonSVG color={b.color} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
       {/* Subtle vignette for the hero section, fading out at the bottom */}
       <div className="absolute top-0 left-0 w-[100vw] h-[120vh] pointer-events-none z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)] [mask-image:linear-gradient(to_bottom,black_50%,transparent_90%)]" />
 
@@ -402,11 +488,26 @@ export default function ProfessionalPage() {
 
         {/* Stats Row */}
         <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
-          <div className="flex items-center gap-4">
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+          <div 
+            className="flex items-center gap-4 cursor-pointer relative group"
+            onClick={handleAgeClick}
+          >
+            <AnimatePresence>
+              {showBirthdate && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: -20 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[color:var(--accent)] font-mono text-sm font-bold bg-[#12131c]/90 px-3 py-1 rounded-full border border-[color:var(--accent)]/30 backdrop-blur-sm pointer-events-none z-50"
+                >
+                  Feb 05, 2004
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white group-hover:text-[color:var(--accent)] transition-colors duration-300">
               <AnimatedCounter value={myAge} duration={1.5} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Age</span>
+            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors duration-300">Age</span>
           </div>
 
           {/* Years of experience */}
