@@ -428,16 +428,16 @@ export default function PersonalPage() {
       </section>
 
       {/* Hobbies Section */}
-      <section className="mx-auto w-full max-w-6xl px-6 pt-56 md:pt-72 pb-24">
+      <section className="mx-auto w-full max-w-[1380px] px-6 pt-56 md:pt-72 pb-24">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-4">Dave's Hobbies</h2>
           <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 md:grid-rows-2 gap-0 overflow-hidden border border-zinc-800/80 bg-[#0a0b14]/50 shadow-2xl min-h-[250px] lg:min-h-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(10,minmax(0,1fr))] gap-4 lg:gap-6 min-h-[850px] relative w-full">
           
           {/* Box 1 (Top Left): Workout Routine */}
-          <article className="border-b md:border-r border-zinc-800/80 bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-2 md:row-span-1">
+          <article className="md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-4 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Exercise & Workout</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl">
               I've been consistent with it for years now, it's become more of a routine than a hobby. A core component of my life, keeping me grounded and energized.
@@ -454,19 +454,19 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 2 (Top Right): Cinephile with Hover Effects */}
-          <article className="border-b border-zinc-800/80 bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
+          <article className="md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-6 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group z-10">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 z-10 relative">Movies & Shows</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed z-10 relative">
               I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
             </p>
             {/* 3 Rows of Image Placeholders overlapping slightly like the reference image */}
-            <div className="relative w-full flex-1 flex flex-col justify-center items-center -space-y-4 sm:-space-y-6 md:-space-y-8 mt-12 z-0 pb-4 overflow-visible">
+            <div className="relative w-full flex-1 flex flex-col justify-center items-center -space-y-4 sm:-space-y-6 mt-12 z-0 pb-4 overflow-visible">
               {[
                 [1, 2, 3, 4, 5],     // Row 1
                 [6, 7, 8, 9, 10],  // Row 2
                 [11, 12, 13, 14, 15]  // Row 3
               ].map((row, rowIndex) => (
-                <div key={`row-${rowIndex}`} className="flex items-center justify-center -space-x-6 sm:-space-x-10 md:-space-x-16">
+                <div key={`row-${rowIndex}`} className="flex items-center justify-center -space-x-6 sm:-space-x-10 md:-space-x-12 lg:-space-x-16">
                   {row.map((num, idx) => {
                     const rotations = ['-rotate-3', 'rotate-2', '-rotate-6', 'rotate-3', '-rotate-2'];
                     const rot = rotations[(num - 1) % rotations.length];
@@ -474,7 +474,7 @@ export default function PersonalPage() {
                       <motion.div 
                         key={`placeholder-${num}`}
                         whileHover={{ y: -10, scale: 1.05, zIndex: 50 }}
-                        className={`group relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-zinc-800 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.8)] border-[1.5px] border-zinc-600/60 flex flex-col items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 ${rot}`}
+                        className={`group relative w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 bg-zinc-800 rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.8)] border-[1.5px] border-zinc-600/60 flex flex-col items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 ${rot}`}
                         style={{ zIndex: 10 + rowIndex * 10 + idx }}
                       >
                          <div className="absolute inset-0 bg-gradient-to-br from-zinc-700/50 to-zinc-900/50 z-10 opacity-30 group-hover:opacity-0 transition-opacity duration-300" />
@@ -488,7 +488,7 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 3 (Bottom Left): Cycling */}
-          <article className="border-b md:border-b-0 md:border-r border-zinc-800/80 bg-transparent p-6 md:p-12 flex flex-col relative overflow-hidden group md:col-span-3 md:row-span-1">
+          <article className="md:col-start-1 md:col-span-5 md:row-start-5 md:row-span-6 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-12 flex flex-col relative overflow-hidden group min-h-[300px]">
             <Image 
               src={bikeImage} 
               alt="Promax PR50 Roadbike" 
@@ -506,12 +506,12 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 4 (Bottom Right): Music */}
-          <article className="bg-transparent p-6 md:p-8 flex flex-col relative overflow-hidden group md:col-span-2 md:row-span-1">
+          <article className="md:col-start-6 md:col-span-7 md:row-start-7 md:row-span-4 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Music Enthusiast</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 mb-6 max-w-sm">
               I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
             </p>
-            <div className="flex-1 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center relative overflow-hidden">
+            <div className="w-full flex-1 min-h-[4rem] rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center relative overflow-hidden mt-auto">
               <div className="w-12 h-12 bg-red-600/90 rounded-xl flex items-center justify-center z-10 cursor-pointer hover:bg-red-500 transition-colors">
                 <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[14px] border-l-white border-b-8 border-b-transparent ml-1"></div>
               </div>
