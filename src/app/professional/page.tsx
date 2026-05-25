@@ -488,7 +488,8 @@ export default function ProfessionalPage() {
 
         {/* Stats Row */}
         <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
-          <div 
+          <button 
+            type="button"
             className="flex items-center gap-4 cursor-pointer relative group"
             onClick={handleAgeClick}
           >
@@ -508,7 +509,7 @@ export default function ProfessionalPage() {
               <AnimatedCounter value={myAge} duration={1.5} />
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors duration-300">Age</span>
-          </div>
+          </button>
 
           {/* Years of experience */}
           <div className="flex items-center gap-4">
@@ -518,7 +519,8 @@ export default function ProfessionalPage() {
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br />experience</span>
           </div>
 
-          <div 
+          <button 
+            type="button"
             onClick={(e) => { 
               e.preventDefault();
               const el = document.getElementById('projects');
@@ -533,9 +535,10 @@ export default function ProfessionalPage() {
               <AnimatedCounter value={14} />
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects worked<br />on</span>
-          </div>
+          </button>
 
-          <div 
+          <button 
+            type="button"
             onClick={(e) => { 
               e.preventDefault();
               const el = document.getElementById('projects');
@@ -550,9 +553,9 @@ export default function ProfessionalPage() {
               <AnimatedCounter value={9} />
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
-          </div>
+          </button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" data-cursor-select="true">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <button type="button" onClick={() => setShowMicroPopup(true)} className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors">
                 <AnimatedCounter value={43} />

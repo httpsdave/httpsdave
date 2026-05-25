@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false);
   const [isCursorHidden, setIsCursorHidden] = useState(false);
 
   // Directly track mouse positioning using React refs for 60fps mutability
@@ -29,6 +30,9 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement;
       const clickable = target?.closest('a, button, [role="button"], input, select, textarea');
       setIsHovering(!!clickable);
+
+      const selectTarget = target?.closest('[data-cursor-select="true"]');
+      setIsSelecting(!!selectTarget);
 
       const hideCustom = !!(target && target.closest('[data-hide-custom-cursor="true"]'));
       setIsCursorHidden(hideCustom);
@@ -116,7 +120,7 @@ export default function CustomCursor() {
       style={{ opacity: isVisible && !isCursorHidden ? 1 : 0, transition: "opacity 0.3s", zIndex: 10000 }}
     >
       {/* Smooth bezier trailing comet tail */}
-      <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ opacity: isHovering ? 0 : 1, transition: "opacity 0.2s" }}>
+      <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ opacity: isHovering || isSelecting ? 0 : 1, transition: "opacity 0.2s" }}>
         {Array.from({ length: TRAIL_LENGTH - 1 }).map((_, i) => {
           const width = Math.max(1, 10 - i * 0.5); 
           const opacity = Math.max(0, 0.8 - i * 0.04);
@@ -139,10 +143,10 @@ export default function CustomCursor() {
         ref={hoverTargetRef}
         className="fixed top-0 left-0 rounded-full"
         style={{ 
-          backgroundColor: isHovering ? "rgba(39, 243, 179, 0.15)" : "transparent",
-          border: isHovering ? "1px solid var(--accent)" : "none",
-          width: isHovering ? 56 : 14,
-          height: isHovering ? 56 : 14,
+          backgroundColor: isHovering ? "rgba(39, 243, 179, 0.15)" : isSelecting ? "rgba(39, 243, 179, 0.06)" : "transparent",
+          border: isHovering || isSelecting ? "1px solid var(--accent)" : "none",
+          width: isHovering ? 56 : isSelecting ? 44 : 14,
+          height: isHovering ? 56 : isSelecting ? 44 : 14,
           transition: "width 0.2s, height 0.2s, background-color 0.2s, border 0.2s",
           willChange: "transform",
         }}
@@ -154,8 +158,8 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 rounded-full"
         style={{ 
           backgroundColor: "var(--accent)",
-          width: isHovering ? 8 : 14,
-          height: isHovering ? 8 : 14,
+          width: isHovering ? 8 : isSelecting ? 4 : 14,
+          height: isHovering ? 8 : isSelecting ? 22 : 14,
           transition: "width 0.2s, height 0.2s",
           willChange: "transform"
         }}
