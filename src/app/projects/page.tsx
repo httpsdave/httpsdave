@@ -64,6 +64,21 @@ export default function ProjectsPage() {
       <div className="absolute inset-0 z-0 bg-[#0a0b14]" />
       <div className="absolute top-0 w-full h-[600px] z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[rgba(39,243,179,0.08)] via-[#0a0b14] to-[#0a0b14] opacity-70 pointer-events-none" />
 
+      {/* Top Animated Grid Background */}
+      <div className="absolute top-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-grid [mask-image:linear-gradient(to_bottom,white_10%,transparent_100%)]" />
+        
+        {/* Subtle white gradients on some grid cells */}
+        <div className="absolute top-0 left-0 w-[160px] h-[80px] bg-gradient-to-b from-white/[0.05] to-transparent" />
+        <div className="absolute top-[160px] left-[320px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.03] to-transparent" />
+        <div className="absolute top-0 left-[640px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.04] to-transparent" />
+        <div className="absolute top-0 left-[960px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.06] to-transparent" />
+        <div className="absolute top-[160px] left-[1280px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.03] to-transparent" />
+        <div className="absolute top-0 left-[1600px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.04] to-transparent" />
+        <div className="absolute top-[160px] left-[1920px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.05] to-transparent" />
+        <div className="absolute top-0 left-[2240px] w-[160px] h-[80px] bg-gradient-to-b from-white/[0.04] to-transparent" />
+      </div>
+
       <div className="relative z-10 w-full max-w-[1300px] mx-auto px-4 md:px-6 pt-32 pb-40">
         <div className="mt-20 mb-32 flex flex-col w-full text-center">
           <motion.div
@@ -205,7 +220,19 @@ export default function ProjectsPage() {
         )}
       </AnimatePresence>
 
-      <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
+      <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
+        
+        {/* Subtle white gradients on the bottom half of some grid cells */}
+        <div className="absolute bottom-0 left-0 w-[160px] h-[80px] bg-gradient-to-t from-white/[0.05] to-transparent" />
+        <div className="absolute bottom-[160px] left-[320px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.03] to-transparent" />
+        <div className="absolute bottom-0 left-[640px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+        <div className="absolute bottom-0 left-[960px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.06] to-transparent" />
+        <div className="absolute bottom-[160px] left-[1280px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.03] to-transparent" />
+        <div className="absolute bottom-0 left-[1600px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+        <div className="absolute bottom-[160px] left-[1920px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.05] to-transparent" />
+        <div className="absolute bottom-0 left-[2240px] w-[160px] h-[80px] bg-gradient-to-t from-white/[0.04] to-transparent" />
+      </div>
     </div>
   );
 }
