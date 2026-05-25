@@ -3,6 +3,7 @@ import { Space_Grotesk, Spline_Sans_Mono } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import NextTopLoader from "nextjs-toploader";
 import CustomCursor from "@/components/CustomCursor";
+import SocialSidebar from "@/components/SocialSidebar";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -42,6 +43,7 @@ export default function RootLayout({
         />
         <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
           <CustomCursor />
+          <SocialSidebar />
           <a href="#main-content" className="skip-link">
             Skip to content
           </a>

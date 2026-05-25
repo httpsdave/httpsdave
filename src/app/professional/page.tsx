@@ -1015,20 +1015,6 @@ export default function ProfessionalPage() {
 
       </section>
 
-      {/* Fixed Left Social Sidebar */}
-      <div className="hidden lg:flex fixed left-10 bottom-0 flex-col items-center gap-7 z-40">
-        <Link href="mailto:davedominc912@gmail.com" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
-          <FaEnvelope size={26} />
-        </Link>
-        <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
-          <FaLinkedin size={26} />
-        </Link>
-        <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] hover:-translate-y-1 transition-all duration-300">
-          <FaGithub size={26} />
-        </Link>
-        <div className="w-[3px] h-32 bg-white/80 mt-2" />
-      </div>
-
       {/* Floating Bottom Nav */}
       <AnimatePresence>
         {showNav && (
