@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const contactOptions = [
   {
@@ -66,10 +66,29 @@ function HoverCard({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 export default function ContactPage() {
+  const [pageMousePos, setPageMousePos] = useState({ x: 0, y: 0 });
+  const [showNav, setShowNav] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.title = "Contact | Dave Goze";
   }, []);
-  const [pageMousePos, setPageMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const rect = scrollRef.current.getBoundingClientRect();
+        if (rect.top < 100) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handlePageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setPageMousePos({
@@ -146,7 +165,7 @@ export default function ContactPage() {
       </section>
 
       <section className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div ref={scrollRef} className="grid gap-6 md:grid-cols-3">
           {contactOptions.map((option) => (
             <HoverCard key={option.title} className="p-8 hover:-translate-y-2 transition-transform duration-300 flex flex-col">
               <h2 className="text-2xl font-mono font-bold text-white">{option.title}</h2>
@@ -186,32 +205,34 @@ export default function ContactPage() {
             </p>
           </div>
           <form className="flex flex-col gap-6" aria-label="Contact form" onSubmit={(e) => e.preventDefault()}>
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="name">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
-                placeholder="Your name"
-                autoComplete="name"
-              />
-            </div>
-            
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
-                placeholder="you@example.com"
-                autoComplete="email"
-              />
+            <div className="flex flex-col md:flex-row gap-6 w-full">
+              <div className="flex flex-col gap-2 flex-1">
+                <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
+                  placeholder="Your name"
+                  autoComplete="name"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2 flex-1">
+                <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
+                  placeholder="you@example.com"
+                  autoComplete="email"
+                />
+              </div>
             </div>
             
             <div className="flex flex-col gap-2">
@@ -264,6 +285,25 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+
+      {/* Floating Bottom Nav */}
+      <AnimatePresence>
+        {showNav && (
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
+          >
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+              Professional
+            </Link>
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+              Personal
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

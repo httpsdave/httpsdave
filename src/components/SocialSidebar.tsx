@@ -12,7 +12,7 @@ const itemVariants = {
     scale: 1,
     transition: {
       delay: 0.15 + index * 0.08,
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 260,
       damping: 20,
     },

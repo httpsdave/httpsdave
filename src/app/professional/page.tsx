@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import confetti from "canvas-confetti";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
 import credlyImg from "../../credly.png";
@@ -364,7 +364,9 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="font-mono text-sm tracking-wide text-[color:var(--muted)] space-y-2 pt-6 max-w-xl">
-              <p>Computer Science | STEM | Full-Stack Developer (Front-end Focused) | Philippines</p>
+              <p>
+                Computer Science | STEM | Full-Stack Developer (Front-end Focused) | <FaMapMarkerAlt className="inline-block -mt-0.5 mr-1 text-red-500" aria-hidden="true" />Philippines
+              </p>
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
@@ -743,6 +745,99 @@ export default function ProfessionalPage() {
           </div>
         </div>
 
+        {/* Short Profile Section */}
+        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:auto-rows-[250px]">
+            
+            {/* 1. Developer building... */}
+            <div className="md:col-span-2 md:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl">
+               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent z-0"></div>
+               <div className="absolute right-0 top-0 w-[60%] h-[70%] bg-gradient-to-l from-indigo-600/10 to-transparent z-0 blur-3xl rounded-full"></div>
+               
+               <div className="absolute -right-10 top-10 w-[350px] h-[250px] bg-[#12131c] border border-indigo-500/20 rounded-2xl rotate-12 shadow-[0_0_50px_rgba(99,102,241,0.1)] z-10 flex flex-col p-4 opacity-50 hidden md:flex">
+                 <div className="w-full h-8 border-b border-white/10 flex items-center gap-2 mb-4 px-2">
+                   <div className="w-2.5 h-2.5 rounded-full bg-rose-500/60"></div>
+                   <div className="w-2.5 h-2.5 rounded-full bg-amber-500/60"></div>
+                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></div>
+                 </div>
+                 <div className="flex-1 border border-white/5 bg-white/5 rounded-lg"></div>
+               </div>
+
+               <h3 className="relative z-20 text-3xl md:text-5xl font-sans font-bold text-white max-w-lg leading-tight tracking-tight">
+                  Developer building clean, reliable websites, apps , and systems
+               </h3>
+            </div>
+
+            {/* 2. Fluent in... */}
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col relative overflow-hidden shadow-xl">
+               <div className="absolute bottom-0 right-0 w-32 h-32 bg-[color:var(--accent)]/10 blur-[40px] rounded-full pointer-events-none"></div>
+               <h3 className="relative z-10 text-2xl md:text-3xl font-mono font-bold text-white leading-snug">
+                  Fluent in English and Filipino (Tagalog)
+               </h3>
+            </div>
+
+            {/* 3. Tech Stack */}
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl">
+               <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 translate-x-4 opacity-20 pointer-events-none hidden md:flex">
+                  <span className="px-4 py-2 rounded-lg bg-gray-800 text-white font-mono text-[10px] shadow-lg border border-white/10">Vue.js</span>
+                  <span className="px-4 py-2 rounded-lg bg-gray-800 text-white font-mono text-[10px] shadow-lg border border-white/10 -translate-x-2">Laravel</span>
+                  <span className="px-4 py-2 rounded-lg bg-gray-800 text-white font-mono text-[10px] shadow-lg border border-white/10 translate-x-2">C#</span>
+                  <span className="px-4 py-2 rounded-lg bg-gray-800 text-white font-mono text-[10px] shadow-lg border border-white/10 -translate-x-4">Java</span>
+               </div>
+               
+               <p className="text-gray-400 font-mono text-xs mb-2 relative z-10 uppercase tracking-widest font-semibold">
+                 My primary<br/>tech stack
+               </p>
+               <h3 className="text-xl md:text-2xl font-mono font-bold text-white relative z-10">
+                  Next.js, TypeScript
+               </h3>
+               <p className="text-gray-500 font-sans text-xs mt-4 relative z-10 max-w-[80%] md:hidden leading-relaxed">
+                 Background in Vue.js, Laravel, C#, Java
+               </p>
+            </div>
+
+            {/* 4. Web Developer */}
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl group">
+               <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
+               
+               <h3 className="text-2xl md:text-3xl font-mono font-bold text-white relative z-10">
+                  Web Developer
+               </h3>
+               
+               <div className="relative self-end w-40 h-20 bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex flex-col justify-center gap-3 shadow-lg z-10 mt-auto origin-bottom-right transform scale-[1.15] translate-x-3 translate-y-3 transition-transform duration-500 group-hover:scale-110">
+                 <div className="flex items-center gap-3">
+                   <div className="w-8 h-8 rounded-full bg-white/5 shrink-0"></div>
+                   <div className="w-full flex flex-col gap-2">
+                     <div className="w-full h-1.5 rounded-full bg-white/10"></div>
+                     <div className="w-1/2 h-1.5 rounded-full bg-white/10"></div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+
+            {/* 5. The Inside Scoop */}
+            <div className="md:col-span-2 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl">
+               <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none opacity-20 hidden md:block">
+                 <pre className="text-[10px] font-mono text-[color:var(--accent)] font-bold whitespace-pre leading-relaxed tracking-wider">
+{`1  // Importing a single module
+2  import moduleName from 
+3  'modulePath';
+4
+5  // Importing multiple modules
+6  import { module1, module2 } from 
+7  'modulePath';`}
+                 </pre>
+               </div>
+               <p className="text-gray-400 font-mono text-xs mb-2 relative z-10 uppercase tracking-widest font-semibold">
+                 The inside<br/>scoop
+               </p>
+               <h3 className="text-2xl md:text-4xl font-mono font-bold text-white relative z-10">
+                  graduation soon,<br/>exploring what's next
+               </h3>
+            </div>
+          </div>
+        </div>
+
         {/* Projects Section */}
         <div id="projects" className="mt-12 mb-40 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0 scroll-mt-28">
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
@@ -992,6 +1087,22 @@ export default function ProfessionalPage() {
             <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
+            </Link>
+          </div>
+
+          <div className="flex justify-center mb-24 relative z-20">
+            <Link
+              href="/contact"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl p-[1px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-lg"
+            >
+              {/* Spinning Rainbow Gradient Background */}
+              <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#10b981_0%,#eab308_20%,#ec4899_40%,#8b5cf6_60%,#3b82f6_80%,#10b981_100%)]" />
+              
+              {/* Inner Button Canvas */}
+              <span className="relative z-10 w-full h-full flex items-center justify-center bg-[#0a0b14] group-hover:bg-[#0f1423] rounded-xl px-7 py-3 transition-colors duration-300 text-base md:text-lg font-mono font-bold tracking-tight text-white gap-2">
+                Let's get in touch
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
             </Link>
           </div>
 

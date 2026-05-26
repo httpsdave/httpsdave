@@ -43,11 +43,11 @@ export default function SiteHeader() {
             })}
           </nav>
           <div className="relative group">
-            <button className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 text-sm font-semibold text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-full">
+            <button className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 text-[15px] font-bold text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -62,8 +62,8 @@ export default function SiteHeader() {
               English
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
