@@ -55,7 +55,7 @@ const educationData = [
     title: "High School & Senior High School",
     period: "Jun 5, 2016 - Jul 30, 2022",
     status: "GWA: 92.22 | 93.36",
-    desc: ["Laguna College", "Science, Technology, Engineering, and Mathematics (STEM) Strand", "Graduated with Honors"],
+    desc: ["Laguna College", "STEM Track", "Graduated with Honors"],
   },
   {
     title: "Bachelor of Science in Computer Science",
@@ -558,7 +558,7 @@ export default function ProfessionalPage() {
           <div className="flex items-center gap-4" data-cursor-select="true">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <button type="button" onClick={() => setShowMicroPopup(true)} className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors">
-                <AnimatedCounter value={43} />
+                <AnimatedCounter value={45} />
               </button>
             </span>
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
@@ -1040,7 +1040,40 @@ export default function ProfessionalPage() {
       </AnimatePresence>
 
       {/* Absolute background grid fading in from transparent to bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
+      <div className="absolute bottom-0 left-0 w-full h-[950px] pointer-events-none z-0 [mask-image:radial-gradient(85%_100%_at_bottom_center,white_20%,transparent_95%)]">
+        <div className="absolute inset-0 bg-grid opacity-75" />
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-glows-prof" width="960" height="960" patternUnits="userSpaceOnUse">
+              {/* Higher/center extra boxes */}
+              <rect x="480" y="0" width="160" height="160" fill="url(#grad2-prof)" />
+              <rect x="320" y="160" width="160" height="160" fill="url(#grad3-prof)" />
+              <rect x="480" y="320" width="160" height="160" fill="url(#grad1-prof)" />
+              <rect x="800" y="0" width="160" height="160" fill="url(#grad1-prof)" />
+
+              <rect x="0" y="160" width="160" height="160" fill="url(#grad1-prof)" />
+              <rect x="320" y="480" width="160" height="160" fill="url(#grad2-prof)" />
+              <rect x="640" y="160" width="160" height="160" fill="url(#grad1-prof)" />
+              <rect x="800" y="640" width="160" height="160" fill="url(#grad3-prof)" />
+              <rect x="480" y="800" width="160" height="160" fill="url(#grad2-prof)" />
+              <rect x="160" y="640" width="160" height="160" fill="url(#grad1-prof)" />
+            </pattern>
+            <linearGradient id="grad1-prof" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.06)" />
+              <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+            <linearGradient id="grad2-prof" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
+              <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+            <linearGradient id="grad3-prof" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.07)" />
+              <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-glows-prof)" />
+        </svg>
+      </div>
     </div>
   );
 }
