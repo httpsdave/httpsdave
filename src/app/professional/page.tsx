@@ -497,10 +497,10 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full">
+        <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full group/stats">
           <button 
             type="button"
-            className="flex items-center gap-4 cursor-pointer relative group"
+            className="flex items-center gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
             onClick={handleAgeClick}
           >
             <AnimatePresence>
@@ -522,7 +522,7 @@ export default function ProfessionalPage() {
           </button>
 
           {/* Years of experience */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <AnimatedCounter value={0} />
             </span>
@@ -539,7 +539,7 @@ export default function ProfessionalPage() {
                 window.scrollTo({ top: y, behavior: 'smooth' });
               }
             }} 
-            className="flex items-center gap-4 cursor-pointer group"
+            className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={14} />
@@ -557,7 +557,7 @@ export default function ProfessionalPage() {
                 window.scrollTo({ top: y, behavior: 'smooth' });
               }
             }} 
-            className="flex items-center gap-4 cursor-pointer group"
+            className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={9} />
@@ -565,7 +565,7 @@ export default function ProfessionalPage() {
             <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
           </button>
 
-          <div className="flex items-center gap-4" data-cursor-select="true">
+          <div className="flex items-center gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100" data-cursor-select="true">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <button type="button" onClick={() => setShowMicroPopup(true)} className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors">
                 <AnimatedCounter value={45} />
