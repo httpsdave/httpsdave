@@ -715,7 +715,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Short Profile Section */}
-        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0">
+        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight">
               Short <span className="text-[color:var(--accent)]">profile</span>
@@ -743,7 +743,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 2. Fluent in... */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[180px] md:min-h-[220px]">
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
                <div className="absolute bottom-0 right-0 w-32 h-32 bg-[color:var(--accent)]/10 blur-[40px] rounded-full pointer-events-none"></div>
                <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug">
                   Fluent in English<br />
@@ -753,19 +753,19 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 3. Tech Stack */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[180px] md:min-h-[220px]">
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
                {/* Background Drift Chips (Made bigger and more visible) */}
-               <div className="absolute right-[-25px] top-1/2 -translate-y-1/2 flex flex-col gap-4 translate-x-4 opacity-25 pointer-events-none z-0">
+               <div className="absolute right-[-18px] top-1/2 -translate-y-1/2 flex flex-col gap-5 translate-x-4 opacity-25 pointer-events-none z-0 scale-[1.08] origin-right">
                   <div className="flex gap-2 justify-end">
-                    <span className="px-5 py-2 rounded-xl bg-[#20222e] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-md">Laravel</span>
+                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Laravel</span>
                   </div>
-                  <div className="flex gap-2 justify-end -translate-x-4">
-                    <span className="px-5 py-2 rounded-xl bg-[#20222e] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-md">React</span>
-                    <span className="px-5 py-2 rounded-xl bg-[#20222e] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-md">Vue.js</span>
+                  <div className="flex gap-2.5 justify-end -translate-x-4">
+                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">React</span>
+                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Vue.js</span>
                   </div>
-                  <div className="flex gap-2 justify-end translate-x-2">
-                    <span className="px-5 py-2 rounded-xl bg-[#20222e] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-md">C#</span>
-                    <span className="px-5 py-2 rounded-xl bg-[#20222e] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-md">Java</span>
+                  <div className="flex gap-2.5 justify-end translate-x-2">
+                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">C#</span>
+                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Java</span>
                   </div>
                </div>
                
@@ -778,7 +778,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 4. Software Architect designer */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl group min-h-[180px] md:min-h-[220px]">
+            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl group min-h-[140px] md:min-h-[170px]">
                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
                
                <h3 className="text-xl md:text-2xl font-mono font-bold text-white relative z-10 leading-tight">
@@ -799,26 +799,47 @@ export default function ProfessionalPage() {
 
             {/* 5. The Inside Scoop */}
             <div className="md:col-span-2 md:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
-               {/* Background code block (Made much bigger) */}
-               <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none opacity-15 z-0 hidden md:block">
-                 <pre className="text-base md:text-xl font-mono text-[color:var(--accent)] font-bold whitespace-pre leading-relaxed tracking-wider">
-{`1  // Importing a single module
-2  import moduleName from 
-3  'modulePath';
-4
-5  // Importing multiple modules
-6  import { module1, module2 } from 
-7  'modulePath';`}
-                 </pre>
+               {/* Subtle background grid */}
+               <div className="absolute inset-0 z-0">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0" />
+                  {/* Decorative boxes */}
+                  <div className="absolute top-[80px] left-[400px] w-6 h-6 rounded-md bg-purple-500/20 border border-purple-500/30 blur-[0.5px]" />
+                  <div className="absolute top-[80px] left-[320px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[80px] left-[560px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[80px] left-[640px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[80px] left-[800px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[160px] left-[480px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[160px] left-[720px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className="absolute top-[80px] left-[880px] w-6 h-6 rounded-md border border-white/5" />
                </div>
                
-               <div className="relative z-10 flex-1 flex flex-col justify-center">
-                  <p className="text-gray-400 font-mono text-xs mb-2 uppercase tracking-widest font-semibold">
+               <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[50%]">
+                  <p className="text-gray-400 font-mono mb-2 leading-relaxed">
                     The Inside<br/>Scoop
                   </p>
-                  <h3 className="text-xl md:text-[28px] font-mono font-bold text-white leading-tight tracking-tight max-w-[80%]">
+                  <h3 className="text-2xl md:text-[34px] font-mono font-bold text-white leading-snug tracking-tight">
                      Graduating soon,<br/>exploring what's next
                   </h3>
+               </div>
+
+               {/* Glassmorphic Code Card */}
+               <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:block">
+                 <div className="bg-[#1a1c2b]/30 backdrop-blur-md border border-white/10 rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[450px]">
+                    {/* Pinkish/Purple subtle glow behind the text */}
+                    <div className="absolute top-1/4 right-0 w-[150px] h-[150px] bg-purple-500/10 blur-[60px] rounded-full pointer-events-none" />
+                    
+                    <pre className="text-[13px] font-mono leading-relaxed relative z-10">
+<span className="text-gray-600 mr-4 select-none">1</span><span className="text-gray-500">// Importing a single module</span>
+<span className="text-gray-600 mr-4 select-none">2</span><span className="text-pink-400">import</span> <span className="text-purple-300">moduleName</span> <span className="text-pink-400">from</span> 
+<span className="text-gray-600 mr-4 select-none">3</span><span className="text-orange-300">'modulePath'</span><span className="text-gray-400">;</span>
+<span className="text-gray-600 mr-4 select-none">4</span>
+<span className="text-gray-600 mr-4 select-none">5</span><span className="text-gray-500">// Importing multiple modules</span>
+<span className="text-gray-600 mr-4 select-none">6</span><span className="text-pink-400">import</span> <span className="text-gray-400">{`{`}</span> <span className="text-purple-300">module1</span><span className="text-gray-400">,</span> <span className="text-purple-300">module2</span> <span className="text-gray-400">{`}`}</span> <span className="text-pink-400">from</span> 
+<span className="text-gray-600 mr-4 select-none">7</span><span className="text-orange-300">'modulePath'</span><span className="text-gray-400">;</span>
+<span className="text-gray-600 mr-4 select-none">8</span>
+<span className="text-gray-600 mr-4 select-none">9</span><span className="text-[#3a3b4a]">// Importing an entire module as an object</span>
+                    </pre>
+                 </div>
                </div>
             </div>
 
