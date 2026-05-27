@@ -4,7 +4,15 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const contactOptions = [
+type ContactOption = {
+  title?: string;
+  detail?: string;
+  action?: string;
+  label?: string;
+  isTimeWidget?: boolean;
+};
+
+const contactOptions: ContactOption[] = [
   {
     title: "Based in",
     detail: "San Pablo City, Laguna, Philippines 4000",
@@ -12,10 +20,8 @@ const contactOptions = [
     label: "GitHub Profile",
   },
   {
-    title: "Call or Text",
-    detail: "Let's discuss projects directly. Give me a ring anytime.",
-    action: "tel:+6309912708956",
-    label: "+63 0991 270 8956",
+    title: "Time",
+    isTimeWidget: true,
   },
   {
     title: "Connect",
@@ -24,6 +30,85 @@ const contactOptions = [
     label: "Follow on LinkedIn",
   },
 ];
+
+function TimeWidget() {
+  const [time, setTime] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setTime(new Date());
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  if (!time) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-full min-h-[250px] opacity-0"></div>
+    );
+  }
+
+  const daveFormatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Manila",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  const localFormatter = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  const daveTimeStr = daveFormatter.format(time);
+  const localTimeStr = localFormatter.format(time);
+
+  const localOffsetMinutes = -time.getTimezoneOffset();
+  const daveOffsetMinutes = 8 * 60; // GMT+8
+  const diffMinutes = localOffsetMinutes - daveOffsetMinutes;
+  const diffHours = diffMinutes / 60;
+
+  let diffStr = "";
+  if (diffHours === 0) {
+    diffStr = "same time as you";
+  } else if (diffHours > 0) {
+    // Local is ahead of Dave. Therefore Dave is behind local.
+    diffStr = `${diffHours}h behind you`;
+  } else {
+    // Local is behind Dave. Therefore Dave is ahead of local.
+    diffStr = `${Math.abs(diffHours)}h ahead of you`;
+  }
+
+  let localTzText = "";
+  try {
+    localTzText = Intl.DateTimeFormat().resolvedOptions().timeZone.replace(/_/g, " ");
+  } catch (e) {}
+
+  return (
+    <div className="flex flex-col items-center text-center justify-center h-full space-y-5 font-mono">
+      <div className="flex flex-col items-center">
+        <span className="text-[10px] text-[color:var(--accent)] tracking-[0.2em] font-bold uppercase flex items-center gap-2 mb-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)] animate-pulse" /> MY TIME
+        </span>
+        <span className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-1">{daveTimeStr}</span>
+        <span className="text-xs text-gray-500 font-sans">GMT+8 • Philippines</span>
+      </div>
+
+      <div className="w-full flex items-center gap-3 py-1">
+        <div className="h-[1px] bg-white/10 flex-1" />
+        <span className="text-[10px] text-gray-500 font-sans tracking-wide uppercase">{diffStr}</span>
+        <div className="h-[1px] bg-white/10 flex-1" />
+      </div>
+
+      <div className="flex flex-col items-center">
+        <span className="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase mb-2">
+          YOUR TIME
+        </span>
+        <span className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-1">{localTimeStr}</span>
+        <span className="text-xs text-gray-500 font-sans truncate max-w-[200px]">{localTzText}</span>
+      </div>
+    </div>
+  );
+}
 
 function HoverCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -167,29 +252,35 @@ export default function ContactPage() {
       <section className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">
         <div ref={scrollRef} className="grid gap-6 md:grid-cols-3">
           {contactOptions.map((option) => (
-            <HoverCard key={option.title} className="p-8 hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-              <h2 className="text-2xl font-mono font-bold text-white">{option.title}</h2>
-              <p className="mt-3 text-sm text-gray-400 font-sans leading-relaxed flex-1">
-                {option.detail}
-              </p>
-              
-              <Link href={option.action} target={option.action.startsWith('http') ? "_blank" : undefined}>
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative flex items-center justify-center gap-3 px-6 py-2.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-8 w-fit"
-                >
-                  <span className="relative flex items-center gap-2 z-20">
-                    <span className="relative flex-none z-10">
-                      <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover/btn:scale-[120] origin-center" />
-                    </span>
+            <HoverCard key={option.title} className="p-8 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center">
+              {option.isTimeWidget ? (
+                <TimeWidget />
+              ) : (
+                <div className="flex flex-col h-full w-full">
+                  <h2 className="text-2xl font-mono font-bold text-white">{option.title}</h2>
+                  <p className="mt-3 text-sm text-gray-400 font-sans leading-relaxed flex-1">
+                    {option.detail}
+                  </p>
+                  
+                  <Link href={option.action!} target={option.action?.startsWith('http') ? "_blank" : undefined}>
+                    <motion.div 
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative flex items-center justify-center gap-3 px-6 py-2.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-8 w-fit"
+                    >
+                      <span className="relative flex items-center gap-2 z-20">
+                        <span className="relative flex-none z-10">
+                          <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover/btn:scale-[120] origin-center" />
+                        </span>
 
-                    <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-sm font-bold tracking-wide z-30 relative transition-colors duration-300">
-                      {option.label}
-                    </span>
-                  </span>
-                </motion.div>
-              </Link>
+                        <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-sm font-bold tracking-wide z-30 relative transition-colors duration-300">
+                          {option.label}
+                        </span>
+                      </span>
+                    </motion.div>
+                  </Link>
+                </div>
+              )}
             </HoverCard>
           ))}
         </div>

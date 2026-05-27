@@ -826,18 +826,19 @@ export default function ProfessionalPage() {
                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:block">
                  <div className="bg-[#1a1c2b]/30 backdrop-blur-md border border-white/10 rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[450px]">
                     {/* Pinkish/Purple subtle glow behind the text */}
-                    <div className="absolute top-1/4 right-0 w-[150px] h-[150px] bg-purple-500/10 blur-[60px] rounded-full pointer-events-none" />
+                    <div className="absolute top-1/4 right-8 w-[150px] h-[150px] bg-purple-500/15 blur-[60px] rounded-full pointer-events-none" />
                     
-                    <pre className="text-[13px] font-mono leading-relaxed relative z-10">
-<span className="text-gray-600 mr-4 select-none">1</span><span className="text-gray-500">// Importing a single module</span>
-<span className="text-gray-600 mr-4 select-none">2</span><span className="text-pink-400">import</span> <span className="text-purple-300">moduleName</span> <span className="text-pink-400">from</span> 
-<span className="text-gray-600 mr-4 select-none">3</span><span className="text-orange-300">'modulePath'</span><span className="text-gray-400">;</span>
-<span className="text-gray-600 mr-4 select-none">4</span>
-<span className="text-gray-600 mr-4 select-none">5</span><span className="text-gray-500">// Importing multiple modules</span>
-<span className="text-gray-600 mr-4 select-none">6</span><span className="text-pink-400">import</span> <span className="text-gray-400">{`{`}</span> <span className="text-purple-300">module1</span><span className="text-gray-400">,</span> <span className="text-purple-300">module2</span> <span className="text-gray-400">{`}`}</span> <span className="text-pink-400">from</span> 
-<span className="text-gray-600 mr-4 select-none">7</span><span className="text-orange-300">'modulePath'</span><span className="text-gray-400">;</span>
-<span className="text-gray-600 mr-4 select-none">8</span>
-<span className="text-gray-600 mr-4 select-none">9</span><span className="text-[#3a3b4a]">// Importing an entire module as an object</span>
+                    <pre className="text-[13px] font-mono leading-[2.2] relative z-10 whitespace-pre-wrap word-break">
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">1</span><span className="text-gray-500">// Importing a single module</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">2</span><span className="text-pink-400">import</span> <span className="text-purple-300">moduleName</span> <span className="text-pink-400">from</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right"></span><span className="text-orange-300 ml-9">'modulePath'</span><span className="text-gray-400">;</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">3</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">4</span><span className="text-gray-500">// Importing multiple modules</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">5</span><span className="text-pink-400">import</span> <span className="text-gray-400">{`{`}</span> <span className="text-purple-300">module1</span><span className="text-gray-400">,</span> <span className="text-purple-300">module2</span> <span className="text-gray-400">{`}`}</span> <span className="text-pink-400">from</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right"></span><span className="text-orange-300 ml-9">'modulePath'</span><span className="text-gray-400">;</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">6</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right">7</span><span className="text-[#3a3b4a]">// Importing an entire module as</span><br/>
+<span className="text-gray-600 mr-4 select-none inline-block w-4 text-right"></span><span className="text-[#3a3b4a] ml-9">an object</span>
                     </pre>
                  </div>
                </div>
