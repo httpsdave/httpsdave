@@ -264,7 +264,7 @@ export default function ContactPage() {
                     {option.detail}
                   </p>
                   
-                  <Link href={option.action!} target={option.action?.startsWith('http') ? "_blank" : undefined}>
+                  <Link href={option.action!} target={option.action?.startsWith('http') ? "_blank" : undefined} onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
                     <motion.div 
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -341,7 +341,7 @@ export default function ContactPage() {
               />
             </div>
             
-            <Link href="mailto:davedominic912@gmail.com" className="w-fit" onClick={() => playSound("social")}>
+            <Link href="mailto:davedominic912@gmail.com" className="w-fit" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -367,7 +367,8 @@ export default function ContactPage() {
             onClick={() => {
               playSound("ui");
               window.scrollTo({ top: 0, behavior: 'smooth' });
-            }} 
+            }}
+            onMouseEnter={() => playSound("hover")}
             className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
             aria-label="Scroll to top"
           >
@@ -391,10 +392,10 @@ export default function ContactPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")} onMouseEnter={() => playSound("hover")}>
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")} onMouseEnter={() => playSound("hover")}>
               Personal
             </Link>
           </motion.div>

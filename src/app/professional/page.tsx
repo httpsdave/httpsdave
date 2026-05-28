@@ -13,6 +13,7 @@ import credlyImg from "../../credly.png";
 import linkedinImg from "../../linkedin.png";
 import codingImg from "../../coding.jpg";
 
+
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -389,6 +390,7 @@ export default function ProfessionalPage() {
                 rel="noopener noreferrer"
                 className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer inline-block text-center"
                 onClick={() => playSound("ui")}
+                onMouseEnter={() => playSound("hover")}
               >
                 VIEW CV <span>&gt;</span>
               </a>
@@ -400,6 +402,7 @@ export default function ProfessionalPage() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
+                  onMouseEnter={() => playSound("hover")}
                 >
                   <FaFacebook size={16} />
                 </Link>
@@ -409,6 +412,7 @@ export default function ProfessionalPage() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
+                  onMouseEnter={() => playSound("hover")}
                 >
                   <FaInstagram size={16} />
                 </Link>
@@ -418,6 +422,7 @@ export default function ProfessionalPage() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
+                  onMouseEnter={() => playSound("hover")}
                 >
                   <FaYoutube size={16} />
                 </Link>
@@ -427,6 +432,7 @@ export default function ProfessionalPage() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
+                  onMouseEnter={() => playSound("hover")}
                 >
                   <FaLinkedin size={16} />
                 </Link>
@@ -436,6 +442,7 @@ export default function ProfessionalPage() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
+                  onMouseEnter={() => playSound("hover")}
                 >
                   <FaGithub size={16} />
                 </Link>
@@ -543,6 +550,7 @@ export default function ProfessionalPage() {
             type="button"
             className="flex items-center gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
             onClick={handleAgeClick}
+            onMouseEnter={() => playSound("hover")}
           >
             <AnimatePresence>
               {showBirthdate && (
@@ -581,6 +589,7 @@ export default function ProfessionalPage() {
                 window.scrollTo({ top: y, behavior: 'smooth' });
               }
             }} 
+            onMouseEnter={() => playSound("hover")}
             className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
@@ -600,6 +609,7 @@ export default function ProfessionalPage() {
                 window.scrollTo({ top: y, behavior: 'smooth' });
               }
             }} 
+            onMouseEnter={() => playSound("hover")}
             className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
@@ -616,6 +626,7 @@ export default function ProfessionalPage() {
                   playSound("ui");
                   setShowMicroPopup(true);
                 }}
+                onMouseEnter={() => playSound("hover")}
                 className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors"
               >
                 <AnimatedCounter value={45} />
@@ -632,6 +643,7 @@ export default function ProfessionalPage() {
               playSound("ui");
               setShowMicroPopup(true);
             }}
+            onMouseEnter={() => playSound("hover")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
@@ -665,7 +677,7 @@ export default function ProfessionalPage() {
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-sm"
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-[55vw]"
                 >
                   <h3 className="text-xl font-mono text-white font-bold tracking-tight">Choose Platform</h3>
                   <div className="flex items-center gap-6 w-full justify-center">
@@ -675,6 +687,7 @@ export default function ProfessionalPage() {
                       rel="noopener noreferrer"
                       className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
                       onClick={() => playSound("social")}
+                      onMouseEnter={() => playSound("hover")}
                     >
                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
                         <Image src={credlyImg} alt="Credly" className="w-full h-full object-contain drop-shadow-md" />
@@ -687,6 +700,7 @@ export default function ProfessionalPage() {
                       rel="noopener noreferrer"
                       className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
                       onClick={() => playSound("social")}
+                      onMouseEnter={() => playSound("hover")}
                     >
                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
                         <Image src={linkedinImg} alt="LinkedIn" className="w-full h-full object-contain drop-shadow-md" />
@@ -699,6 +713,7 @@ export default function ProfessionalPage() {
                       playSound("ui");
                       setShowMicroPopup(false);
                     }}
+                    onMouseEnter={() => playSound("hover")}
                     className="mt-2 text-xs font-mono text-gray-500 hover:text-[color:var(--accent)] transition-colors cursor-grab active:cursor-grabbing"
                   >
                     Cancel
@@ -841,7 +856,10 @@ export default function ProfessionalPage() {
 
             {/* 4. Software Architect designer */}
             <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl min-h-[160px] md:min-h-[190px]">
-               <div className="absolute inset-0 opacity-[0.12] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:16px_26px] pointer-events-none"></div>
+               <div 
+                 className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0"
+                 style={{ maskImage: 'linear-gradient(to right, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to right, black 30%, transparent 85%)' }}
+               />
                
                <h3 className="text-3xl md:text-[38px] font-mono font-bold text-white relative z-10 leading-[1.15] tracking-tight group-hover:translate-x-1.5 transition-transform duration-300">
                   Web Developer
@@ -921,6 +939,7 @@ export default function ProfessionalPage() {
                {/* Copy email button with rainbow border */}
                <button
                  onClick={handleCopyEmail}
+                 onMouseEnter={() => playSound("hover")}
                  className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl p-[1px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-lg w-full max-w-[220px] mt-4 cursor-pointer"
                >
                  {/* Spinning Rainbow Gradient Background */}
@@ -1051,6 +1070,7 @@ export default function ProfessionalPage() {
                         href={project.linkUrl}
                         className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
                         onClick={() => playSound("ui")}
+                        onMouseEnter={() => playSound("hover")}
                       >
                         {project.linkText}
                         {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
@@ -1062,7 +1082,7 @@ export default function ProfessionalPage() {
 
           {/* Explore More Button */}
           <div className="flex justify-center mt-20">
-            <Link href="/projects" onClick={() => playSound("ui")}>
+            <Link href="/projects" onClick={() => playSound("ui")} onMouseEnter={() => playSound("hover")}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -1212,19 +1232,19 @@ export default function ProfessionalPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
-            <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
+            <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
             </Link>
-            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
+            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
             </Link>
-            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
+            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
             </Link>
-            <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("ui")}>
+            <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("ui")} onMouseEnter={() => playSound("hover")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
             </Link>
@@ -1235,6 +1255,7 @@ export default function ProfessionalPage() {
               href="/contact"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl p-[1px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-lg"
               onClick={() => playSound("ui")}
+              onMouseEnter={() => playSound("hover")}
             >
               {/* Spinning Rainbow Gradient Background */}
               <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#10b981_0%,#eab308_20%,#ec4899_40%,#8b5cf6_60%,#3b82f6_80%,#10b981_100%)]" />
@@ -1253,6 +1274,7 @@ export default function ProfessionalPage() {
                 playSound("ui");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              onMouseEnter={() => playSound("hover")}
               className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
               aria-label="Scroll to top"
             >
@@ -1285,10 +1307,11 @@ export default function ProfessionalPage() {
               style={{ color: "var(--accent)" }}
               className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold transition-colors duration-300"
               onClick={() => playSound("ui")}
+              onMouseEnter={() => playSound("hover")}
             >
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")} onMouseEnter={() => playSound("hover")}>
               Personal
             </Link>
           </motion.div>
