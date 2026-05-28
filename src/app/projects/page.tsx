@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin, FaGithub, FaLocationArrow } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiVuedotjs, SiLaravel } from "react-icons/si";
+import { useSound } from "@/components/SoundContext";
 
 const projectsData = [
   {
@@ -48,6 +49,7 @@ const projectsData = [
 
 export default function ProjectsPage() {
   const [showNav, setShowNav] = useState(true);
+  const { playSound } = useSound();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -142,7 +144,11 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-                    <Link href={project.linkUrl} className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors">
+                    <Link
+                      href={project.linkUrl}
+                      className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
+                      onClick={() => playSound("ui")}
+                    >
                       {project.linkText}
                       {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
                     </Link>
@@ -154,26 +160,34 @@ export default function ProjectsPage() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
-          <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
             <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
           </Link>
-          <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
             <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
           </Link>
-          <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
             <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
           </Link>
-          <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("ui")}
+          >
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
             <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
           </Link>
         </div>
 
         <div className="flex flex-col items-center gap-12">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4" aria-label="Scroll to top">
+          <button
+            onClick={() => {
+              playSound("ui");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4"
+            aria-label="Scroll to top"
+          >
             <svg className="w-8 h-8 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
               <path strokeLinecap="square" strokeLinejoin="miter" d="M4 15l8-8 8 8" />
               <path strokeLinecap="square" strokeLinejoin="miter" d="M4 21l8-8 8 8" className="opacity-40" />
@@ -181,19 +195,19 @@ export default function ProjectsPage() {
           </button>
 
           <div className="flex items-center gap-6">
-            <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors">
+            <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors" onClick={() => playSound("social")}>
               <FaFacebook size={20} />
             </Link>
-            <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors">
+            <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors" onClick={() => playSound("social")}>
               <FaInstagram size={20} />
             </Link>
-            <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors">
+            <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors" onClick={() => playSound("social")}>
               <FaYoutube size={20} />
             </Link>
-            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors">
+            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors" onClick={() => playSound("social")}>
               <FaLinkedin size={20} />
             </Link>
-            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors">
+            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[color:var(--accent)] transition-colors" onClick={() => playSound("social")}>
               <FaGithub size={20} />
             </Link>
           </div>
@@ -210,10 +224,10 @@ export default function ProjectsPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
               Personal
             </Link>
           </motion.div>

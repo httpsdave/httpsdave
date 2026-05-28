@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useSound } from "@/components/SoundContext";
 import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
@@ -138,6 +139,7 @@ export default function PersonalPage() {
   const outroRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeFacet, setActiveFacet] = useState<typeof lifeFacets[0] | null>(null);
+  const { playSound } = useSound();
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
   const smoothCursorX = useSpring(cursorX, { stiffness: 800, damping: 50 });
@@ -173,12 +175,14 @@ export default function PersonalPage() {
   };
 
   const scrollLeft = () => {
+    playSound("ui");
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -340, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
+    playSound("ui");
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 340, behavior: "smooth" });
     }
@@ -557,7 +561,10 @@ export default function PersonalPage() {
                 key={facet.id}
                 whileHover={{ y: -10 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                onClick={() => setActiveFacet(facet)}
+                onClick={() => {
+                  playSound("card");
+                  setActiveFacet(facet);
+                }}
                 className={`min-w-[320px] md:min-w-[400px] snap-center h-[560px] md:h-[640px] rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-6 md:p-8 group`}
               >
                 {/* Full-card Image Background */}
@@ -593,7 +600,10 @@ export default function PersonalPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setActiveFacet(null)}
+              onClick={() => {
+                playSound("ui");
+                setActiveFacet(null);
+              }}
               className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"
             ></motion.div>
             
@@ -605,7 +615,10 @@ export default function PersonalPage() {
               className="relative w-full max-w-2xl bg-[#111218] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
             >
               <button 
-                onClick={() => setActiveFacet(null)}
+                onClick={() => {
+                  playSound("ui");
+                  setActiveFacet(null);
+                }}
                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800/80 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors z-20"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -808,7 +821,10 @@ export default function PersonalPage() {
         {/* Back to Top Button */}
         <div className="flex flex-col items-center gap-12 mb-20">
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            onClick={() => {
+              playSound("ui");
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} 
             className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
             aria-label="Scroll to top"
           >
@@ -825,19 +841,19 @@ export default function PersonalPage() {
             
           {/* Socials */}
           <div className="flex items-center gap-4">
-             <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+             <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors" onClick={() => playSound("social")}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
              </Link>
-             <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+             <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors" onClick={() => playSound("social")}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
              </Link>
-             <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+             <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors" onClick={() => playSound("social")}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
              </Link>
-             <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+             <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors" onClick={() => playSound("social")}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
              </Link>
-             <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors">
+             <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-emerald-500/50 flex items-center justify-center text-emerald-500 hover:bg-emerald-500 hover:text-black transition-colors" onClick={() => playSound("social")}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
              </Link>
           </div>
@@ -853,7 +869,11 @@ export default function PersonalPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link
+              href="/professional"
+              className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all"
+              onClick={() => playSound("ui")}
+            >
               Professional
             </Link>
             <Link
@@ -861,6 +881,7 @@ export default function PersonalPage() {
               aria-current="page"
               style={{ color: "var(--accent)" }}
               className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold transition-colors duration-300"
+              onClick={() => playSound("ui")}
             >
               Personal
             </Link>

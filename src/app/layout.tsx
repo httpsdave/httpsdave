@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import NextTopLoader from "nextjs-toploader";
 import CustomCursor from "@/components/CustomCursor";
 import SocialSidebar from "@/components/SocialSidebar";
+import { SoundProvider } from "@/components/SoundContext";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -37,24 +38,26 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${splineMono.variable} h-full antialiased`}
     >
       <body className="min-h-full text-[color:var(--fg)]">
-        <NextTopLoader
-          color="#166534"
-          initialPosition={0.08}
-          height={4}
-          showSpinner={false}
-          template={'<div class="bar" role="bar"></div>'}
-        />
-        <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
-          <CustomCursor />
-          <SocialSidebar />
-          <a href="#main-content" className="skip-link">
-            Skip to content
-          </a>
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-        </div>
+        <SoundProvider>
+          <NextTopLoader
+            color="#166534"
+            initialPosition={0.08}
+            height={4}
+            showSpinner={false}
+            template={'<div class="bar" role="bar"></div>'}
+          />
+          <div className="app-wrapper flex flex-col min-h-screen relative z-0 overflow-x-hidden">
+            <CustomCursor />
+            <SocialSidebar />
+            <a href="#main-content" className="skip-link">
+              Skip to content
+            </a>
+            <SiteHeader />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+          </div>
+        </SoundProvider>
       </body>
     </html>
   );

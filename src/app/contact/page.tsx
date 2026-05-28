@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSound } from "@/components/SoundContext";
 
 type ContactOption = {
   title?: string;
@@ -154,6 +155,7 @@ export default function ContactPage() {
   const [pageMousePos, setPageMousePos] = useState({ x: 0, y: 0 });
   const [showNav, setShowNav] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { playSound } = useSound();
 
   useEffect(() => {
     document.title = "Contact | Dave Goze";
@@ -339,7 +341,7 @@ export default function ContactPage() {
               />
             </div>
             
-            <Link href="mailto:davedominic912@gmail.com" className="w-fit">
+            <Link href="mailto:davedominic912@gmail.com" className="w-fit" onClick={() => playSound("social")}>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -362,7 +364,10 @@ export default function ContactPage() {
         {/* Back to Top Button */}
         <div className="flex flex-col items-center gap-12 mt-20">
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            onClick={() => {
+              playSound("ui");
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} 
             className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
             aria-label="Scroll to top"
           >
@@ -386,10 +391,10 @@ export default function ContactPage() {
             exit={{ y: 50, opacity: 0 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-2 bg-[#ffffff15] backdrop-blur-md border border-white/20 rounded-[32px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] pointer-events-auto"
           >
-            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/professional" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
               Personal
             </Link>
           </motion.div>

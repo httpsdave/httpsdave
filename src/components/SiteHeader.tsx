@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSound } from "@/components/SoundContext";
+
+import { LuVolume2, LuVolumeX } from "react-icons/lu";
 
 const navItems = [
   { href: "/professional", label: "Professional" },
@@ -11,6 +14,18 @@ const navItems = [
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const { isMuted, toggleMuted, playSound } = useSound();
+
+  const handleSoundToggle = () => {
+    if (isMuted) {
+      toggleMuted();
+      playSound("ui", { force: true });
+      return;
+    }
+
+    playSound("ui");
+    toggleMuted();
+  };
 
   return (
     <header className="absolute top-0 left-0 w-full z-50 pt-8 pb-4">
@@ -28,6 +43,7 @@ export default function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => playSound("ui")}
                   className={`relative py-1 transition hover:text-[color:var(--fg)] ${
                     isActive
                       ? "text-[color:var(--accent)]"
@@ -42,56 +58,89 @@ export default function SiteHeader() {
               );
             })}
           </nav>
-          <div className="relative group">
-            <button className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 text-[15px] font-bold text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          <div className="flex items-center gap-3">
+            <div className="relative group">
+              <button
+                className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 text-[15px] font-bold text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-full"
+                onClick={() => playSound("ui")}
+                type="button"
               >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-              English
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div className="absolute right-0 top-full pt-2 w-40 opacity-0 pointer-events-none transition group-hover:opacity-100 group-hover:pointer-events-auto">
-              <div className="border border-[color:var(--stroke)] bg-[#0b0e1c] text-[color:var(--fg)] flex flex-col">
-                <button className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]">
-                  English
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]">
-                  Filipino
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]">
-                  Japanese
-                </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                English
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div className="absolute right-0 top-full pt-2 w-40 opacity-0 pointer-events-none transition group-hover:opacity-100 group-hover:pointer-events-auto">
+                <div className="border border-[color:var(--stroke)] bg-[#0b0e1c] text-[color:var(--fg)] flex flex-col">
+                  <button
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    onClick={() => playSound("ui")}
+                    type="button"
+                  >
+                    English
+                  </button>
+                  <button
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    onClick={() => playSound("ui")}
+                    type="button"
+                  >
+                    Filipino
+                  </button>
+                  <button
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    onClick={() => playSound("ui")}
+                    type="button"
+                  >
+                    Japanese
+                  </button>
+                </div>
               </div>
             </div>
+            <button
+              type="button"
+              onClick={handleSoundToggle}
+              aria-pressed={!isMuted}
+              aria-label={isMuted ? "Enable sound" : "Mute sound"}
+              title={isMuted ? "Enable sound" : "Mute sound"}
+              className="text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors duration-300 ml-2"
+            >
+              {isMuted ? (
+                <LuVolumeX size={24} />
+              ) : (
+                <LuVolume2 size={24} />
+              )}
+            </button>
           </div>
         </div>
         <div className="flex items-center gap-3 md:hidden">
           <Link
             href="/contact"
+            onClick={() => playSound("ui")}
             className="inline-flex border border-[color:var(--stroke)] px-4 py-2 text-xs font-semibold"
           >
             Contact

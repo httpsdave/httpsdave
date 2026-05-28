@@ -2,9 +2,16 @@
 
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { useSound } from "@/components/SoundContext";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { playSound } = useSound();
+
+  useEffect(() => {
+    playSound("transition");
+  }, [pathname, playSound]);
 
   // Split screen into 5 horizontal blocks for the wipe effect
   const columns = 5;

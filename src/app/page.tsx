@@ -1,4 +1,9 @@
+"use client";
+
+import { useSound } from "@/components/SoundContext";
+
 export default function Home() {
+  const { playSound } = useSound();
   const stats = [
     { label: "Focus", value: "AI / ML" },
     { label: "Class of", value: "2026" },
@@ -117,6 +122,7 @@ export default function Home() {
               <a
                 className="surface animate-glow inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
                 href="/professional"
+                onClick={() => playSound("ui")}
               >
                 View professional work
               </a>
@@ -125,6 +131,7 @@ export default function Home() {
                 href="/DaveDominicGoze-Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => playSound("ui")}
               >
                 View / Download Resume
               </a>
@@ -170,7 +177,7 @@ export default function Home() {
             <p className="chip">Projects</p>
             <h2 className="section-title font-semibold">Recent builds</h2>
           </div>
-          <a className="text-sm text-[color:var(--muted)]" href="/professional">
+          <a className="text-sm text-[color:var(--muted)]" href="/professional" onClick={() => playSound("ui")}>
             See full work
           </a>
         </div>
@@ -256,12 +263,14 @@ export default function Home() {
             <a
               className="surface inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
               href="/contact"
+              onClick={() => playSound("ui")}
             >
               Write a message
             </a>
             <a
               className="inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] px-6 py-3 text-sm font-semibold"
               href="/professional#timeline"
+              onClick={() => playSound("ui")}
             >
               View timeline
             </a>

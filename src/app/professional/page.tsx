@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import confetti from "canvas-confetti";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import { useSound } from "@/components/SoundContext";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
 import credlyImg from "../../credly.png";
@@ -237,14 +238,17 @@ export default function ProfessionalPage() {
   const [copied, setCopied] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
+  const { playSound } = useSound();
 
   const handleCopyEmail = () => {
+    playSound("ui");
     navigator.clipboard.writeText("davedominic912@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleAgeClick = (e: React.MouseEvent) => {
+    playSound("birthday");
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (rect.left + rect.width / 2) / window.innerWidth;
     const y = (rect.top + rect.height / 2) / window.innerHeight;
@@ -307,6 +311,7 @@ export default function ProfessionalPage() {
   }, []);
 
   const nextImage = () => {
+    playSound("ui");
     setImgIndex((prev) => (prev + 1) % images.length);
   };
 
@@ -378,24 +383,60 @@ export default function ProfessionalPage() {
             </div>
 
             <div className="flex items-center gap-6 mt-12! pt-6">
-              <a href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer inline-block text-center">
+              <a
+                href="/DaveDominicGoze-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer inline-block text-center"
+                onClick={() => playSound("ui")}
+              >
                 VIEW CV <span>&gt;</span>
               </a>
 
               <div className="flex items-center gap-4">
-                <Link href="https://www.facebook.com/davedominic25" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link
+                  href="https://www.facebook.com/davedominic25"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  onClick={() => playSound("social")}
+                >
                   <FaFacebook size={16} />
                 </Link>
-                <Link href="https://www.instagram.com/httpdaev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link
+                  href="https://www.instagram.com/httpdaev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  onClick={() => playSound("social")}
+                >
                   <FaInstagram size={16} />
                 </Link>
-                <Link href="https://www.youtube.com/@x4phann" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link
+                  href="https://www.youtube.com/@x4phann"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  onClick={() => playSound("social")}
+                >
                   <FaYoutube size={16} />
                 </Link>
-                <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link
+                  href="https://www.linkedin.com/in/davegoze/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  onClick={() => playSound("social")}
+                >
                   <FaLinkedin size={16} />
                 </Link>
-                <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300">
+                <Link
+                  href="https://github.com/httpsdave"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  onClick={() => playSound("social")}
+                >
                   <FaGithub size={16} />
                 </Link>
               </div>
@@ -532,6 +573,7 @@ export default function ProfessionalPage() {
           <button 
             type="button"
             onClick={(e) => { 
+              playSound("ui");
               e.preventDefault();
               const el = document.getElementById('projects');
               if (el) {
@@ -550,6 +592,7 @@ export default function ProfessionalPage() {
           <button 
             type="button"
             onClick={(e) => { 
+              playSound("ui");
               e.preventDefault();
               const el = document.getElementById('projects');
               if (el) {
@@ -567,7 +610,14 @@ export default function ProfessionalPage() {
 
           <div className="flex items-center gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100" data-cursor-select="true">
             <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
-              <button type="button" onClick={() => setShowMicroPopup(true)} className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors">
+              <button
+                type="button"
+                onClick={() => {
+                  playSound("ui");
+                  setShowMicroPopup(true);
+                }}
+                className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors"
+              >
                 <AnimatedCounter value={45} />
               </button>
             </span>
@@ -578,7 +628,10 @@ export default function ProfessionalPage() {
         {/* Microcredentials Button */}
         <div className="flex justify-center mt-4 mb-20 relative">
           <motion.div
-            onClick={() => setShowMicroPopup(true)}
+            onClick={() => {
+              playSound("ui");
+              setShowMicroPopup(true);
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
@@ -602,7 +655,10 @@ export default function ProfessionalPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  onClick={() => setShowMicroPopup(false)}
+                  onClick={() => {
+                    playSound("ui");
+                    setShowMicroPopup(false);
+                  }}
                   className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm cursor-pointer"
                 />
                 <motion.div
@@ -618,6 +674,7 @@ export default function ProfessionalPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
+                      onClick={() => playSound("social")}
                     >
                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
                         <Image src={credlyImg} alt="Credly" className="w-full h-full object-contain drop-shadow-md" />
@@ -629,6 +686,7 @@ export default function ProfessionalPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-col items-center gap-3 hover:scale-105 transition-transform"
+                      onClick={() => playSound("social")}
                     >
                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 shadow-lg hover:shadow-[color:var(--accent)]/20 transition-all">
                         <Image src={linkedinImg} alt="LinkedIn" className="w-full h-full object-contain drop-shadow-md" />
@@ -637,7 +695,10 @@ export default function ProfessionalPage() {
                     </Link>
                   </div>
                   <button 
-                    onClick={() => setShowMicroPopup(false)}
+                    onClick={() => {
+                      playSound("ui");
+                      setShowMicroPopup(false);
+                    }}
                     className="mt-2 text-xs font-mono text-gray-500 hover:text-[color:var(--accent)] transition-colors cursor-grab active:cursor-grabbing"
                   >
                     Cancel
@@ -716,7 +777,7 @@ export default function ProfessionalPage() {
 
         {/* Short Profile Section */}
         <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
-          <div className="mb-16">
+          <div className="mb-16 text-center">
             <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight">
               Short <span className="text-[color:var(--accent)]">profile</span>
             </h2>
@@ -724,7 +785,7 @@ export default function ProfessionalPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:auto-rows-[220px]">
             
             {/* 1. Developer building... */}
-            <div className="md:col-span-2 md:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
+            <div className="group md:col-span-2 md:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
                <Image
                  src={codingImg}
                  alt="Coding background"
@@ -734,7 +795,7 @@ export default function ProfessionalPage() {
                  priority
                />
                <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-black/30 to-transparent z-10" />
-               <h3 className="relative z-20 text-2xl md:text-4xl font-mono font-bold text-white max-w-lg leading-tight tracking-tight">
+               <h3 className="relative z-20 text-2xl md:text-4xl font-mono font-bold text-white max-w-lg leading-tight tracking-tight group-hover:translate-x-1.5 transition-transform duration-300">
                   Developer building<br />
                   clean, reliable<br />
                   applications and<br />
@@ -743,9 +804,8 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 2. Fluent in... */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
-               <div className="absolute bottom-0 right-0 w-32 h-32 bg-[color:var(--accent)]/10 blur-[40px] rounded-full pointer-events-none"></div>
-               <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug">
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
+               <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
                   Fluent in English<br />
                   and Filipino<br />
                   (Tagalog)
@@ -753,52 +813,58 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 3. Tech Stack */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
-               {/* Background Drift Chips (Made bigger and more visible) */}
-               <div className="absolute right-[-18px] top-1/2 -translate-y-1/2 flex flex-col gap-5 translate-x-4 opacity-25 pointer-events-none z-0 scale-[1.08] origin-right">
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
+               {/* Background Drift Chips (Made bigger and more visible, matching exact style of 2nd image) */}
+               <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 flex flex-col gap-4 opacity-[0.88] pointer-events-none z-0 scale-[1.02] origin-right">
                   <div className="flex gap-2 justify-end">
-                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Laravel</span>
+                    <span className="px-5 py-2 rounded-xl bg-[#1e202f] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-lg">Laravel</span>
                   </div>
-                  <div className="flex gap-2.5 justify-end -translate-x-4">
-                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">React</span>
-                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Vue.js</span>
+                  <div className="flex gap-2 justify-end translate-x-2">
+                    <span className="px-5 py-2 rounded-xl bg-[#1e202f] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-lg">React</span>
+                    <span className="px-5 py-2 rounded-xl bg-[#1e202f] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-lg">Vue.js</span>
                   </div>
-                  <div className="flex gap-2.5 justify-end translate-x-2">
-                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">C#</span>
-                    <span className="px-6 py-2.5 rounded-2xl bg-[#20222e] text-white font-mono text-base md:text-lg border border-white/10 whitespace-nowrap shadow-md">Java</span>
+                  <div className="flex gap-2 justify-end translate-x-6">
+                    <span className="px-5 py-2 rounded-xl bg-[#1e202f] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-lg">C#</span>
+                    <span className="px-5 py-2 rounded-xl bg-[#1e202f] text-white font-mono text-sm md:text-base border border-white/10 whitespace-nowrap shadow-lg">Java</span>
                   </div>
                </div>
                
-               <p className="text-gray-400 font-mono text-xs mb-2 relative z-10 uppercase tracking-widest font-semibold">
-                 My primary<br/>tech stack
-               </p>
-               <h3 className="text-xl md:text-2xl font-mono font-bold text-white relative z-10 leading-tight">
-                  Next.js, TypeScript
-               </h3>
+               <div className="relative z-10 max-w-[55%] flex flex-col group-hover:translate-x-1.5 transition-transform duration-300">
+                  <p className="text-gray-400 font-mono text-xs mb-2 uppercase tracking-widest font-semibold">
+                    My primary<br/>tech stack
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-mono font-bold text-white leading-tight">
+                     Next.js, TypeScript
+                  </h3>
+               </div>
             </div>
 
             {/* 4. Software Architect designer */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl group min-h-[140px] md:min-h-[170px]">
-               <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl min-h-[160px] md:min-h-[190px]">
+               <div className="absolute inset-0 opacity-[0.12] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:16px_26px] pointer-events-none"></div>
                
-               <h3 className="text-xl md:text-2xl font-mono font-bold text-white relative z-10 leading-tight">
+               <h3 className="text-3xl md:text-[38px] font-mono font-bold text-white relative z-10 leading-[1.15] tracking-tight group-hover:translate-x-1.5 transition-transform duration-300">
                   Web Developer
+                  <span className="block text-2xl md:text-[32px] text-white/90 font-mono font-normal lowercase mt-1">designer</span>
                </h3>
                
-               <div className="absolute bottom-4 right-4 w-32 h-16 bg-[#16171e] border border-white/10 rounded-xl p-3 flex flex-col justify-between shadow-lg z-10 origin-bottom-right transform scale-100 group-hover:scale-105 transition-transform duration-500">
+               <div className="absolute bottom-[-10px] right-[-10px] w-36 h-20 bg-[#16171e]/95 border border-white/10 rounded-xl p-3 flex flex-col justify-between shadow-2xl z-10 origin-bottom-right transform scale-100 group-hover:scale-105 transition-all duration-500">
+                  {/* Top row: circle + two pills */}
                   <div className="flex items-center gap-1.5">
-                    <div className="w-8 h-3 rounded-full bg-white/10 shrink-0"></div>
-                    <div className="w-5 h-3 rounded-full bg-white/10 shrink-0"></div>
+                    <div className="w-3 h-3 rounded-full bg-white/20 shrink-0"></div>
+                    <div className="w-10 h-2 rounded-full bg-white/15 shrink-0"></div>
+                    <div className="w-6 h-2 rounded-full bg-white/15 shrink-0"></div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <div className="w-full h-1 rounded-full bg-white/5"></div>
-                    <div className="w-2/3 h-1 rounded-full bg-white/5"></div>
+                  {/* Bottom rows: lines */}
+                  <div className="flex flex-col gap-2 mt-2">
+                    <div className="w-[85%] h-1.5 rounded-full bg-white/10"></div>
+                    <div className="w-[45%] h-1.5 rounded-full bg-white/10"></div>
                   </div>
                </div>
             </div>
 
             {/* 5. The Inside Scoop */}
-            <div className="md:col-span-2 md:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
+            <div className="group md:col-span-2 md:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
                {/* Subtle background grid */}
                <div className="absolute inset-0 z-0">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0" />
@@ -813,7 +879,7 @@ export default function ProfessionalPage() {
                   <div className="absolute top-[80px] left-[880px] w-6 h-6 rounded-md border border-white/5" />
                </div>
                
-               <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[50%]">
+               <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[50%] group-hover:translate-x-1.5 transition-transform duration-300">
                   <p className="text-gray-400 font-mono mb-2 leading-relaxed">
                     The Inside<br/>Scoop
                   </p>
@@ -845,10 +911,10 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 6. Ask a Question */}
-            <div className="md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#1e0f3c] via-[#120726] to-[#070312] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[180px] md:min-h-[220px]">
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.15)_0%,transparent_70%)] pointer-events-none" />
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[180px] md:min-h-[220px]">
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3)_0%,transparent_70%)] pointer-events-none" />
                
-               <h3 className="text-lg md:text-xl font-mono font-bold text-white relative z-10 mt-2 leading-snug">
+               <h3 className="text-xl md:text-[23px] font-mono font-bold text-white relative z-10 mt-2 leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
                   Do you want to ask a<br />question?
                </h3>
                
@@ -899,6 +965,7 @@ export default function ProfessionalPage() {
                         hidden: { opacity: 0, x: -20 },
                         visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
                       }}
+                      onHoverStart={() => playSound("hover")}
                       className="px-6 py-3 bg-[#171e36] text-[color:var(--accent)] font-sans text-lg md:text-xl font-medium transition-colors hover:bg-[color:var(--accent)] hover:text-[#0a0b14] cursor-grab active:cursor-grabbing"
                     >
                       {skill}
@@ -983,6 +1050,7 @@ export default function ProfessionalPage() {
                       <Link
                         href={project.linkUrl}
                         className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
+                        onClick={() => playSound("ui")}
                       >
                         {project.linkText}
                         {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
@@ -994,7 +1062,7 @@ export default function ProfessionalPage() {
 
           {/* Explore More Button */}
           <div className="flex justify-center mt-20">
-            <Link href="/projects">
+            <Link href="/projects" onClick={() => playSound("ui")}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -1144,19 +1212,19 @@ export default function ProfessionalPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
-            <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
             </Link>
-            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
             </Link>
-            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
             </Link>
-            <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center">
+            <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("ui")}>
               <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100"></span>
               <span className="relative z-10 text-xl md:text-2xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
             </Link>
@@ -1166,6 +1234,7 @@ export default function ProfessionalPage() {
             <Link
               href="/contact"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl p-[1px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-lg"
+              onClick={() => playSound("ui")}
             >
               {/* Spinning Rainbow Gradient Background */}
               <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#10b981_0%,#eab308_20%,#ec4899_40%,#8b5cf6_60%,#3b82f6_80%,#10b981_100%)]" />
@@ -1180,7 +1249,10 @@ export default function ProfessionalPage() {
 
           <div className="flex flex-col items-center gap-12">
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => {
+                playSound("ui");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="text-[color:var(--accent)] hover:-translate-y-2 transition-transform duration-300 p-4 cursor-grab active:cursor-grabbing"
               aria-label="Scroll to top"
             >
@@ -1212,10 +1284,11 @@ export default function ProfessionalPage() {
               aria-current="page"
               style={{ color: "var(--accent)" }}
               className="px-7 py-3 rounded-[24px] bg-[#ffffff20] shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] text-[color:var(--accent)] font-mono text-base tracking-wide font-semibold transition-colors duration-300"
+              onClick={() => playSound("ui")}
             >
               Professional
             </Link>
-            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all">
+            <Link href="/personal" className="px-7 py-3 rounded-[24px] text-[color:var(--fg)] hover:bg-[#ffffff10] font-mono text-base tracking-wide font-semibold transition-all" onClick={() => playSound("ui")}>
               Personal
             </Link>
           </motion.div>

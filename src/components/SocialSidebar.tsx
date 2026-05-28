@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useSound } from '@/components/SoundContext';
 
 const itemVariants = {
   hidden: { opacity: 0, x: -18, scale: 0.9 },
@@ -20,6 +21,8 @@ const itemVariants = {
 };
 
 export default function SocialSidebar() {
+  const { playSound } = useSound();
+
   return (
     <motion.aside
       initial="hidden"
@@ -33,19 +36,35 @@ export default function SocialSidebar() {
         animate="visible"
       >
         <motion.div custom={0} variants={itemVariants} whileHover={{ y: -4, scale: 1.08 }} whileTap={{ scale: 0.96 }}>
-          <Link href="mailto:davedominc912@gmail.com" className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300">
+          <Link
+            href="mailto:davedominc912@gmail.com"
+            className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300"
+            onClick={() => playSound('social')}
+          >
             <FaEnvelope size={26} />
           </Link>
         </motion.div>
 
         <motion.div custom={1} variants={itemVariants} whileHover={{ y: -4, scale: 1.08 }} whileTap={{ scale: 0.96 }}>
-          <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300">
+          <Link
+            href="https://www.linkedin.com/in/davegoze/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300"
+            onClick={() => playSound('social')}
+          >
             <FaLinkedin size={26} />
           </Link>
         </motion.div>
 
         <motion.div custom={2} variants={itemVariants} whileHover={{ y: -4, scale: 1.08 }} whileTap={{ scale: 0.96 }}>
-          <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300">
+          <Link
+            href="https://github.com/httpsdave"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-[color:var(--accent)] transition-colors duration-300"
+            onClick={() => playSound('social')}
+          >
             <FaGithub size={26} />
           </Link>
         </motion.div>
