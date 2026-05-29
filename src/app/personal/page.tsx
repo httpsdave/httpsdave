@@ -12,6 +12,32 @@ import interestWorkImage from "../../interest,work.jpg";
 import exerciseImage from "../../exercise.jpg";
 import japaneseImage from "../../japanese.jpg";
 
+import instaPic1 from "../../instapics/httpdaev_2559363397777665299.jpg";
+import instaPic2 from "../../instapics/httpdaev_2819922726315621101.webp";
+import instaPic3 from "../../instapics/httpdaev_3039349538871366378.webp";
+import instaPic4 from "../../instapics/httpdaev_3039355235835269106.webp";
+import instaPic5 from "../../instapics/httpdaev_3052825230512094787.webp";
+import instaPic6 from "../../instapics/httpdaev_3073086386333871779.webp";
+import instaPic7 from "../../instapics/httpdaev_3088121521273459910.webp";
+import instaPic8 from "../../instapics/httpdaev_3131501267695497941.webp";
+import instaPic9 from "../../instapics/httpdaev_3258284693785591895.jpg";
+import instaPic10 from "../../instapics/httpdaev_3305403886267603932.jpg";
+import instaPic11 from "../../instapics/httpdaev_3385919832133947291.jpg";
+import instaPic12 from "../../instapics/httpdaev_3394952732078611563.jpg";
+import instaPic13 from "../../instapics/httpdaev_3419280490585775616.jpg";
+import instaPic14 from "../../instapics/httpdaev_3419281934030355528.jpg";
+import instaPic15 from "../../instapics/httpdaev_3419282618221929831.jpg";
+import instaPic16 from "../../instapics/httpdaev_3523557449083578717.jpg";
+import instaPic17 from "../../instapics/httpdaev_3563904156223493030.jpg";
+import instaPic18 from "../../instapics/httpdaev_3563907222385537353.jpg";
+import instaPic19 from "../../instapics/httpdaev_3614228481480375392.jpg";
+import instaPic20 from "../../instapics/httpdaev_3692150689397409735.jpg";
+import instaPic21 from "../../instapics/httpdaev_3692152440485733556.jpg";
+import instaPic22 from "../../instapics/httpdaev_3692160783342169360.jpg";
+import instaPic23 from "../../instapics/httpdaev_3692170300192719190.jpg";
+import instaPic24 from "../../instapics/httpdaev_3890068412042852422.jpg";
+import instaPic25 from "../../instapics/httpdaev_3890070787101253066.jpg";
+
 import avengersImg from "../../movieposters/Avengers_Infinity_war_poster.webp";
 import bcsImg from "../../movieposters/bettercallsaul.jpg";
 import bbImg from "../../movieposters/breakingbad.jpg";
@@ -32,6 +58,34 @@ const moviePostersList = [
   avengersImg, bcsImg, bbImg, b99Img, harrypotterImg,
   himymImg, interstellarImg, johnwickImg, narutoImg, martianImg,
   boysImg, gdImg, hobbitImg, notebookImg, twilightImg
+];
+
+const instagramPhotosList = [
+  instaPic1,
+  instaPic2,
+  instaPic3,
+  instaPic4,
+  instaPic5,
+  instaPic6,
+  instaPic7,
+  instaPic8,
+  instaPic9,
+  instaPic10,
+  instaPic11,
+  instaPic12,
+  instaPic13,
+  instaPic14,
+  instaPic15,
+  instaPic16,
+  instaPic17,
+  instaPic18,
+  instaPic19,
+  instaPic20,
+  instaPic21,
+  instaPic22,
+  instaPic23,
+  instaPic24,
+  instaPic25,
 ];
 
 const lifeFacets = [
@@ -263,6 +317,7 @@ export default function PersonalPage() {
             whileHover="hover"
             initial="rest"
             animate="animate"
+            onHoverStart={() => playSound("wind", { force: true })}
             className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-grab active:cursor-grabbing overflow-hidden"
           >
             {/* Corner Dots */}
@@ -438,27 +493,57 @@ export default function PersonalPage() {
           <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(10,minmax(0,1fr))] gap-4 lg:gap-6 min-h-[850px] relative w-full">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(8,minmax(0,1fr))] gap-4 lg:gap-6 min-h-[600px] relative w-full">
           
-          {/* Box 1 (Top Left): Workout Routine */}
-          <article className="md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-4 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Exercise & Workout</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl">
-              I've been consistent with it for years now, it's become more of a routine than a hobby. A core component of my life, keeping me grounded and energized.
+          {/* Box 1 (Top Left): Photography */}
+          <article className="md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
+            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Photography</h3>
+            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl mb-6">
+              It's nothing professional and usually it's just using my phone or a friend's phone, then adding minor filters to them to remember places and things by: {" "}
+              <Link href="https://www.instagram.com/httpdaev/" target="_blank" className="text-emerald-500 hover:text-emerald-400 transition-colors inline-block">
+                @httpdaev
+              </Link>
             </p>
-            {/* Visual Element */}
-            <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-20 pointer-events-none">
-              <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.4)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }}></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Decorative abstract sphere grid to represent routine/consistency */}
-                <div className="w-64 h-64 rounded-full border border-dashed border-gray-400 animate-[spin_60s_linear_infinite]"></div>
-                <div className="absolute w-48 h-48 rounded-full border border-dotted border-gray-500 animate-[spin_40s_linear_infinite_reverse]"></div>
+            {/* Infinite Carousel Background / Foreground */}
+            <div className="flex-1 w-[calc(100%+3rem)] md:w-[calc(100%+4rem)] -ml-6 md:-ml-8 relative flex flex-col justify-center gap-1 sm:gap-2 overflow-hidden z-10">
+              <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+
+              <style jsx>{`
+                @keyframes marquee-left {
+                  from { transform: translateX(0); }
+                  to { transform: translateX(-50%); }
+                }
+                @keyframes marquee-right {
+                  from { transform: translateX(-50%); }
+                  to { transform: translateX(0); }
+                }
+                .marquee-left { animation: marquee-left 75s linear infinite; }
+                .marquee-right { animation: marquee-right 75s linear infinite; }
+              `}</style>
+
+              {/* Row 1: Some Spacing */}
+              <div className="flex w-max marquee-left gap-4">
+                {[...instagramPhotosList, ...instagramPhotosList].map((img, i) => (
+                  <div key={`photo-r1-${i}`} className="w-32 h-24 sm:w-40 sm:h-28 flex-shrink-0 rounded-lg overflow-hidden relative border border-zinc-700/50 shadow-md">
+                    <Image src={img} alt="Photography placeholder" fill className="object-cover" sizes="(max-width: 768px) 150px, 200px" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Row 2: No Spacing */}
+              <div className="flex w-max marquee-right">
+                {[...instagramPhotosList, ...instagramPhotosList].map((img, i) => (
+                  <div key={`photo-r2-${i}`} className="w-32 h-24 sm:w-40 sm:h-28 flex-shrink-0 relative border border-zinc-700/50 shadow-md">
+                    <Image src={img} alt="Photography placeholder" fill className="object-cover" sizes="(max-width: 768px) 150px, 200px" />
+                  </div>
+                ))}
               </div>
             </div>
           </article>
 
           {/* Box 2 (Top Right): Cinephile with Hover Effects */}
-          <article className="md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-6 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group z-10">
+          <article className="md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-5 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group z-10">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 z-10 relative">Movies & Shows</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed z-10 relative">
               I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
@@ -492,7 +577,7 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 3 (Bottom Left): Cycling */}
-          <article className="md:col-start-1 md:col-span-5 md:row-start-5 md:row-span-6 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-12 flex flex-col relative overflow-hidden group min-h-[300px]">
+          <article className="md:col-start-1 md:col-span-5 md:row-start-4 md:row-span-5 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-12 flex flex-col relative overflow-hidden group min-h-[300px]">
             <Image 
               src={bikeImage} 
               alt="Promax PR50 Roadbike" 
@@ -510,7 +595,7 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 4 (Bottom Right): Music */}
-          <article className="md:col-start-6 md:col-span-7 md:row-start-7 md:row-span-4 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
+          <article className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
             <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Music Enthusiast</h3>
             <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 mb-6 max-w-sm">
               I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
