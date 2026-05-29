@@ -8,9 +8,10 @@ import { useSound } from "@/components/SoundContext";
 import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
-import interestWorkImage from "../../interest,work.jpg";
+import interestsImage from "../../interest,work.jpg";
 import exerciseImage from "../../exercise.jpg";
 import japaneseImage from "../../japanese.jpg";
+import myIcon from "../../myicon.png";
 
 import instaPic1 from "../../instapics/httpdaev_2559363397777665299.jpg";
 import instaPic2 from "../../instapics/httpdaev_2819922726315621101.webp";
@@ -112,7 +113,7 @@ const lifeFacets = [
     category: "Computer, IT",
     title: "Interest, Work",
     bgGradient: "from-blue-900/60 to-[#0a0b14]",
-    coverImage: interestWorkImage,
+    coverImage: interestsImage,
     coverAlt: "Interest and work cover image",
     content: "My brother introduced me to computers early on. I became fascinated with formatting, disassembling components, and understanding how the software logic connects with the hardware.",
   },
@@ -304,7 +305,7 @@ export default function PersonalPage() {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-center text-center min-h-[70vh] px-4 pt-20 pb-16">
+      <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-start text-center min-h-[70vh] px-4 pt-40 md:pt-56 pb-16">
         
         <h1 className="text-4xl md:text-6xl font-mono text-gray-500 mb-6 tracking-tight">
           Hello again.
@@ -484,10 +485,25 @@ export default function PersonalPage() {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* My Icon image with bottom fade */}
+        <div className="mt-24 sm:mt-32 relative flex justify-center w-full max-w-xl mx-auto">
+          <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] opacity-90" style={{ maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }}>
+            <Image 
+              src={myIcon} 
+              alt="Dave" 
+              fill 
+              sizes="(max-width: 768px) 320px, 450px"
+              className="object-contain object-bottom drop-shadow-2xl" 
+              priority
+            />
+          </div>
+        </div>
+
       </section>
 
       {/* Hobbies Section */}
-      <section className="mx-auto w-full max-w-[1380px] px-6 pt-56 md:pt-72 pb-24">
+      <section className="mx-auto w-full max-w-[1380px] px-6 pt-24 md:pt-36 pb-24">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-4">Dave's Hobbies</h2>
           <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
