@@ -22,9 +22,6 @@ const splineMono = Spline_Sans_Mono({
 export const metadata: Metadata = {
   title: "Dave Dominic Goze | Portfolio",
   description: "Portfolio and CV website.",
-  icons: {
-    icon: "/portlogo.webp",
-  },
 };
 
 export default function RootLayout({

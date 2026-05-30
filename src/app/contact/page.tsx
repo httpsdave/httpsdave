@@ -254,7 +254,7 @@ export default function ContactPage() {
       <section className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">
         <div ref={scrollRef} className="grid gap-6 md:grid-cols-3">
           {contactOptions.map((option) => (
-            <HoverCard key={option.title} className={`p-8 hover:-translate-y-2 transition-transform duration-300 flex flex-col ${option.isTimeWidget ? 'items-center justify-center' : ''}`}>
+            <HoverCard key={option.title} className={`p-8 hover:-translate-y-2 transition-transform duration-300 flex flex-col ${option.isTimeWidget ? 'items-center justify-center h-full' : 'h-fit'}`}>
               {option.isTimeWidget ? (
                 <TimeWidget />
               ) : (

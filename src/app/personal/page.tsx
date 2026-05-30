@@ -318,7 +318,7 @@ export default function PersonalPage() {
             whileHover="hover"
             initial="rest"
             animate="animate"
-            onHoverStart={() => playSound("wind", { force: true })}
+            onHoverStart={() => playSound("fastWind", { force: true })}
             className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-grab active:cursor-grabbing overflow-hidden"
           >
             {/* Corner Dots */}

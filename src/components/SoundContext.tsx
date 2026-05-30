@@ -2,7 +2,7 @@
 
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
-type SoundName = "ui" | "social" | "birthday" | "transition" | "card" | "hover" | "wind";
+type SoundName = "ui" | "social" | "birthday" | "transition" | "card" | "hover" | "wind" | "fastWind";
 
 type SoundOptions = {
   force?: boolean;
@@ -273,6 +273,29 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
             release: 0.15,
             detune: -6,
             delay: 0.05,
+          });
+          break;
+        case "fastWind":
+          master.gain.value = 0.8;
+          playTone(ctx, master, {
+            type: "sine",
+            startFreq: 300,
+            endFreq: 100,
+            duration: 0.15,
+            peak: 0.4,
+            attack: 0.01,
+            release: 0.1,
+          });
+          playTone(ctx, master, {
+            type: "triangle",
+            startFreq: 800,
+            endFreq: 300,
+            duration: 0.15,
+            peak: 0.2,
+            attack: 0.01,
+            release: 0.1,
+            detune: -6,
+            delay: 0.01,
           });
           break;
         default:
