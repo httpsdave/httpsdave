@@ -12,6 +12,9 @@ import bubuImg from "../../bubududout.webp";
 import credlyImg from "../../credly.png";
 import linkedinImg from "../../linkedin.png";
 import codingImg from "../../coding.jpg";
+import edukImg from "../../edukcircle.jpg";
+import orbitPresImg from "../../orbitpresentation.jpg";
+import obitPres2Img from "../../obitpresentation2.jpg";
 
 
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
@@ -178,21 +181,18 @@ const journeyData = [
   },
   {
     year: "2025",
-    text: "The year really started to lean into our major, especially machine learning, and we began our thesis around March. Along with two of my groupmates, I worked on a Student Organization Information System for the Office of Student Affairs and Services at LSPU-SPCC. We used Laravel as the main framework on our adviser’s request for easier maintenance later on, with Vue.js for the frontend and MySQL for the database. The system later went live on Railway in early August.\n\nBefore that, we had Intersemester, so we did not really get a full summer break. Around May, we took robotics and mostly played around with an Arduino Uno kit. By the end of June, we built a smart trash bin called Binsense using an ultrasonic sensor, battery, wires, a few other parts, and an Arduino Uno board. It automatically opens when someone gets close enough to throw something away.\n\nOur thesis had a machine learning twist too. We took the NLP route, used OCR to scan event letters submitted as images, converted them into text, and then used spaCy transformer models to extract important event details like the date, time, location, event name, and a short description. Those details were then plotted into an event calendar inside the system with notifications for the different student organizations.\n\nThe main function of ORBIT, or Organized Records for Better Institutional Tracking, was to generate templates for the forms student organizations had to fill out, print, and return as scanned copies for submission and verification. Because the forms follow a very strict format, even tiny mistakes could mean redoing everything and collecting wet signatures all over again, which is a lot of work for people who are not always on campus. We defended the thesis in November 2025 and called it a day, with maintenance coming after.",
-    images: []
+    text: "Focused on our thesis (ORBIT): a Student Organization Information System built with Laravel, Vue, and MySQL that later went live on Railway. We also worked on robotics projects (Arduino) — including a smart trash bin called Binsense — and implemented OCR/NLP to extract event details for the system. We defended the thesis in November 2025 and moved to maintenance afterward.",
+    images: [orbitPresImg.src, obitPres2Img.src]
   },
   {
     year: "2024",
     text: "Through my courses, I learned C++, C, and Python, with Python used mostly for machine learning. This was the period when our program began to focus more deeply on Intelligent Systems, which felt especially timely as AI continued to grow. I also started relying on Git for more than version control after learning the hard way how easy it is to lose progress, and I began building apps from start to finish instead of only isolated programs.",
-    images: [
-      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+1",
-      "https://via.placeholder.com/600x400/0a0b14/1bd99b?text=Thesis+System+2"
-    ]
+    images: []
   },
   {
     year: "2023",
-    text: "After starting to move through the different courses in the program, I learned Java as a smooth transition from C#. That year also reinforced my understanding of object-oriented programming, advanced data representation, and application development.",
-    images: []
+    text: "After starting to move through the different courses in the program, I learned Java as a smooth transition from C#. That year also reinforced my understanding of object-oriented programming, advanced data representation, and application development. Our department attended the 15th Edukcircle held in the University of the Philippines - Diliman.",
+    images: [edukImg.src]
   },
   {
     year: "2022",
@@ -1197,7 +1197,8 @@ export default function ProfessionalPage() {
                             <img
                               src={img}
                               alt={`${item.year} event`}
-                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                              className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                                style={{ objectPosition: 'center 70%' }}
                             />
                           </div>
                         ))}
