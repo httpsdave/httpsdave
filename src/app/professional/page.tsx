@@ -350,7 +350,7 @@ export default function ProfessionalPage() {
       {/* Absolute background grid with a smooth fade-out to transparent toward the bottom */}
       <div className="absolute top-0 left-0 w-full h-[120vh] pointer-events-none z-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent_0%,transparent_10%,white_25%,white_40%,transparent_100%)]" />
 
-      <section className="relative z-10 mx-auto w-full max-w-none px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-6 md:pt-10 lg:pt-12">
+      <section className="relative z-10 mx-auto w-full max-w-none px-4 sm:px-8 md:px-24 lg:px-40 xl:px-64 pb-14 pt-6 md:pt-10 lg:pt-12">
 
         {/* Main Hero Layout */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-16 md:gap-8">
@@ -544,7 +544,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div ref={statsRef} className="mt-24 flex flex-wrap justify-between gap-16 pb-10 w-full group/stats">
+        <div ref={statsRef} className="mt-24 flex flex-wrap justify-center sm:justify-between gap-10 md:gap-16 pb-10 w-full group/stats">
           <button 
             type="button"
             className="flex items-center gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
@@ -676,7 +676,7 @@ export default function ProfessionalPage() {
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-[55vw]"
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-[90vw] md:max-w-[70vw] lg:max-w-[55vw]"
                 >
                   <h3 className="text-xl font-mono text-white font-bold tracking-tight">Choose Platform</h3>
                   <div className="flex items-center gap-6 w-full justify-center">
@@ -790,7 +790,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Short Profile Section */}
-        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
+        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 lg:px-8 xl:px-0">
           <div className="mb-16 text-center">
             <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight">
               Short <span className="text-[color:var(--accent)]">profile</span>
@@ -963,7 +963,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Skills Section */}
-        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
+        <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 lg:px-8 xl:px-0">
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             Skills
           </h2>
@@ -1003,7 +1003,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Projects Section */}
-        <div id="projects" className="mt-12 mb-40 flex flex-col w-full max-w-[1100px] mx-auto px-4 md:px-0 scroll-mt-28">
+        <div id="projects" className="mt-12 mb-40 flex flex-col w-full max-w-[1100px] mx-auto px-4 lg:px-8 xl:px-0 scroll-mt-28">
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             A small selection of <span className="text-[color:var(--accent)]">recent projects</span>
           </h2>
@@ -1111,7 +1111,7 @@ export default function ProfessionalPage() {
         </div>
 
         {/* My Experience Section */}
-        <div className="mt-20 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 md:px-0">
+        <div className="mt-20 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 lg:px-8 xl:px-0">
           <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
             My <span className="text-[color:var(--accent)]">Experience</span>
           </h2>
