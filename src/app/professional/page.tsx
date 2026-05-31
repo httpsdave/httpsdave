@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import confetti from "canvas-confetti";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact, SiFastapi, SiSqlite, SiNodedotjs, SiThreedotjs, SiPhp } from "react-icons/si";
 import { useSound } from "@/components/SoundContext";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
@@ -102,40 +102,39 @@ const skillsData = [
 
 const projectsData = [
   {
-    title: "Mining Auction System",
-    description: "Real-time auction system handling $140M+ deals (Spearheaded, Developed)",
+    title: "ORBIT",
+    description: "Student organization information system for better institutional tracking.",
     linkText: "Check Live Site",
-    linkUrl: "#",
-    image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=comexchange.mn",
-    icons: [<SiNextdotjs key="1" />, <SiTypescript key="2" />, <SiReact key="3" />, <SiTailwindcss key="4" />],
+    linkUrl: "https://orbit-kappa-pink.vercel.app/login",
+    image: "/orbitimage.png",
+    icons: [<SiLaravel key="1" color="#FF2D20" />, <SiVuedotjs key="2" color="#4FC08D" />, <SiPhp key="3" color="#777BB4" />, <SiTailwindcss key="4" color="#06B6D4" />],
     isGithub: false
   },
   {
-    title: "Multi-Agent Microservice",
-    description: "AI agents collaborating through microservices (BSc Thesis)",
-    linkText: "Github",
-    linkUrl: "https://github.com/RedonaNova/ai-agents-microservices-thesis",
-    image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=Thesis+Project",
-    tooltip: "https://github.com/RedonaNova/ai-agents-microservices-thesis",
-    icons: [<SiNextdotjs key="1" />, <SiTailwindcss key="2" />, <SiTypescript key="3" />],
-    isGithub: true
-  },
-  {
-    title: "Crypto Trading Platform",
-    description: "Mobile-first cryptocurrency exchange with live charts and order books.",
+    title: "Aux",
+    description: "Billboard Top 100 clone with web scraping for music data.",
     linkText: "Check Live Site",
-    linkUrl: "#",
-    image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=Crypto+App",
-    icons: [<SiVuedotjs key="1" />, <SiTailwindcss key="2" />, <SiLaravel key="3" />],
+    linkUrl: "https://aux-cix8.vercel.app/",
+    image: "/aux-preview.png",
+    icons: [<SiNextdotjs key="1" color="#ffffff" />, <SiReact key="2" color="#61DAFB" />, <SiTypescript key="3" color="#3178C6" />, <SiFastapi key="4" color="#009688" />, <SiSqlite key="5" color="#0F80CC" />],
     isGithub: false
   },
   {
-    title: "GOBI Deluxe Hotel & Resort",
-    description: "Full-stack booking and reservation system for luxury hotel.",
+    title: "Ritmo",
+    description: "A Radio Garden clone to explore live radio stations globally.",
     linkText: "Check Live Site",
-    linkUrl: "#",
-    image: "https://via.placeholder.com/800x500/0a0b14/1bd99b?text=GOBI+Deluxe+Hotel",
-    icons: [<SiNextdotjs key="1" />, <SiReact key="2" />, <SiTailwindcss key="3" />],
+    linkUrl: "https://ritmo-blond.vercel.app/",
+    image: "/ritmo.png",
+    icons: [<SiNextdotjs key="1" color="#ffffff" />, <SiThreedotjs key="2" color="#ffffff" />, <SiTailwindcss key="3" color="#06B6D4" />],
+    isGithub: false
+  },
+  {
+    title: "Juris",
+    description: "Philippine legal database indexing laws and acts via automated scraping from reliable sources.",
+    linkText: "Check Live Site",
+    linkUrl: "https://juris-neon.vercel.app/",
+    image: "/juris.png",
+    icons: [<SiNextdotjs key="1" color="#ffffff" />, <SiTypescript key="2" color="#3178C6" />, <SiReact key="3" color="#61DAFB" />, <SiTailwindcss key="4" color="#06B6D4" />, <SiNodedotjs key="5" color="#339933" />],
     isGithub: false
   }
 ];
@@ -1028,18 +1027,7 @@ export default function ProfessionalPage() {
                   </div>
 
                   {/* Image Wrapper */}
-                  <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl overflow-hidden">
-
-                    {/* Beam of light (Now contained within the preview and ends at the base) */}
-                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 shadow-[0_0_15px_cyan]"></div>
-
-                    {/* Base glowing circles with smaller radius and ripple effect */}
-                    <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 z-20 w-[60%] h-8 origin-bottom scale-75 group-hover:scale-100">
-                      <div className="absolute w-[30%] h-[80%] rounded-[100%] border-[2px] border-cyan-400 shadow-[0_0_15px_cyan]"></div>
-                      <div className="absolute w-[50%] h-[120%] rounded-[100%] border-[1px] border-cyan-400/50 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
-                      <div className="absolute w-[70%] h-[160%] rounded-[100%] border-[1px] border-cyan-500/30"></div>
-                      <div className="absolute w-[90%] h-[200%] rounded-[100%] border-[1px] border-cyan-500/10"></div>
-                    </div>
+                  <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl">
 
                     <div className="w-full h-full rounded-t-[14px] overflow-hidden shadow-2xl relative z-30 flex">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1050,7 +1038,18 @@ export default function ProfessionalPage() {
                       />
                     </div>
                     {/* Faded bottom gradient so image blends softly at bottom edge if needed */}
-                    <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0b0e17] to-transparent z-40" />
+                    <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0b0e17] to-transparent z-40 rounded-t-[14px]" />
+                  </div>
+
+                  {/* Beam of light (Moved outside image wrapper to prevent clipping) */}
+                  <div className="absolute top-[20px] bottom-[auto] h-[260px] md:h-[290px] left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-50 shadow-[0_0_15px_cyan] pointer-events-none"></div>
+
+                  {/* Base glowing circles with smaller radius and ripple effect */}
+                  <div className="absolute top-[270px] md:top-[300px] left-1/2 -translate-x-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-50 w-[60%] h-8 origin-center scale-75 group-hover:scale-100 pointer-events-none">
+                    <div className="absolute w-[30%] h-[80%] rounded-[100%] border-[2px] border-cyan-400 shadow-[0_0_15px_cyan]"></div>
+                    <div className="absolute w-[50%] h-[120%] rounded-[100%] border-[1px] border-cyan-400/50 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                    <div className="absolute w-[70%] h-[160%] rounded-[100%] border-[1px] border-cyan-500/30"></div>
+                    <div className="absolute w-[90%] h-[200%] rounded-[100%] border-[1px] border-cyan-500/10"></div>
                   </div>
 
                   {/* Content */}
@@ -1066,7 +1065,7 @@ export default function ProfessionalPage() {
                       {/* Tech Stack Bubbles */}
                       <div className="flex items-center -space-x-2">
                         {project.icons.map((icon, i) => (
-                          <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-[color:var(--accent)] text-lg z-10 relative shadow-md">
+                          <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-lg z-10 relative shadow-md">
                             {icon}
                           </div>
                         ))}
@@ -1075,12 +1074,14 @@ export default function ProfessionalPage() {
                       {/* Link */}
                       <Link
                         href={project.linkUrl}
-                        className="flex items-center gap-3 text-[color:var(--accent)] font-bold font-mono text-sm md:text-base hover:text-white transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 text-gray-200 font-bold font-mono text-sm md:text-base hover:!text-[var(--accent)] transition-colors duration-300"
                         onClick={() => playSound("ui")}
                         onMouseEnter={() => playSound("hover")}
                       >
                         {project.linkText}
-                        {project.isGithub ? <FaGithub className="text-lg" /> : <FaLocationArrow className="text-lg rotate-45" />}
+                        {project.isGithub ? <FaGithub className="text-lg transition-colors duration-300" /> : <FaLocationArrow className="text-lg rotate-45 transition-colors duration-300" />}
                       </Link>
                     </div>
                   </div>
