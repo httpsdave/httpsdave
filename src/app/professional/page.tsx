@@ -797,7 +797,7 @@ export default function ProfessionalPage() {
               Short <span className="text-[color:var(--accent)]">profile</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:auto-rows-[220px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:auto-rows-[minmax(0,_auto)]">
             
             {/* 1. Developer building... */}
             <div className="group md:col-span-2 md:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
@@ -854,17 +854,24 @@ export default function ProfessionalPage() {
                </div>
             </div>
 
-            {/* 4. Software Architect designer */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl min-h-[160px] md:min-h-[190px]">
+            {/* 4. Web Developer designer */}
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] px-8 py-4 flex flex-col items-center justify-center relative overflow-hidden shadow-xl min-h-[80px] md:min-h-[100px]">
                <div 
-                 className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0"
+                 className="absolute inset-0 pointer-events-none z-0"
                  style={{ maskImage: 'linear-gradient(to right, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to right, black 30%, transparent 85%)' }}
-               />
+               >
+                 <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                 <div className="absolute top-[0px] left-[40px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
+                 <div className="absolute top-[80px] left-[120px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
+                 <div className="absolute top-[40px] left-[200px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
+               </div>
                
-               <h3 className="text-3xl md:text-[38px] font-mono font-bold text-white relative z-10 leading-[1.15] tracking-tight group-hover:translate-x-1.5 transition-transform duration-300">
-                  Web Developer
-                  <span className="block text-2xl md:text-[32px] text-white/90 font-mono font-normal lowercase mt-1">designer</span>
-               </h3>
+               <div className="w-fit transition-transform duration-300 group-hover:translate-x-1.5 z-10 relative">
+                 <h3 className="text-3xl md:text-[32px] text-left font-mono font-bold text-white leading-[1.15] tracking-tight">
+                    Web Developer
+                    <span className="block text-2xl md:text-[26px] text-white/90 font-mono font-normal lowercase mt-1">designer</span>
+                 </h3>
+               </div>
                
                <div className="absolute bottom-[-10px] right-[-10px] w-36 h-20 bg-[#16171e]/95 border border-white/10 rounded-xl p-3 flex flex-col justify-between shadow-2xl z-10 origin-bottom-right transform scale-100 group-hover:scale-105 transition-all duration-500">
                   {/* Top row: circle + two pills */}
@@ -929,7 +936,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 6. Ask a Question */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[180px] md:min-h-[220px]">
+            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[110px] md:min-h-[135px]">
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3)_0%,transparent_70%)] pointer-events-none" />
                
                <h3 className="text-xl md:text-[23px] font-mono font-bold text-white relative z-10 mt-2 leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
