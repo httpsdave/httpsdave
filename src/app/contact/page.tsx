@@ -288,72 +288,72 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-32">
-        <HoverCard className="grid gap-10 p-10 md:p-14 md:grid-cols-[1fr_1.2fr] md:items-center">
+      <section className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 pb-32">
+        <HoverCard className="grid gap-8 sm:gap-10 p-6 sm:p-10 md:p-14 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
-            <span className="font-mono text-sm tracking-widest text-[color:var(--muted)] mb-3 uppercase block">Message</span>
-            <h2 className="text-4xl md:text-5xl font-mono font-bold text-white mb-6 tracking-tight">Send a quick note</h2>
-            <p className="text-base text-gray-400 font-sans leading-relaxed">
+            <span className="font-mono text-xs sm:text-sm tracking-widest text-[color:var(--muted)] mb-2 sm:mb-3 uppercase block">Message</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold text-white mb-4 sm:mb-6 tracking-tight">Send a quick note</h2>
+            <p className="text-sm sm:text-base text-gray-400 font-sans leading-relaxed break-words">
               This form is a simple placeholder. Email is the fastest way to reach me.
             </p>
           </div>
-          <form className="flex flex-col gap-6" aria-label="Contact form" onSubmit={(e) => e.preventDefault()}>
-            <div className="flex flex-col md:flex-row gap-6 w-full">
-              <div className="flex flex-col gap-2 flex-1">
-                <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="name">
+          <form className="flex flex-col gap-4 sm:gap-6 w-full max-w-full" aria-label="Contact form" onSubmit={(e) => e.preventDefault()}>
+            <div className="flex flex-col md:flex-row gap-4 sm:gap-6 w-full">
+              <div className="flex flex-col gap-1.5 sm:gap-2 flex-1">
+                <label className="text-xs sm:text-sm font-mono font-semibold text-gray-300" htmlFor="name">
                   Name
                 </label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
+                  className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full"
                   placeholder="Your name"
                   autoComplete="name"
                 />
               </div>
               
-              <div className="flex flex-col gap-2 flex-1">
-                <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="email">
+              <div className="flex flex-col gap-1.5 sm:gap-2 flex-1">
+                <label className="text-xs sm:text-sm font-mono font-semibold text-gray-300" htmlFor="email">
                   Email
                 </label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors"
+                  className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full"
                   placeholder="you@example.com"
                   autoComplete="email"
                 />
               </div>
             </div>
             
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-mono font-semibold text-gray-300" htmlFor="message">
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <label className="text-xs sm:text-sm font-mono font-semibold text-gray-300" htmlFor="message">
                 Message
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
-                className="bg-[#111427]/50 border border-white/10 text-white rounded-2xl px-5 py-3.5 text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors resize-none"
+                className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors resize-none w-full"
                 placeholder="Tell me about your project..."
               />
             </div>
             
-            <Link href="mailto:davedominic912@gmail.com" className="w-fit" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
+            <Link href="mailto:davedominic912@gmail.com" className="w-full sm:w-fit" onClick={() => playSound("social")} onMouseEnter={() => playSound("hover")}>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-2"
+                className="relative flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-2 w-full"
               >
-                <span className="relative flex items-center gap-3 z-20">
-                  <span className="relative flex-none z-10">
+                <span className="relative flex items-center gap-2 sm:gap-3 z-20">
+                  <span className="relative flex-none z-10 hidden sm:block">
                     <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover/btn:scale-[120] origin-center" />
                   </span>
 
-                  <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-sm font-bold tracking-wide z-30 relative transition-colors duration-300">
-                    Email davedominic912@gmail.com <span className="inline-block opacity-0 -ml-2 group-hover/btn:opacity-100 group-hover/btn:ml-1 transition-all duration-300">→</span>
+                  <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-[10px] sm:text-sm font-bold tracking-wide z-30 relative transition-colors duration-300 flex-1 text-center whitespace-normal sm:whitespace-nowrap leading-tight">
+                    Email davedominic912@gmail.com <span className="inline-block opacity-0 -ml-2 group-hover/btn:opacity-100 group-hover/btn:ml-1 transition-all duration-300 hidden sm:inline-block">→</span>
                   </span>
                 </span>
               </motion.div>

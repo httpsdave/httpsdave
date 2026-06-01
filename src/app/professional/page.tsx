@@ -382,68 +382,68 @@ export default function ProfessionalPage() {
               </p>
             </div>
 
-            <div className="flex items-center gap-6 mt-12! pt-6">
+            <div className="flex items-center gap-3 sm:gap-6 mt-12! pt-6">
               <a
                 href="/DaveDominicGoze-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-8 py-3 font-mono text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer inline-block text-center"
+                className="rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] px-5 sm:px-8 py-2.5 sm:py-3 font-mono text-[10px] sm:text-sm hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300 flex items-center gap-2 cursor-pointer text-center whitespace-nowrap"
                 onClick={() => playSound("ui")}
                 onMouseEnter={() => playSound("hover")}
               >
                 VIEW CV <span>&gt;</span>
               </a>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <Link
                   href="https://www.facebook.com/davedominic25"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
                   onMouseEnter={() => playSound("hover")}
                 >
-                  <FaFacebook size={16} />
+                  <FaFacebook className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
                 <Link
                   href="https://www.instagram.com/httpdaev/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
                   onMouseEnter={() => playSound("hover")}
                 >
-                  <FaInstagram size={16} />
+                  <FaInstagram className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
                 <Link
                   href="https://www.youtube.com/@x4phann"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
                   onMouseEnter={() => playSound("hover")}
                 >
-                  <FaYoutube size={16} />
+                  <FaYoutube className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/davegoze/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
                   onMouseEnter={() => playSound("hover")}
                 >
-                  <FaLinkedin size={16} />
+                  <FaLinkedin className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
                 <Link
                   href="https://github.com/httpsdave"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[color:var(--accent)] flex items-center justify-center text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14] transition duration-300"
                   onClick={() => playSound("social")}
                   onMouseEnter={() => playSound("hover")}
                 >
-                  <FaGithub size={16} />
+                  <FaGithub className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
               </div>
             </div>
@@ -544,10 +544,10 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div ref={statsRef} className="mt-24 flex flex-wrap justify-center sm:justify-between gap-10 md:gap-16 pb-10 w-full group/stats">
+        <div ref={statsRef} className="mt-24 flex justify-between items-start gap-1 sm:gap-10 md:gap-16 pb-10 w-full group/stats">
           <button 
             type="button"
-            className="flex items-center gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
             onClick={handleAgeClick}
             onMouseEnter={() => playSound("hover")}
           >
@@ -557,24 +557,24 @@ export default function ProfessionalPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: -20 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[color:var(--accent)] font-mono text-sm font-bold bg-[#12131c]/90 px-3 py-1 rounded-full border border-[color:var(--accent)]/30 backdrop-blur-sm pointer-events-none z-50"
+                  className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[color:var(--accent)] font-mono text-[10px] sm:text-sm font-bold bg-[#12131c]/90 px-3 py-1 rounded-full border border-[color:var(--accent)]/30 backdrop-blur-sm pointer-events-none z-50"
                 >
                   Feb 05, 2004
                 </motion.div>
               )}
             </AnimatePresence>
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white group-hover:text-[color:var(--accent)] transition-colors duration-300">
+            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white group-hover:text-[color:var(--accent)] transition-colors duration-300">
               <AnimatedCounter value={myAge} duration={1.5} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors duration-300">Age</span>
+            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors duration-300">Age</span>
           </button>
 
           {/* Years of experience */}
-          <div className="flex items-center gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100">
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100">
+            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <AnimatedCounter value={0} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Years of<br />experience</span>
+            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left">Years of<br />experience</span>
           </div>
 
           <button 
@@ -589,12 +589,12 @@ export default function ProfessionalPage() {
               }
             }} 
             onMouseEnter={() => playSound("hover")}
-            className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
+            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={14} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects worked<br />on</span>
+            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors">Projects worked<br />on</span>
           </button>
 
           <button 
@@ -609,16 +609,16 @@ export default function ProfessionalPage() {
               }
             }} 
             onMouseEnter={() => playSound("hover")}
-            className="flex items-center gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
           >
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
+            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={9} />
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
+            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
           </button>
 
-          <div className="flex items-center gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100" data-cursor-select="true">
-            <span className="text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100" data-cursor-select="true">
+            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <button
                 type="button"
                 onClick={() => {
@@ -631,7 +631,7 @@ export default function ProfessionalPage() {
                 <AnimatedCounter value={45} />
               </button>
             </span>
-            <span className="text-sm font-mono text-[color:var(--muted)] leading-tight">Microcredentials</span>
+            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left">Microcredentials</span>
           </div>
         </div>
 
@@ -645,15 +645,15 @@ export default function ProfessionalPage() {
             onMouseEnter={() => playSound("hover")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative flex items-center justify-center gap-3 px-8 py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden"
+            className="relative flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group cursor-pointer overflow-hidden whitespace-nowrap"
           >
-            <span className="relative flex items-center gap-3 z-20">
+            <span className="relative flex items-center gap-2 sm:gap-3 z-20">
               <span className="relative flex-none z-10">
-                <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
+                <span className="block w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] sm:group-hover:scale-[150] origin-center" />
               </span>
 
-              <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
-                View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
+              <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-xs sm:text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+                View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300 hidden sm:inline-block">→</span>
               </span>
             </span>
           </motion.div>

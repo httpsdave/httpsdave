@@ -305,13 +305,13 @@ export default function PersonalPage() {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-start text-center min-h-[70vh] px-4 pt-40 md:pt-56 pb-16">
+      <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-start text-center min-h-[70vh] px-4 pt-32 md:pt-56 pb-16">
         
-        <h1 className="text-4xl md:text-6xl font-mono text-gray-500 mb-6 tracking-tight">
+        <h1 className="text-3xl md:text-6xl font-mono text-gray-500 mb-4 md:mb-6 tracking-tight">
           Hello again.
         </h1>
 
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-4xl md:text-6xl font-mono tracking-tight mb-12">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-6xl font-mono tracking-tight mb-8 md:mb-12">
           <span className="text-gray-300">People call me</span>
           
           <motion.div
@@ -453,9 +453,9 @@ export default function PersonalPage() {
           </motion.div>
         </div>
 
-        <div className="flex items-center justify-center gap-3 text-xl md:text-3xl text-gray-500 font-mono">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-xl md:text-3xl text-gray-500 font-mono">
           <span>Dave is</span>
-          <div className="relative w-48 flex items-center justify-start text-left h-[40px]">
+          <div className="relative w-32 sm:w-48 flex items-center justify-start text-left h-[30px] sm:h-[40px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={adjIndex}
@@ -503,10 +503,10 @@ export default function PersonalPage() {
       </section>
 
       {/* Hobbies Section */}
-      <section className="mx-auto w-full max-w-[1380px] px-6 pt-24 md:pt-36 pb-24">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-4">Dave's Hobbies</h2>
-          <p className="text-gray-500 font-mono text-sm md:text-base">I like to stay active. I pick up new interests but some remain constant.</p>
+      <section className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 pt-16 md:pt-36 pb-16 md:pb-24">
+        <div className="mb-8 md:mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-2 md:mb-4">Dave's Hobbies</h2>
+          <p className="text-gray-500 font-mono text-xs sm:text-sm md:text-base px-4">I like to stay active. I pick up new interests but some remain constant.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(8,minmax(0,1fr))] gap-4 lg:gap-6 min-h-[600px] relative w-full">
@@ -628,9 +628,9 @@ export default function PersonalPage() {
       </section>
 
       {/* Components of My Life Carousel Section */}
-      <section className="mx-auto w-full max-w-6xl py-24 relative overflow-hidden">
-        <div className="px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <h2 className="text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of <span className="text-emerald-500">my life</span></h2>
+      <section className="mx-auto w-full max-w-6xl py-12 md:py-24 relative overflow-hidden">
+        <div className="px-4 md:px-6 mb-8 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of <span className="text-emerald-500">my life</span></h2>
           <div className="flex items-center gap-3">
             <button 
               onClick={scrollLeft}
@@ -666,7 +666,7 @@ export default function PersonalPage() {
                   playSound("card");
                   setActiveFacet(facet);
                 }}
-                className={`min-w-[320px] md:min-w-[400px] snap-center h-[560px] md:h-[640px] rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-6 md:p-8 group`}
+                className={`min-w-[85vw] sm:min-w-[320px] md:min-w-[400px] snap-center h-[480px] sm:h-[560px] md:h-[640px] rounded-xl sm:rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-5 sm:p-6 md:p-8 group`}
               >
                 {/* Full-card Image Background */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -713,7 +713,7 @@ export default function PersonalPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative w-full max-w-2xl bg-[#111218] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
+              className="relative w-[95vw] md:w-full max-w-2xl bg-[#111218] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
             >
               <button 
                 onClick={() => {
@@ -794,10 +794,10 @@ export default function PersonalPage() {
         </div>
 
         {/* Main Outro Container with border trail */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto group">
+        <div className="relative z-10 w-full max-w-7xl mx-auto group px-4 sm:px-6">
           
           {/* Subtle trail glow behind the container */}
-          <div className="absolute inset-[-6px] rounded-[calc(1.5rem+6px)] overflow-hidden z-0 blur-[6px] opacity-70 pointer-events-none transition-opacity duration-500 group-hover:opacity-100">
+          <div className="absolute inset-[-6px] rounded-[calc(1.5rem+6px)] overflow-hidden z-0 blur-[6px] opacity-70 pointer-events-none transition-opacity duration-500 group-hover:opacity-100 mx-4 sm:mx-6">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)] animate-[spin_12s_linear_infinite]"></div>
           </div>
 
@@ -883,10 +883,10 @@ export default function PersonalPage() {
                 ))}
               </div>
 
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 z-10 pb-2">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 z-10 pb-2 text-center px-2">
                 Thank you.
               </h2>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-mono text-white font-bold mb-4 z-10 text-center px-4">
+              <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-mono text-white font-bold mb-4 z-10 text-center px-4">
                 for visiting my profile
             </h2>
 
