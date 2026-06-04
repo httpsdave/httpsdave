@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import confetti from "canvas-confetti";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact, SiFastapi, SiSqlite, SiNodedotjs, SiThreedotjs, SiPhp } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaUser, FaCogs, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact, SiFastapi, SiSqlite, SiNodedotjs, SiThreedotjs, SiPhp } from "react-icons/si";
 import { useSound } from "@/components/SoundContext";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
@@ -792,7 +792,8 @@ export default function ProfessionalPage() {
         {/* Short Profile Section */}
         <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 lg:px-8 xl:px-0">
           <div className="mb-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-mono text-white font-bold tracking-tight flex items-center justify-center gap-4">
+              <FaUser className="text-[color:var(--accent)]" />
               Short <span className="text-[color:var(--accent)]">profile</span>
             </h2>
           </div>
@@ -964,7 +965,8 @@ export default function ProfessionalPage() {
 
         {/* Skills Section */}
         <div className="mt-12 mb-32 flex flex-col w-full max-w-[1300px] mx-auto px-4 lg:px-8 xl:px-0">
-          <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-mono text-white mb-16 text-center font-bold tracking-tight flex items-center justify-center gap-4">
+            <FaCogs className="text-[color:var(--accent)]" />
             Skills
           </h2>
 
