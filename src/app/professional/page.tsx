@@ -676,7 +676,7 @@ export default function ProfessionalPage() {
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] max-w-[90vw] md:max-w-[70vw] lg:max-w-[55vw]"
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] bg-[#12131c] border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col gap-6 items-center w-[90%] sm:w-fit max-w-[90vw]"
                 >
                   <h3 className="text-xl font-mono text-white font-bold tracking-tight">Choose Platform</h3>
                   <div className="flex items-center gap-6 w-full justify-center">
