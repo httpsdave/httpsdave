@@ -450,9 +450,9 @@ export default function ProfessionalPage() {
           </div>
 
           {/* Right Column: Image Circle */}
-          <div className="md:w-1/2 flex justify-center md:justify-end relative">
+          <div className="md:w-1/2 flex justify-center lg:justify-end xl:justify-end relative mt-16 md:mt-0 xl:mt-0 lg:mt-0">
             <div
-              className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95 group"
+              className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-95 group shrink-0"
               onClick={nextImage}
             >
               <style dangerouslySetInnerHTML={{ __html: `
@@ -544,10 +544,10 @@ export default function ProfessionalPage() {
         </div>
 
         {/* Stats Row */}
-        <div ref={statsRef} className="mt-24 flex justify-between items-start gap-1 sm:gap-10 md:gap-16 pb-10 w-full group/stats">
+        <div ref={statsRef} className="mt-24 grid grid-cols-2 md:flex md:flex-wrap md:justify-center lg:justify-between items-start gap-4 sm:gap-6 md:gap-10 pb-10 w-full group/stats">
           <button 
             type="button"
-            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer relative group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start"
             onClick={handleAgeClick}
             onMouseEnter={() => playSound("hover")}
           >
@@ -570,7 +570,7 @@ export default function ProfessionalPage() {
           </button>
 
           {/* Years of experience */}
-          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100">
+          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start">
             <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <AnimatedCounter value={0} />
             </span>
@@ -589,7 +589,7 @@ export default function ProfessionalPage() {
               }
             }} 
             onMouseEnter={() => playSound("hover")}
-            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start"
           >
             <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={14} />
@@ -609,7 +609,7 @@ export default function ProfessionalPage() {
               }
             }} 
             onMouseEnter={() => playSound("hover")}
-            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100"
+            className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start"
           >
             <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
               <AnimatedCounter value={9} />
@@ -617,7 +617,7 @@ export default function ProfessionalPage() {
             <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
           </button>
 
-          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100" data-cursor-select="true">
+          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start col-span-2 md:col-span-1" data-cursor-select="true">
             <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
               <button
                 type="button"
@@ -797,10 +797,10 @@ export default function ProfessionalPage() {
               Short <span className="text-[color:var(--accent)]">profile</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:auto-rows-[minmax(0,_auto)]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:auto-rows-[minmax(0,_auto)]">
             
             {/* 1. Developer building... */}
-            <div className="group md:col-span-2 md:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
+            <div className="group lg:col-span-2 lg:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
                <Image
                  src={codingImg}
                  alt="Coding background"
@@ -819,7 +819,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 2. Fluent in... */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
+            <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
                <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
                   Fluent in English<br />
                   and Filipino<br />
@@ -828,7 +828,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 3. Tech Stack */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
+            <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
                {/* Background Drift Chips (Made bigger and more visible, matching exact style of 2nd image) */}
                <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 flex flex-col gap-4 opacity-[0.88] pointer-events-none z-0 scale-[1.02] origin-right">
                   <div className="flex gap-2 justify-end">
@@ -855,7 +855,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 4. Web Developer designer */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] px-8 py-4 flex flex-col items-center justify-center relative overflow-hidden shadow-xl min-h-[80px] md:min-h-[100px]">
+            <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] px-8 py-4 flex flex-col items-center justify-center relative overflow-hidden shadow-xl min-h-[80px] md:min-h-[100px]">
                <div 
                  className="absolute inset-0 pointer-events-none z-0"
                  style={{ maskImage: 'linear-gradient(to right, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to right, black 30%, transparent 85%)' }}
@@ -889,7 +889,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 5. The Inside Scoop */}
-            <div className="group md:col-span-2 md:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
+            <div className="group lg:col-span-2 lg:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
                {/* Subtle background grid */}
                <div className="absolute inset-0 z-0">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0" />
@@ -904,18 +904,18 @@ export default function ProfessionalPage() {
                   <div className="absolute top-[80px] left-[880px] w-6 h-6 rounded-md border border-white/5" />
                </div>
                
-               <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[50%] group-hover:translate-x-1.5 transition-transform duration-300">
+               <div className="relative z-30 flex-1 flex flex-col justify-center max-w-[60%] lg:max-w-[50%] group-hover:translate-x-1.5 transition-transform duration-300">
                   <p className="text-gray-400 font-mono mb-2 leading-relaxed">
                     The Inside<br/>Scoop
                   </p>
-                  <h3 className="text-2xl md:text-[34px] font-mono font-bold text-white leading-snug tracking-tight">
+                  <h3 className="text-2xl md:text-[28px] lg:text-[34px] font-mono font-bold text-white leading-snug tracking-tight">
                      Graduating soon,<br/>exploring what's next
                   </h3>
                </div>
 
                {/* Glassmorphic Code Card */}
                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:block">
-                 <div className="bg-[#1a1c2b]/30 backdrop-blur-md border border-white/10 rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[450px]">
+                 <div className="bg-[#1a1c2b]/30 backdrop-blur-md border border-white/10 rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[350px] lg:w-[450px]">
                     {/* Pinkish/Purple subtle glow behind the text */}
                     <div className="absolute top-1/4 right-8 w-[150px] h-[150px] bg-purple-500/15 blur-[60px] rounded-full pointer-events-none" />
                     
@@ -936,7 +936,7 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 6. Ask a Question */}
-            <div className="group md:col-span-1 md:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[110px] md:min-h-[135px]">
+            <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[110px] md:min-h-[135px]">
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3)_0%,transparent_70%)] pointer-events-none" />
                
                <h3 className="text-xl md:text-[23px] font-mono font-bold text-white relative z-10 mt-2 leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
