@@ -4,9 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSound } from "@/components/SoundContext";
+import { useTheme } from "@/components/ThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { LuVolume2, LuVolumeX } from "react-icons/lu";
+import { LuMoon, LuVolume2, LuVolumeX } from "react-icons/lu";
 
 const navItems = [
   { href: "/professional", label: "Professional" },
@@ -17,7 +18,13 @@ const navItems = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const { isMuted, toggleMuted, playSound } = useSound();
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const showThemeToggle =
+    pathname === "/professional" ||
+    pathname.startsWith("/professional/") ||
+    pathname === "/contact" ||
+    pathname.startsWith("/contact/");
 
   const handleSoundToggle = () => {
     if (isMuted) {
@@ -28,6 +35,11 @@ export default function SiteHeader() {
 
     playSound("ui");
     toggleMuted();
+  };
+
+  const handleThemeToggle = () => {
+    playSound("ui");
+    toggleTheme();
   };
 
   return (
@@ -138,6 +150,22 @@ export default function SiteHeader() {
                 <LuVolume2 size={24} />
               )}
             </button>
+            {showThemeToggle && (
+              <button
+                type="button"
+                onClick={handleThemeToggle}
+                aria-pressed={theme === "light"}
+                aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+                title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+                className={`transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.85)]"
+                    : "text-[color:var(--muted)] hover:text-[color:var(--accent)]"
+                }`}
+              >
+                <LuMoon size={23} fill={theme === "light" ? "currentColor" : "none"} />
+              </button>
+            )}
           </div>
         </div>
         <div className="flex items-center md:hidden">
@@ -241,20 +269,37 @@ export default function SiteHeader() {
                 </nav>
 
                 <div className="mt-auto flex flex-col items-center gap-4">
-                  <span className="text-xs text-gray-500 font-mono tracking-widest uppercase">Sound Settings</span>
-                  <button
-                    type="button"
-                    onClick={handleSoundToggle}
-                    aria-pressed={!isMuted}
-                    aria-label={isMuted ? "Enable sound" : "Mute sound"}
-                    className="text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg"
-                  >
-                    {isMuted ? (
-                      <LuVolumeX size={24} />
-                    ) : (
-                      <LuVolume2 size={24} />
+                  <span className="text-xs text-gray-500 font-mono tracking-widest uppercase">Settings</span>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleSoundToggle}
+                      aria-pressed={!isMuted}
+                      aria-label={isMuted ? "Enable sound" : "Mute sound"}
+                      className="text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg"
+                    >
+                      {isMuted ? (
+                        <LuVolumeX size={24} />
+                      ) : (
+                        <LuVolume2 size={24} />
+                      )}
+                    </button>
+                    {showThemeToggle && (
+                      <button
+                        type="button"
+                        onClick={handleThemeToggle}
+                        aria-pressed={theme === "light"}
+                        aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+                        className={`transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg ${
+                          theme === "light"
+                            ? "text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.85)]"
+                            : "text-[color:var(--muted)] hover:text-[color:var(--accent)]"
+                        }`}
+                      >
+                        <LuMoon size={24} fill={theme === "light" ? "currentColor" : "none"} />
+                      </button>
                     )}
-                  </button>
+                  </div>
                 </div>
               </div>
             </motion.div>

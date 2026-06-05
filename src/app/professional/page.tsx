@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { cloneElement, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
 import confetti from "canvas-confetti";
 import { FaGithub, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaUserGraduate, FaUser, FaCogs, FaLocationArrow, FaLaptopCode, FaServer, FaLightbulb, FaMobileAlt, FaEnvelope, FaMapMarkerAlt, FaCopy } from "react-icons/fa"; import { SiNextdotjs, SiTypescript, SiTailwindcss, SiVuedotjs, SiLaravel, SiReact, SiFastapi, SiSqlite, SiNodedotjs, SiThreedotjs, SiPhp } from "react-icons/si";
 import { useSound } from "@/components/SoundContext";
+import { useTheme } from "@/components/ThemeContext";
 import spcImg from "../../SPC_7776.jpeg";
 import bubuImg from "../../bubududout.webp";
 import credlyImg from "../../credly.png";
@@ -142,6 +143,28 @@ const projectsData = [
   }
 ];
 
+const projectIconLightColors: Record<string, string[]> = {
+  Aux: ["#111827"],
+  Ritmo: ["#111827", "#111827"],
+  Juris: ["#111827"],
+};
+
+function renderProjectIcon(icon: React.ReactElement, projectTitle: string, index: number, isLightMode: boolean) {
+  const lightColor = projectIconLightColors[projectTitle]?.[index];
+
+  if (!isLightMode || !lightColor) {
+    return icon;
+  }
+
+  return cloneElement(icon, { color: lightColor });
+}
+
+function expandingButtonTextClass(isLightMode: boolean, sizeClass: string) {
+  return `font-mono ${
+    isLightMode ? "text-[color:var(--fg)] group-hover:text-white" : "text-white/90 group-hover:text-[#0a0b14]"
+  } ${sizeClass} font-bold tracking-wide z-30 relative transition-colors duration-300`;
+}
+
 const experienceData = [
   {
     title: "Frontend Developer",
@@ -239,6 +262,8 @@ export default function ProfessionalPage() {
   const statsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const { playSound } = useSound();
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
 
   const handleCopyEmail = () => {
     playSound("ui");
@@ -316,7 +341,7 @@ export default function ProfessionalPage() {
   };
 
   return (
-    <div className="flex-1 relative flex flex-col justify-center min-h-[85vh] pt-20 md:pt-24 overflow-x-hidden">
+    <div className="professional-page flex-1 relative flex flex-col justify-center min-h-[85vh] pt-20 md:pt-24 overflow-x-hidden transition-colors duration-300">
       
       {/* Floating Balloons Portal */}
       <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
@@ -652,7 +677,7 @@ export default function ProfessionalPage() {
                 <span className="block w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] sm:group-hover:scale-[150] origin-center" />
               </span>
 
-              <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-xs sm:text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+              <span className={expandingButtonTextClass(isLightMode, "text-xs sm:text-lg")}>
                 View Microcredentials <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300 hidden sm:inline-block">→</span>
               </span>
             </span>
@@ -747,8 +772,9 @@ export default function ProfessionalPage() {
                         layoutId="eduHoverBox"
                         className="absolute inset-0 rounded-2xl z-0"
                         style={{
-                          backgroundColor: "rgba(14, 42, 34, 0.95)", /* Deep green/teal fill */
+                          backgroundColor: isLightMode ? "rgba(226, 250, 244, 0.96)" : "rgba(14, 42, 34, 0.95)",
                           border: "1px solid var(--accent)",
+                          boxShadow: isLightMode ? "inset 0 0 0 1px rgba(8, 124, 97, 0.14), 0 18px 45px rgba(8, 124, 97, 0.12)" : undefined,
                         }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -800,7 +826,7 @@ export default function ProfessionalPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:auto-rows-[minmax(0,_auto)]">
             
             {/* 1. Developer building... */}
-            <div className="group lg:col-span-2 lg:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
+            <div className="professional-dark-profile-card group lg:col-span-2 lg:row-span-2 rounded-[2rem] bg-[#0b0e17] border border-white/5 overflow-hidden relative p-8 md:p-12 flex items-end shadow-xl min-h-[300px] md:min-h-[450px]">
                <Image
                  src={codingImg}
                  alt="Coding background"
@@ -809,7 +835,7 @@ export default function ProfessionalPage() {
                  className="object-cover opacity-25 z-0 pointer-events-none"
                  priority
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-black/30 to-transparent z-10" />
+               <div className="professional-dark-profile-gradient absolute inset-0 bg-gradient-to-t from-[#05070d] via-black/30 to-transparent z-10" />
                <h3 className="relative z-20 text-2xl md:text-4xl font-mono font-bold text-white max-w-lg leading-tight tracking-tight group-hover:translate-x-1.5 transition-transform duration-300">
                   Developer building<br />
                   clean, reliable<br />
@@ -860,10 +886,14 @@ export default function ProfessionalPage() {
                  className="absolute inset-0 pointer-events-none z-0"
                  style={{ maskImage: 'linear-gradient(to right, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to right, black 30%, transparent 85%)' }}
                >
-                 <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
-                 <div className="absolute top-[0px] left-[40px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
-                 <div className="absolute top-[80px] left-[120px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
-                 <div className="absolute top-[40px] left-[200px] w-[40px] h-[40px] bg-gradient-to-br from-white/10 to-white/0" />
+                 <div className={`absolute inset-0 bg-[size:40px_40px] ${
+                   isLightMode
+                     ? "bg-[linear-gradient(to_right,rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.08)_1px,transparent_1px)]"
+                     : "bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]"
+                 }`} />
+                 <div className={`absolute top-[0px] left-[40px] w-[40px] h-[40px] bg-gradient-to-br ${isLightMode ? "from-emerald-900/10 to-transparent" : "from-white/10 to-white/0"}`} />
+                 <div className={`absolute top-[80px] left-[120px] w-[40px] h-[40px] bg-gradient-to-br ${isLightMode ? "from-emerald-900/10 to-transparent" : "from-white/10 to-white/0"}`} />
+                 <div className={`absolute top-[40px] left-[200px] w-[40px] h-[40px] bg-gradient-to-br ${isLightMode ? "from-emerald-900/10 to-transparent" : "from-white/10 to-white/0"}`} />
                </div>
                
                <div className="w-fit transition-transform duration-300 group-hover:translate-x-1.5 z-10 relative">
@@ -873,17 +903,19 @@ export default function ProfessionalPage() {
                  </h3>
                </div>
                
-               <div className="absolute bottom-[-10px] right-[-10px] w-36 h-20 bg-[#16171e]/95 border border-white/10 rounded-xl p-3 flex flex-col justify-between shadow-2xl z-10 origin-bottom-right transform scale-100 group-hover:scale-105 transition-all duration-500">
+               <div className={`absolute bottom-[-10px] right-[-10px] w-36 h-20 rounded-xl p-3 flex flex-col justify-between shadow-2xl z-10 origin-bottom-right transform scale-100 group-hover:scale-105 transition-all duration-500 ${
+                 isLightMode ? "bg-white/95 border border-slate-900/10" : "bg-[#16171e]/95 border border-white/10"
+               }`}>
                   {/* Top row: circle + two pills */}
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-white/20 shrink-0"></div>
-                    <div className="w-10 h-2 rounded-full bg-white/15 shrink-0"></div>
-                    <div className="w-6 h-2 rounded-full bg-white/15 shrink-0"></div>
+                    <div className={`w-3 h-3 rounded-full shrink-0 ${isLightMode ? "bg-slate-900/25" : "bg-white/20"}`}></div>
+                    <div className={`w-10 h-2 rounded-full shrink-0 ${isLightMode ? "bg-slate-900/18" : "bg-white/15"}`}></div>
+                    <div className={`w-6 h-2 rounded-full shrink-0 ${isLightMode ? "bg-slate-900/18" : "bg-white/15"}`}></div>
                   </div>
                   {/* Bottom rows: lines */}
                   <div className="flex flex-col gap-2 mt-2">
-                    <div className="w-[85%] h-1.5 rounded-full bg-white/10"></div>
-                    <div className="w-[45%] h-1.5 rounded-full bg-white/10"></div>
+                    <div className={`w-[85%] h-1.5 rounded-full ${isLightMode ? "bg-slate-900/14" : "bg-white/10"}`}></div>
+                    <div className={`w-[45%] h-1.5 rounded-full ${isLightMode ? "bg-slate-900/14" : "bg-white/10"}`}></div>
                   </div>
                </div>
             </div>
@@ -936,7 +968,11 @@ export default function ProfessionalPage() {
             </div>
 
             {/* 6. Ask a Question */}
-            <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[110px] md:min-h-[135px]">
+            <div className={`group lg:col-span-1 lg:row-span-1 rounded-[2rem] p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-xl min-h-[110px] md:min-h-[135px] ${
+              isLightMode
+                ? "border border-emerald-900/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.92),rgba(236,253,248,0.86))]"
+                : "border border-white/5 bg-gradient-to-br from-[#4c1d95] via-[#2e1065] to-[#0f052d]"
+            }`}>
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.3)_0%,transparent_70%)] pointer-events-none" />
                
                <h3 className="text-xl md:text-[23px] font-mono font-bold text-white relative z-10 mt-2 leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
@@ -953,8 +989,12 @@ export default function ProfessionalPage() {
                  <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#10b981_0%,#eab308_20%,#ec4899_40%,#8b5cf6_60%,#3b82f6_80%,#10b981_100%)]" />
                  
                  {/* Inner Button Canvas */}
-                 <span className="relative z-10 w-full h-full flex items-center justify-center bg-[#0c051a] group-hover:bg-[#150a2b] rounded-xl py-2 px-3 transition-colors duration-300 text-xs font-mono font-medium text-white gap-2">
-                   <FaCopy className={copied ? "text-[color:var(--accent)]" : "text-gray-400"} />
+                 <span className={`relative z-10 w-full h-full flex items-center justify-center rounded-xl py-2 px-3 transition-colors duration-300 text-xs font-mono font-medium gap-2 ${
+                   isLightMode
+                     ? "bg-white text-[color:var(--fg)] border border-emerald-900/10 group-hover:bg-emerald-50 group-hover:text-emerald-950"
+                     : "bg-[#0c051a] group-hover:bg-[#150a2b] text-white"
+                 }`}>
+                   <FaCopy className={copied || isLightMode ? "text-[color:var(--accent)]" : "text-gray-400"} />
                    <span>{copied ? "Copied!" : "Copy my email address"}</span>
                  </span>
                </button>
@@ -993,7 +1033,11 @@ export default function ProfessionalPage() {
                         visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
                       }}
                       onHoverStart={() => playSound("hover")}
-                      className="px-6 py-3 bg-[#171e36] text-[color:var(--accent)] font-sans text-lg md:text-xl font-medium transition-colors hover:bg-[color:var(--accent)] hover:text-[#0a0b14] cursor-grab active:cursor-grabbing"
+                      className={`px-6 py-3 font-sans text-lg md:text-xl font-medium transition-colors cursor-grab active:cursor-grabbing ${
+                        isLightMode
+                          ? "bg-white/80 border border-emerald-900/15 text-[color:var(--accent)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] hover:bg-[color:var(--accent)] hover:text-white"
+                          : "bg-[#171e36] text-[color:var(--accent)] hover:bg-[color:var(--accent)] hover:text-[#0a0b14]"
+                      }`}
                     >
                       {skill}
                     </motion.div>
@@ -1068,7 +1112,7 @@ export default function ProfessionalPage() {
                       <div className="flex items-center -space-x-2">
                         {project.icons.map((icon, i) => (
                           <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-lg z-10 relative shadow-md">
-                            {icon}
+                            {renderProjectIcon(icon, project.title, i, isLightMode)}
                           </div>
                         ))}
                       </div>
@@ -1103,7 +1147,7 @@ export default function ProfessionalPage() {
                     <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover:scale-[120] origin-center" />
                   </span>
 
-                  <span className="font-mono text-white/90 group-hover:text-[#0a0b14] text-lg font-bold tracking-wide z-30 relative transition-colors duration-300">
+                  <span className={expandingButtonTextClass(isLightMode, "text-lg")}>
                     Explore more projects <span className="inline-block opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">→</span>
                   </span>
                 </span>
