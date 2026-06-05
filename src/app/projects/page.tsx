@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { cloneElement, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin, FaGithub, FaLocationArrow } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiVuedotjs, SiLaravel, SiPhp, SiNodedotjs } from "react-icons/si";
 import { useSound } from "@/components/SoundContext";
+import { useTheme } from "@/components/ThemeContext";
 
 const projectsData = [
   {
@@ -55,9 +56,19 @@ const projectsData = [
   },
 ];
 
+function renderProjectIcon(icon: React.ReactElement, index: number, isLightMode: boolean) {
+  if (!isLightMode || index !== 0) {
+    return icon;
+  }
+
+  return cloneElement(icon, { color: "#111827" });
+}
+
 export default function ProjectsPage() {
   const [showNav, setShowNav] = useState(true);
   const { playSound } = useSound();
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,9 +81,13 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0b14] relative overflow-hidden flex flex-col">
-      <div className="absolute inset-0 z-0 bg-[#0a0b14]" />
-      <div className="absolute top-0 w-full h-[600px] z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[rgba(39,243,179,0.08)] via-[#0a0b14] to-[#0a0b14] opacity-70 pointer-events-none" />
+    <div className={`projects-page min-h-screen relative overflow-hidden flex flex-col ${isLightMode ? "bg-[#f4f7fb]" : "bg-[#0a0b14]"}`}>
+      <div className={`absolute inset-0 z-0 ${isLightMode ? "bg-transparent" : "bg-[#0a0b14]"}`} />
+      <div className={`absolute top-0 w-full h-[600px] z-0 pointer-events-none ${
+        isLightMode
+          ? "bg-[radial-gradient(ellipse_at_center,rgba(8,124,97,0.12),transparent_70%)] opacity-90"
+          : "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[rgba(39,243,179,0.08)] via-[#0a0b14] to-[#0a0b14] opacity-70"
+      }`} />
 
       {/* Top Animated Grid Background */}
       <div className="absolute top-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden">
@@ -114,19 +129,27 @@ export default function ProjectsPage() {
                 whileHover={{ rotateX: 15, y: -10, scale: 0.96, transition: { type: "spring", stiffness: 350, damping: 20 } }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="flex flex-col bg-[#0b0e17] rounded-3xl border border-white/5 group shadow-2xl relative w-full origin-bottom cursor-grab active:cursor-grabbing"
+                className={`flex flex-col rounded-3xl border group shadow-2xl relative w-full origin-bottom cursor-grab active:cursor-grabbing ${
+                  isLightMode ? "bg-white/88 border-slate-900/10" : "bg-[#0b0e17] border-white/5"
+                }`}
               >
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:-translate-y-2">
-                  <div className="bg-[#0a0b14]/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-white/90 text-xs md:text-sm font-mono flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.2)] whitespace-nowrap">
+                  <div className={`backdrop-blur-md border px-4 py-2 rounded-full text-xs md:text-sm font-mono flex items-center justify-center whitespace-nowrap ${
+                    isLightMode ? "bg-white/90 border-slate-900/10 text-[color:var(--fg)] shadow-[0_12px_24px_rgba(15,23,42,0.1)]" : "bg-[#0a0b14]/90 border-white/10 text-white/90 shadow-[0_0_20px_rgba(0,255,255,0.2)]"
+                  }`}>
                     {project.tooltip || project.linkUrl}
                   </div>
                 </div>
 
-                <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl">
+                <div className={`w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative flex items-end justify-center rounded-t-3xl ${
+                  isLightMode ? "bg-slate-100" : "bg-[#13182b]"
+                }`}>
                   <div className="w-full h-full rounded-t-[14px] overflow-hidden shadow-2xl relative z-30 flex">
                     <img src={project.image} alt={project.title} className="object-cover w-full h-full object-top" />
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0b0e17] to-transparent z-40 rounded-t-[14px]" />
+                  <div className={`absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t ${
+                    isLightMode ? "from-white" : "from-[#0b0e17]"
+                  } to-transparent z-40 rounded-t-[14px]`} />
                 </div>
 
                 <div className="absolute top-[20px] bottom-[auto] h-[260px] md:h-[290px] left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-50 shadow-[0_0_15px_cyan] pointer-events-none" />
@@ -146,8 +169,10 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center -space-x-2">
                       {project.icons.map((icon, i) => (
-                        <div key={i} className="w-10 h-10 rounded-full bg-[#171e36] border-[3px] border-[#0b0e17] flex items-center justify-center text-lg z-10 relative shadow-md">
-                          {icon}
+                        <div key={i} className={`w-10 h-10 rounded-full border-[3px] flex items-center justify-center text-lg z-10 relative shadow-md ${
+                          isLightMode ? "bg-white border-slate-950" : "bg-[#171e36] border-[#0b0e17]"
+                        }`}>
+                          {renderProjectIcon(icon, i, isLightMode)}
                         </div>
                       ))}
                     </div>
@@ -173,20 +198,20 @@ export default function ProjectsPage() {
         <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 mb-24">
           <Link href="mailto:davedominc912@gmail.com" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
-            <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Email</span>
+            <span className={`relative z-10 text-xl font-mono font-bold transition-colors duration-500 tracking-wide ${isLightMode ? "text-[color:var(--fg)] group-hover:text-white" : "text-gray-300 group-hover:text-[#0a0b14]"}`}>Email</span>
           </Link>
           <Link href="https://github.com/httpsdave" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
-            <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">GitHub</span>
+            <span className={`relative z-10 text-xl font-mono font-bold transition-colors duration-500 tracking-wide ${isLightMode ? "text-[color:var(--fg)] group-hover:text-white" : "text-gray-300 group-hover:text-[#0a0b14]"}`}>GitHub</span>
           </Link>
           <Link href="https://www.linkedin.com/in/davegoze/" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("social")}>
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
-            <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">LinkedIn</span>
+            <span className={`relative z-10 text-xl font-mono font-bold transition-colors duration-500 tracking-wide ${isLightMode ? "text-[color:var(--fg)] group-hover:text-white" : "text-gray-300 group-hover:text-[#0a0b14]"}`}>LinkedIn</span>
           </Link>
           <Link href="/DaveDominicGoze-Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 overflow-hidden flex items-center justify-center" onClick={() => playSound("ui")}
           >
             <span className="absolute inset-0 bg-[color:var(--accent)] origin-left scale-x-0 transition-transform duration-500 ease-out z-0 group-hover:scale-x-100" />
-            <span className="relative z-10 text-xl font-mono font-bold text-gray-300 group-hover:text-[#0a0b14] transition-colors duration-500 tracking-wide">Resume</span>
+            <span className={`relative z-10 text-xl font-mono font-bold transition-colors duration-500 tracking-wide ${isLightMode ? "text-[color:var(--fg)] group-hover:text-white" : "text-gray-300 group-hover:text-[#0a0b14]"}`}>Resume</span>
           </Link>
         </div>
 

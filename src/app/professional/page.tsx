@@ -924,16 +924,20 @@ export default function ProfessionalPage() {
             <div className="group lg:col-span-2 lg:row-span-2 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[300px] md:min-h-[450px]">
                {/* Subtle background grid */}
                <div className="absolute inset-0 z-0">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none z-0" />
+                  <div className={`absolute inset-0 bg-[size:80px_80px] pointer-events-none z-0 ${
+                    isLightMode
+                      ? "bg-[linear-gradient(to_right,rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.08)_1px,transparent_1px)]"
+                      : "bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]"
+                  }`} />
                   {/* Decorative boxes */}
                   <div className="absolute top-[80px] left-[400px] w-6 h-6 rounded-md bg-purple-500/20 border border-purple-500/30 blur-[0.5px]" />
-                  <div className="absolute top-[80px] left-[320px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[80px] left-[560px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[80px] left-[640px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[80px] left-[800px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[160px] left-[480px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[160px] left-[720px] w-6 h-6 rounded-md border border-white/5" />
-                  <div className="absolute top-[80px] left-[880px] w-6 h-6 rounded-md border border-white/5" />
+                  <div className={`absolute top-[80px] left-[320px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[80px] left-[560px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[80px] left-[640px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[80px] left-[800px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[160px] left-[480px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[160px] left-[720px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
+                  <div className={`absolute top-[80px] left-[880px] w-6 h-6 rounded-md border ${isLightMode ? "border-slate-900/10" : "border-white/5"}`} />
                </div>
                
                <div className="relative z-30 flex-1 flex flex-col justify-center max-w-[60%] lg:max-w-[50%] group-hover:translate-x-1.5 transition-transform duration-300">
@@ -947,7 +951,9 @@ export default function ProfessionalPage() {
 
                {/* Glassmorphic Code Card */}
                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:block">
-                 <div className="bg-[#1a1c2b]/30 backdrop-blur-md border border-white/10 rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[350px] lg:w-[450px]">
+                 <div className={`backdrop-blur-md rounded-l-3xl p-8 shadow-2xl relative overflow-hidden h-[300px] w-[350px] lg:w-[450px] ${
+                   isLightMode ? "bg-white/86 border border-slate-900/10" : "bg-[#1a1c2b]/30 border border-white/10"
+                 }`}>
                     {/* Pinkish/Purple subtle glow behind the text */}
                     <div className="absolute top-1/4 right-8 w-[150px] h-[150px] bg-purple-500/15 blur-[60px] rounded-full pointer-events-none" />
                     

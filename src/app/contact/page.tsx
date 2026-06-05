@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSound } from "@/components/SoundContext";
+import { useTheme } from "@/components/ThemeContext";
 
 type ContactOption = {
   title?: string;
@@ -114,6 +115,8 @@ function TimeWidget() {
 function HoverCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -125,7 +128,9 @@ function HoverCard({ children, className = "" }: { children: React.ReactNode; cl
 
   return (
     <div
-      className={`relative group rounded-3xl overflow-hidden bg-[#0b0e17] border border-white/5 shadow-2xl ${className}`}
+      className={`relative group rounded-3xl overflow-hidden border shadow-2xl ${
+        isLightMode ? "bg-white/86 border-slate-900/10" : "bg-[#0b0e17] border-white/5"
+      } ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -141,7 +146,9 @@ function HoverCard({ children, className = "" }: { children: React.ReactNode; cl
         }}
       />
       {/* Inner dark background so only the border is colored */}
-      <div className="absolute inset-[1px] bg-[#0b0e17]/95 backdrop-blur-3xl rounded-[calc(1.5rem-1px)] z-10" />
+      <div className={`absolute inset-[1px] backdrop-blur-3xl rounded-[calc(1.5rem-1px)] z-10 ${
+        isLightMode ? "bg-white/90" : "bg-[#0b0e17]/95"
+      }`} />
       
       {/* Content */}
       <div className="relative z-20 h-full w-full">
@@ -156,6 +163,8 @@ export default function ContactPage() {
   const [showNav, setShowNav] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { playSound } = useSound();
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
 
   useEffect(() => {
     document.title = "Contact | Dave Goze";
@@ -185,7 +194,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="relative min-h-[85vh] flex flex-col justify-center bg-[#0a0b14] overflow-hidden" onMouseMove={handlePageMouseMove}>
+    <div className={`contact-page relative min-h-[85vh] flex flex-col justify-center overflow-hidden ${
+      isLightMode ? "bg-[#f4f7fb] text-[color:var(--fg)]" : "bg-[#0a0b14]"
+    }`} onMouseMove={handlePageMouseMove}>
       
       {/* Base Grid Layer */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-grid opacity-30 [mask-image:linear-gradient(to_bottom,transparent_0%,white_10%,transparent_100%)]" />
@@ -194,8 +205,8 @@ export default function ContactPage() {
       <div 
         className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-grid"
         style={{
-          maskImage: `radial-gradient(400px circle at ${pageMousePos.x}px ${pageMousePos.y}px, rgba(255,255,255,0.7), transparent)`,
-          WebkitMaskImage: `radial-gradient(400px circle at ${pageMousePos.x}px ${pageMousePos.y}px, rgba(255,255,255,0.7), transparent)`,
+          maskImage: `radial-gradient(400px circle at ${pageMousePos.x}px ${pageMousePos.y}px, rgba(255,255,255,${isLightMode ? "0.9" : "0.7"}), transparent)`,
+          WebkitMaskImage: `radial-gradient(400px circle at ${pageMousePos.x}px ${pageMousePos.y}px, rgba(255,255,255,${isLightMode ? "0.9" : "0.7"}), transparent)`,
         }}
       />
 
@@ -268,14 +279,18 @@ export default function ContactPage() {
                     <motion.div 
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative flex items-center justify-center gap-3 px-6 py-2.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-8 w-fit"
+                      className={`relative flex items-center justify-center gap-3 px-6 py-2.5 rounded-[40px] border transition-colors group/btn cursor-pointer overflow-hidden mt-8 w-fit ${
+                        isLightMode ? "border-emerald-900/15 bg-white/70" : "border-white/10 bg-[#0a0b14]/50"
+                      }`}
                     >
                       <span className="relative flex items-center gap-2 z-20">
                         <span className="relative flex-none z-10">
                           <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover/btn:scale-[120] origin-center" />
                         </span>
 
-                        <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-sm font-bold tracking-wide z-30 relative transition-colors duration-300">
+                        <span className={`font-mono text-sm font-bold tracking-wide z-30 relative transition-colors duration-300 ${
+                          isLightMode ? "text-[color:var(--fg)] group-hover/btn:text-white" : "text-white/90 group-hover/btn:text-[#0a0b14]"
+                        }`}>
                           {option.label}
                         </span>
                       </span>
@@ -307,7 +322,9 @@ export default function ContactPage() {
                   id="name"
                   name="name"
                   type="text"
-                  className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full"
+                  className={`rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full ${
+                    isLightMode ? "bg-white/80 border border-slate-900/10 text-[color:var(--fg)] placeholder:text-slate-400" : "bg-[#111427]/50 border border-white/10 text-white"
+                  }`}
                   placeholder="Your name"
                   autoComplete="name"
                 />
@@ -321,7 +338,9 @@ export default function ContactPage() {
                   id="email"
                   name="email"
                   type="email"
-                  className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full"
+                  className={`rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors w-full ${
+                    isLightMode ? "bg-white/80 border border-slate-900/10 text-[color:var(--fg)] placeholder:text-slate-400" : "bg-[#111427]/50 border border-white/10 text-white"
+                  }`}
                   placeholder="you@example.com"
                   autoComplete="email"
                 />
@@ -336,7 +355,9 @@ export default function ContactPage() {
                 id="message"
                 name="message"
                 rows={4}
-                className="bg-[#111427]/50 border border-white/10 text-white rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors resize-none w-full"
+                className={`rounded-xl sm:rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-xs sm:text-sm font-sans focus:outline-none focus:border-[color:var(--accent)] transition-colors resize-none w-full ${
+                  isLightMode ? "bg-white/80 border border-slate-900/10 text-[color:var(--fg)] placeholder:text-slate-400" : "bg-[#111427]/50 border border-white/10 text-white"
+                }`}
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -345,14 +366,18 @@ export default function ContactPage() {
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-3.5 rounded-[40px] border border-white/10 bg-[#0a0b14]/50 transition-colors group/btn cursor-pointer overflow-hidden mt-2 w-full"
+                className={`relative flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-8 py-3 sm:py-3.5 rounded-[40px] border transition-colors group/btn cursor-pointer overflow-hidden mt-2 w-full ${
+                  isLightMode ? "border-emerald-900/15 bg-white/70" : "border-white/10 bg-[#0a0b14]/50"
+                }`}
               >
                 <span className="relative flex items-center gap-2 sm:gap-3 z-20">
                   <span className="relative flex-none z-10 hidden sm:block">
                     <span className="block w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] transition-transform duration-700 ease-out group-hover/btn:scale-[120] origin-center" />
                   </span>
 
-                  <span className="font-mono text-white/90 group-hover/btn:text-[#0a0b14] text-[10px] sm:text-sm font-bold tracking-wide z-30 relative transition-colors duration-300 flex-1 text-center whitespace-normal sm:whitespace-nowrap leading-tight">
+                  <span className={`font-mono text-[10px] sm:text-sm font-bold tracking-wide z-30 relative transition-colors duration-300 flex-1 text-center whitespace-normal sm:whitespace-nowrap leading-tight ${
+                    isLightMode ? "text-[color:var(--fg)] group-hover/btn:text-white" : "text-white/90 group-hover/btn:text-[#0a0b14]"
+                  }`}>
                     Email davedominic912@gmail.com <span className="inline-block opacity-0 -ml-2 group-hover/btn:opacity-100 group-hover/btn:ml-1 transition-all duration-300 hidden sm:inline-block">→</span>
                   </span>
                 </span>

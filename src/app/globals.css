@@ -176,6 +176,144 @@ html.light .professional-page [class*="opacity-25"] {
   opacity: 0.18 !important;
 }
 
+html.light .professional-page .professional-dark-profile-card {
+  background-color: #0b0e17 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.light .professional-page .professional-dark-profile-card img {
+  opacity: 0.25 !important;
+}
+
+html.light .professional-page .professional-dark-profile-card h3 {
+  color: #ffffff !important;
+}
+
+html.light .professional-page .professional-dark-profile-gradient {
+  --tw-gradient-from: #05070d var(--tw-gradient-from-position) !important;
+  --tw-gradient-via: rgba(0, 0, 0, 0.3) var(--tw-gradient-via-position) !important;
+}
+
+html.light .contact-page,
+html.light .projects-page {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(8, 124, 97, 0.12), transparent 32%),
+    linear-gradient(180deg, #f8fafc 0%, #eef4f7 48%, #f8fafc 100%);
+  color: var(--fg);
+}
+
+html.light .contact-page .bg-grid,
+html.light .projects-page .bg-grid {
+  background-image:
+    linear-gradient(rgba(23, 32, 51, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 51, 0.07) 1px, transparent 1px);
+}
+
+html.light .contact-page [class*="text-white"],
+html.light .contact-page [class*="text-gray-300"],
+html.light .contact-page [class*="text-gray-400"],
+html.light .projects-page [class*="text-white"],
+html.light .projects-page [class*="text-gray-300"],
+html.light .projects-page [class*="text-gray-400"] {
+  color: var(--fg) !important;
+}
+
+html.light .contact-page [class*="text-gray-400"],
+html.light .contact-page [class*="text-gray-500"],
+html.light .projects-page [class*="text-gray-400"],
+html.light .projects-page [class*="text-gray-500"] {
+  color: var(--muted) !important;
+}
+
+html.light .contact-page [class*="border-white/"],
+html.light .projects-page [class*="border-white/"] {
+  border-color: rgba(23, 32, 51, 0.12) !important;
+}
+
+html.light .projects-page [class*="bg-[#0a0b14]"],
+html.light .projects-page [class*="bg-[#0b0e17]"],
+html.light .projects-page [class*="bg-[#13182b]"] {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.light .projects-page [class*="bg-[#171e36]"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light .contact-page h1,
+html.light .contact-page h2,
+html.light .contact-page label {
+  color: var(--fg) !important;
+}
+
+html.light .contact-page p,
+html.light .contact-page div,
+html.light .contact-page span:not([class*="accent"]):not([class*="bg-[color:var(--accent)]"]) {
+  color: inherit;
+}
+
+html.light .contact-page h1 span:first-child,
+html.light .contact-page .font-mono.text-white,
+html.light .contact-page .font-bold.text-white,
+html.light .contact-page [class*="text-white"] {
+  color: var(--fg) !important;
+}
+
+html.light .contact-page [class*="text-gray-300"],
+html.light .contact-page [class*="text-gray-400"],
+html.light .contact-page [class*="text-gray-500"] {
+  color: var(--muted) !important;
+}
+
+html.light .contact-page input,
+html.light .contact-page textarea {
+  color: var(--fg) !important;
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(23, 32, 51, 0.12) !important;
+}
+
+html.light .contact-page input::placeholder,
+html.light .contact-page textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.light .personal-page {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(8, 124, 97, 0.12), transparent 32%),
+    linear-gradient(180deg, #f8fafc 0%, #eef4f7 48%, #f8fafc 100%);
+  color: var(--fg);
+}
+
+html.light .personal-page .bg-grid {
+  background-image:
+    linear-gradient(rgba(23, 32, 51, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 51, 0.07) 1px, transparent 1px);
+}
+
+html.light .personal-page [class*="text-white"],
+html.light .personal-page [class*="text-gray-300"],
+html.light .personal-page [class*="text-zinc-300"] {
+  color: var(--fg) !important;
+}
+
+html.light .personal-page [class*="text-gray-400"],
+html.light .personal-page [class*="text-gray-500"],
+html.light .personal-page [class*="text-zinc-400"],
+html.light .personal-page [class*="text-zinc-500"] {
+  color: var(--muted) !important;
+}
+
+html.light .personal-page [class*="bg-[#0a0b14]"],
+html.light .personal-page [class*="bg-[#0b0e17]"],
+html.light .personal-page [class*="bg-[#111218]"] {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.light .personal-page [class*="border-white/"],
+html.light .personal-page [class*="border-zinc-"] {
+  border-color: rgba(23, 32, 51, 0.12) !important;
+}
+
 .surface {
   background: linear-gradient(140deg, rgba(18, 24, 46, 0.85), rgba(12, 15, 28, 0.85));
   border: 1px solid var(--stroke);

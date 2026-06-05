@@ -23,8 +23,12 @@ export default function SiteHeader() {
   const showThemeToggle =
     pathname === "/professional" ||
     pathname.startsWith("/professional/") ||
+    pathname === "/personal" ||
+    pathname.startsWith("/personal/") ||
     pathname === "/contact" ||
-    pathname.startsWith("/contact/");
+    pathname.startsWith("/contact/") ||
+    pathname === "/projects" ||
+    pathname.startsWith("/projects/");
 
   const handleSoundToggle = () => {
     if (isMuted) {

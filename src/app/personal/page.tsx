@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 import Link from "next/link";
 import Image from "next/image";
 import { useSound } from "@/components/SoundContext";
+import { useTheme } from "@/components/ThemeContext";
 import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
@@ -195,6 +196,8 @@ export default function PersonalPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeFacet, setActiveFacet] = useState<typeof lifeFacets[0] | null>(null);
   const { playSound } = useSound();
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
   const smoothCursorX = useSpring(cursorX, { stiffness: 800, damping: 50 });
@@ -271,7 +274,7 @@ export default function PersonalPage() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-[#0a0b14] min-h-screen">
+    <div className={`personal-page relative overflow-hidden min-h-screen ${isLightMode ? "bg-[#f4f7fb] text-[color:var(--fg)]" : "bg-[#0a0b14]"}`}>
       {/* CSS Spotlights (White) — top-left and top-right pointing towards center */}
       <div 
         className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none z-[0] overflow-hidden"
@@ -307,12 +310,12 @@ export default function PersonalPage() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative z-10 w-full flex flex-col items-center justify-start text-center min-h-[70vh] px-4 pt-32 md:pt-56 pb-16">
         
-        <h1 className="text-3xl md:text-6xl font-mono text-gray-500 mb-4 md:mb-6 tracking-tight">
+        <h1 className={`text-3xl md:text-6xl font-mono mb-4 md:mb-6 tracking-tight ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-500"}`}>
           Hello again.
         </h1>
 
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 md:gap-6 text-2xl sm:text-4xl md:text-6xl font-mono tracking-tight mb-8 md:mb-12">
-          <span className="text-gray-300">People call me</span>
+          <span className={isLightMode ? "text-[color:var(--fg)]" : "text-gray-300"}>People call me</span>
           
           <motion.div
             whileHover="hover"
