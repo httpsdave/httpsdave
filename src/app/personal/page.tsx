@@ -598,6 +598,7 @@ export default function PersonalPage() {
               src={bikeImage} 
               alt="Promax PR50 Roadbike" 
               fill 
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 41vw, 38vw"
               className="object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
             />
             <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0a0b14] via-transparent to-[#0a0b14]/60 opacity-80" />
@@ -674,6 +675,7 @@ export default function PersonalPage() {
                     src={facet.coverImage}
                     alt={facet.coverAlt}
                     fill
+                    sizes="(max-width: 768px) 85vw, (max-width: 1200px) 33vw, 320px"
                     className="object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-b ${facet.bgGradient} opacity-40 group-hover:opacity-20 transition-opacity duration-500`} />
@@ -730,6 +732,7 @@ export default function PersonalPage() {
                   src={activeFacet.coverImage}
                   alt={activeFacet.coverAlt}
                   fill
+                  sizes="100vw"
                   className="object-cover"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-b ${activeFacet.bgGradient} opacity-80`} />
@@ -765,6 +768,7 @@ export default function PersonalPage() {
                          src={guitarImage}
                          alt="Arena 38C guitar"
                          fill
+                         sizes="(max-width: 768px) 100vw, 768px"
                          className="object-cover"
                        />
                      </div>
