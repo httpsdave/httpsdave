@@ -314,6 +314,30 @@ html.light .personal-page [class*="border-zinc-"] {
   border-color: rgba(23, 32, 51, 0.12) !important;
 }
 
+html.light .personal-page .personal-keep-dark,
+html.light .personal-page .personal-keep-dark [class*="bg-[#0a0b14]"],
+html.light .personal-page .personal-keep-dark [class*="bg-[#0b0e17]"] {
+  background-color: rgba(10, 11, 20, 0.78) !important;
+  border-color: rgba(39, 39, 42, 0.8) !important;
+}
+
+html.light .personal-page .personal-keep-dark [class*="text-white"],
+html.light .personal-page .personal-keep-dark [class*="text-gray-100"],
+html.light .personal-page .personal-keep-dark [class*="text-gray-200"],
+html.light .personal-page .personal-keep-dark [class*="text-gray-300"],
+html.light .personal-page .personal-keep-dark [class*="text-zinc-300"] {
+  color: #f8fafc !important;
+}
+
+html.light .personal-page .personal-outro-base,
+html.light .personal-page .personal-outro-card {
+  background-color: #ffffff !important;
+}
+
+html.light .personal-page .personal-outro-card h2:not(.text-transparent) {
+  color: var(--fg) !important;
+}
+
 .surface {
   background: linear-gradient(140deg, rgba(18, 24, 46, 0.85), rgba(12, 15, 28, 0.85));
   border: 1px solid var(--stroke);

@@ -322,7 +322,9 @@ export default function PersonalPage() {
             initial="rest"
             animate="animate"
             onHoverStart={() => playSound("fastWind", { force: true })}
-            className="relative inline-flex items-center justify-center px-2 py-2 bg-[#222324] rounded-none group cursor-grab active:cursor-grabbing overflow-hidden"
+            className={`relative inline-flex items-center justify-center px-2 py-2 rounded-none group cursor-grab active:cursor-grabbing overflow-hidden ${
+              isLightMode ? "bg-white border border-slate-900/15 shadow-[0_10px_30px_rgba(15,23,42,0.08)]" : "bg-[#222324]"
+            }`}
           >
             {/* Corner Dots */}
             <motion.div variants={{ animate: { opacity: [1, 0.4, 1], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" } } }} className="absolute top-0 left-0 w-2 h-2 bg-gray-400 rounded-full"></motion.div>
@@ -449,14 +451,14 @@ export default function PersonalPage() {
                   } 
                 }
               }}
-              className="relative z-10 text-white font-medium tracking-normal"
+              className={`relative z-10 font-medium tracking-normal ${isLightMode ? "text-[color:var(--fg)]" : "text-white"}`}
             >
               Dave
             </motion.span>
           </motion.div>
         </div>
 
-        <div className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-xl md:text-3xl text-gray-500 font-mono">
+        <div className={`flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-xl md:text-3xl font-mono ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-500"}`}>
           <span>Dave is</span>
           <div className="relative w-32 sm:w-48 flex items-center justify-start text-left h-[30px] sm:h-[40px]">
             <AnimatePresence mode="wait">
@@ -470,7 +472,7 @@ export default function PersonalPage() {
                   visible: { opacity: 1, transition: { staggerChildren: 0.04 } },
                   exit: { opacity: 0, filter: "blur(8px)", y: -10, transition: { duration: 0.3 } }
                 }}
-                className="absolute left-0 font-medium text-white tracking-wide flex whitespace-pre"
+                className={`absolute left-0 font-medium tracking-wide flex whitespace-pre ${isLightMode ? "text-[color:var(--fg)]" : "text-white"}`}
               >
                 {adjectives[adjIndex].split("").map((char, i) => (
                   <motion.span
@@ -508,16 +510,16 @@ export default function PersonalPage() {
       {/* Hobbies Section */}
       <section className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 pt-16 md:pt-36 pb-16 md:pb-24">
         <div className="mb-8 md:mb-12 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-mono text-gray-200 font-medium mb-2 md:mb-4">Dave's Hobbies</h2>
-          <p className="text-gray-500 font-mono text-xs sm:text-sm md:text-base px-4">I like to stay active. I pick up new interests but some remain constant.</p>
+          <h2 className={`text-2xl sm:text-3xl md:text-5xl font-mono font-medium mb-2 md:mb-4 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Dave's Hobbies</h2>
+          <p className={`font-mono text-xs sm:text-sm md:text-base px-4 ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-500"}`}>I like to stay active. I pick up new interests but some remain constant.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(8,minmax(0,1fr))] gap-4 lg:gap-6 min-h-[600px] relative w-full">
           
           {/* Box 1 (Top Left): Photography */}
           <article className="md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Photography</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 max-w-2xl mb-6">
+            <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Photography</h3>
+            <p className={`text-sm font-mono leading-relaxed relative z-10 max-w-2xl mb-6 ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
               It's nothing professional and usually it's just using my phone or a friend's phone, then adding minor filters to them to remember places and things by: {" "}
               <Link href="https://www.instagram.com/httpdaev/" target="_blank" className="text-emerald-500 hover:text-emerald-400 transition-colors inline-block">
                 @httpdaev
@@ -525,8 +527,8 @@ export default function PersonalPage() {
             </p>
             {/* Infinite Carousel Background / Foreground */}
             <div className="flex-1 w-[calc(100%+3rem)] md:w-[calc(100%+4rem)] -ml-6 md:-ml-8 relative flex flex-col justify-center gap-1 sm:gap-2 overflow-hidden z-10">
-              <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+              <div className={`absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r ${isLightMode ? "from-white" : "from-[#0a0b14]"} to-transparent z-20 pointer-events-none`}></div>
+              <div className={`absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l ${isLightMode ? "from-white" : "from-[#0a0b14]"} to-transparent z-20 pointer-events-none`}></div>
 
               <style jsx>{`
                 @keyframes marquee-left {
@@ -563,8 +565,8 @@ export default function PersonalPage() {
 
           {/* Box 2 (Top Right): Cinephile with Hover Effects */}
           <article className="md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-5 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group z-10">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 z-10 relative">Movies & Shows</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed z-10 relative">
+            <h3 className={`text-xl font-bold font-mono mb-3 z-10 relative ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Movies & Shows</h3>
+            <p className={`text-sm font-mono leading-relaxed z-10 relative ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
               I like watching movies, anime, and TV shows with high ratings, though I enjoy finding them before they become mainstream. I'm a big fan of science movies, time travel, space, biology-focused films, and human horror.
             </p>
             {/* 3 Rows of Image Placeholders overlapping slightly like the reference image */}
@@ -596,7 +598,7 @@ export default function PersonalPage() {
           </article>
 
           {/* Box 3 (Bottom Left): Cycling */}
-          <article className="md:col-start-1 md:col-span-5 md:row-start-4 md:row-span-5 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-12 flex flex-col relative overflow-hidden group min-h-[300px]">
+          <article className="personal-keep-dark md:col-start-1 md:col-span-5 md:row-start-4 md:row-span-5 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-12 flex flex-col relative overflow-hidden group min-h-[300px]">
             <Image 
               src={bikeImage} 
               alt="Promax PR50 Roadbike" 
@@ -616,8 +618,8 @@ export default function PersonalPage() {
 
           {/* Box 4 (Bottom Right): Music */}
           <article className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
-            <h3 className="text-xl font-bold font-mono text-gray-200 mb-3 relative z-10">Music Enthusiast</h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed relative z-10 mb-6 max-w-sm">
+            <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music Enthusiast</h3>
+            <p className={`text-sm font-mono leading-relaxed relative z-10 mb-6 max-w-sm ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
               I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
             </p>
             <div className="w-full flex-1 min-h-[4rem] rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center relative overflow-hidden mt-auto">
@@ -634,7 +636,7 @@ export default function PersonalPage() {
       {/* Components of My Life Carousel Section */}
       <section className="mx-auto w-full max-w-6xl py-12 md:py-24 relative overflow-hidden">
         <div className="px-4 md:px-6 mb-8 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-mono text-gray-200 font-medium">Components of <span className="text-emerald-500">my life</span></h2>
+          <h2 className={`text-2xl sm:text-3xl md:text-5xl font-mono font-medium ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Components of <span className="text-emerald-500">my life</span></h2>
           <div className="flex items-center gap-3">
             <button 
               onClick={scrollLeft}
@@ -653,8 +655,8 @@ export default function PersonalPage() {
 
         <div className="w-full relative">
           {/* Edge Fade Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[#0a0b14] to-transparent z-20 pointer-events-none"></div>
+          <div className={`absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r ${isLightMode ? "from-[#f4f7fb]" : "from-[#0a0b14]"} to-transparent z-20 pointer-events-none`}></div>
+          <div className={`absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l ${isLightMode ? "from-[#f4f7fb]" : "from-[#0a0b14]"} to-transparent z-20 pointer-events-none`}></div>
 
           <div 
             ref={carouselRef}
@@ -670,7 +672,7 @@ export default function PersonalPage() {
                   playSound("card");
                   setActiveFacet(facet);
                 }}
-                className={`min-w-[85vw] sm:min-w-[320px] md:min-w-[400px] snap-center h-[480px] sm:h-[560px] md:h-[640px] rounded-xl sm:rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-5 sm:p-6 md:p-8 group`}
+                className="personal-keep-dark min-w-[85vw] sm:min-w-[320px] md:min-w-[400px] snap-center h-[480px] sm:h-[560px] md:h-[640px] rounded-xl sm:rounded-2xl cursor-grab active:cursor-grabbing relative overflow-hidden border border-zinc-800/50 shadow-2xl flex flex-col p-5 sm:p-6 md:p-8 group"
               >
                 {/* Full-card Image Background */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -784,7 +786,7 @@ export default function PersonalPage() {
       </AnimatePresence>
 
       {/* Outro Section */}
-      <section className="relative w-full pt-12 pb-40 flex flex-col items-center justify-center overflow-hidden bg-[#0a0b14]">
+      <section className={`relative w-full pt-12 pb-40 flex flex-col items-center justify-center overflow-hidden ${isLightMode ? "bg-transparent" : "bg-[#0a0b14]"}`}>
         {/* Animated Grid Background (consistent with professional tab) */}
         <div className="absolute bottom-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden">
           <div className="absolute inset-0 bg-grid [mask-image:linear-gradient(to_top,white_10%,transparent_100%)]" />
@@ -811,7 +813,7 @@ export default function PersonalPage() {
           <div className="relative p-[1px] rounded-3xl overflow-hidden shadow-2xl transition-shadow duration-500">
             {/* Green trailing light */}
             {/* Solid base layer behind everything else so trailing light does not bleed into the middle via blur */}
-            <div className="absolute inset-[1px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] z-0"></div>
+            <div className={`personal-outro-base absolute inset-[1px] rounded-[calc(1.5rem-1px)] z-0 ${isLightMode ? "bg-white" : "bg-[#0b0e17]"}`}></div>
 
             <div 
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)] animate-[spin_12s_linear_infinite] z-[1]"></div>
@@ -823,7 +825,7 @@ export default function PersonalPage() {
               onMouseEnter={() => setIsOutroHovered(true)}
               onMouseLeave={() => setIsOutroHovered(false)}
               data-hide-custom-cursor="true"
-              className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-[#0b0e17] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none"
+              className={`personal-outro-card relative w-full h-[500px] md:h-[600px] lg:h-[700px] rounded-[calc(1.5rem-1px)] flex flex-col items-center justify-center overflow-hidden z-10 cursor-none ${isLightMode ? "bg-white" : "bg-[#0b0e17]"}`}
             >
               {/* Green Comets Top to Bottom with Splash */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
