@@ -115,23 +115,23 @@ export default function SiteHeader() {
                 </svg>
               </button>
               <div className="absolute right-0 top-full pt-2 w-40 opacity-0 pointer-events-none transition group-hover:opacity-100 group-hover:pointer-events-auto">
-                <div className="border border-[color:var(--stroke)] bg-[#0b0e1c] text-[color:var(--fg)] flex flex-col">
+                <div className="border border-[color:var(--stroke)] bg-[color:var(--card)] text-[color:var(--fg)] flex flex-col shadow-lg">
                   <button
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
                     onClick={() => playSound("ui")}
                     type="button"
                   >
                     English
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
                     onClick={() => playSound("ui")}
                     type="button"
                   >
                     Filipino
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-[color:var(--accent)] hover:text-[#06110d]"
+                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
                     onClick={() => playSound("ui")}
                     type="button"
                   >
@@ -163,7 +163,7 @@ export default function SiteHeader() {
                 title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
                 className={`transition-colors duration-300 ${
                   theme === "light"
-                    ? "text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.85)]"
+                    ? "text-[color:var(--accent)] drop-shadow-[0_0_10px_var(--glow)]"
                     : "text-[color:var(--muted)] hover:text-[color:var(--accent)]"
                 }`}
               >
@@ -296,7 +296,7 @@ export default function SiteHeader() {
                         aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
                         className={`transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg ${
                           theme === "light"
-                            ? "text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.85)]"
+                            ? "text-[color:var(--accent)] drop-shadow-[0_0_10px_var(--glow)]"
                             : "text-[color:var(--muted)] hover:text-[color:var(--accent)]"
                         }`}
                       >
