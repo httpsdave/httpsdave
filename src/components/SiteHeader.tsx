@@ -209,7 +209,7 @@ export default function SiteHeader() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-xs bg-[#0b0e14] z-[70] flex flex-col pt-8 pb-10 px-6 md:hidden shadow-2xl border-l border-white/5"
+              className="fixed top-0 right-0 h-full w-full max-w-xs bg-[color:var(--bg)] z-[70] flex flex-col pt-8 pb-10 px-6 md:hidden shadow-2xl border-l border-[color:var(--stroke)]"
             >
               <div className="flex justify-end mb-16">
                 <button
@@ -228,13 +228,13 @@ export default function SiteHeader() {
               </div>
 
               <div className="flex flex-col items-center flex-1">
-                <div className="flex items-center gap-1 text-2xl font-bold font-sans tracking-tight text-white mb-8">
+                <div className="flex items-center gap-1 text-2xl font-bold font-sans tracking-tight text-[color:var(--fg)] mb-8">
                   Dave Dominic <span className="text-[color:var(--accent)] font-bold text-3xl leading-none -mt-1">.</span>
                 </div>
 
                 {/* Language Button */}
                 <button
-                  className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 mb-14 text-sm font-bold font-mono text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-[20px]"
+                  className="flex items-center gap-2 bg-[color:var(--accent)] px-5 py-2.5 mb-14 text-sm font-bold font-mono text-white dark:text-[#06110d] transition hover:bg-[color:var(--accent-2)] rounded-[20px]"
                   onClick={() => playSound("ui")}
                   type="button"
                 >
@@ -263,7 +263,7 @@ export default function SiteHeader() {
                         className={`text-lg transition-colors py-1 ${
                           isActive
                             ? "text-[color:var(--accent)] border-b-2 border-[color:var(--accent)]"
-                            : "text-white/90 hover:text-white"
+                            : "text-[color:var(--fg)]/80 hover:text-[color:var(--fg)]"
                         }`}
                       >
                         {item.label}
@@ -280,7 +280,7 @@ export default function SiteHeader() {
                       onClick={handleSoundToggle}
                       aria-pressed={!isMuted}
                       aria-label={isMuted ? "Enable sound" : "Mute sound"}
-                      className="text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg"
+                      className="text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors duration-300 bg-[color:var(--card)] p-4 rounded-full border border-[color:var(--stroke)] shadow-lg"
                     >
                       {isMuted ? (
                         <LuVolumeX size={24} />
@@ -294,7 +294,7 @@ export default function SiteHeader() {
                         onClick={handleThemeToggle}
                         aria-pressed={theme === "light"}
                         aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-                        className={`transition-colors duration-300 bg-white/5 p-4 rounded-full border border-white/10 shadow-lg ${
+                        className={`transition-colors duration-300 bg-[color:var(--card)] p-4 rounded-full border border-[color:var(--stroke)] shadow-lg ${
                           theme === "light"
                             ? "text-[color:var(--accent)] drop-shadow-[0_0_10px_var(--glow)]"
                             : "text-[color:var(--muted)] hover:text-[color:var(--accent)]"
