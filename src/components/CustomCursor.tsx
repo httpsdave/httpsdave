@@ -10,6 +10,7 @@ export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
   const [isCursorHidden, setIsCursorHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   // Directly track mouse positioning using React refs for 60fps mutability
   const mouse = useRef({ x: -100, y: -100 });
@@ -21,11 +22,38 @@ export default function CustomCursor() {
   const pathSegments = useRef<(SVGPathElement | null)[]>([]);
 
   useEffect(() => {
+    const checkMobile = () => {
+      const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsMobile(isCoarse || isSmallScreen);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
     setMounted(true);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
+      
+      // Hide cursor if it's outside the window bounds
+      if (
+        e.clientX <= 0 ||
+        e.clientY <= 0 ||
+        e.clientX >= window.innerWidth - 1 ||
+        e.clientY >= window.innerHeight - 1
+      ) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
       
       const target = e.target as HTMLElement;
       const clickable = target?.closest('a, button, [role="button"], input, select, textarea');
@@ -46,8 +74,8 @@ export default function CustomCursor() {
     document.head.appendChild(style);
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("mouseenter", handleMouseEnter);
+    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
+    document.documentElement.addEventListener("mouseenter", handleMouseEnter);
 
     let animationFrameId: number;
 
@@ -103,16 +131,16 @@ export default function CustomCursor() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("mouseenter", handleMouseEnter);
+      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
+      document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
       cancelAnimationFrame(animationFrameId);
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
     };
-  }, [isVisible]);
+  }, [isMobile]);
 
-  if (!mounted) return null;
+  if (!mounted || isMobile) return null;
 
   return (
     <div 
