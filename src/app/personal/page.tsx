@@ -116,7 +116,7 @@ const lifeFacets = [
     bgGradient: "from-blue-900/60 to-[#0a0b14]",
     coverImage: interestsImage,
     coverAlt: "Interest and work cover image",
-    content: "My brother introduced me to computers early on. I became fascinated with formatting, disassembling components, and understanding how the software logic connects with the hardware.",
+    content: "Growing up as a digital native during the rise of mobile phones, computers, the internet, and now AI, I was fascinated by computer games and how people connected online. It felt like I was in the middle of a great transition—where games weren't limited to LAN anymore and you could play with someone thousands of miles away.\n\nI was also really into science and space; as a kid, I wanted to be an astronaut. I almost became an engineer when I took STEM in senior high school, but last minute I decided to go into Computer Science. I wanted to play into what I was already skilled at—not just coding, but working with computers in general. With my above-average typing speeds, elite troubleshooting knowledge, and the unbelievable amount of screen time I've accumulated, I realized I wanted something tech-related, and so here I am.",
   },
   {
     id: "fitness",
@@ -125,16 +125,16 @@ const lifeFacets = [
     bgGradient: "from-zinc-800/80 to-[#0a0b14]",
     coverImage: exerciseImage,
     coverAlt: "Sports and exercise cover image",
-    content: "To replace gaming with a healthier method, I started exercising in 10th grade. Being the smallest student, I found the motivation to keep at it consistently. Now, years later, it is just an integral part of my daily routine.",
+    content: "I was never the athletic kid growing up; I was more of an indoor guy who liked playing games on my phone or computer. But through adolescence, I realized the growing importance of physical fitness. Through walking, jogging, running, biking, calisthenics, and lifting weights, I've noticed massive improvements in confidence, physical appearance, strength, endurance, and immunity. Sicknesses that used to take days to recover from now go away immediately or don't affect me at all. It improved not only my physical body but also my mental state, helping me think faster, be more creative, and have a better overall perspective on life.",
   },
   {
     id: "language",
-    category: "Foreign Languages",
-    title: "Foreign Languages",
+    category: "Languages",
+    title: "Languages",
     bgGradient: "from-purple-900/60 to-[#0a0b14]",
     coverImage: japaneseImage,
-    coverAlt: "Foreign languages cover image",
-    content: "In my childhood, my English developed rapidly via internet immersion. I spent most my days watching anime, movies, and reading tracking tech news. I plan to learn more languages like German and Japanese in the future.",
+    coverAlt: "Languages cover image",
+    content: "In my childhood, my English developed rapidly through school culture (we were obliged to speak in English all the time as a game) and through the rise of internet media. I consumed a lot of foreign videos, music, tutorials, and movies in English. This built a solid foundation that helped me in my studies immensely, and I am very thankful to my parents for this.\n\nI also watch a lot of anime and am learning conversational Japanese. I can understand quite a bit of Japanese phrases and words due to this.",
   }
 ];
 
@@ -720,14 +720,14 @@ export default function PersonalPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative w-[95vw] md:w-full max-w-2xl bg-[#111218] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
+              className={`relative w-[95vw] md:w-full max-w-2xl border rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col ${isLightMode ? "bg-[#f4f7fb] border-zinc-200" : "bg-[#111218] border-zinc-800"}`}
             >
               <button 
                 onClick={() => {
                   playSound("ui");
                   setActiveFacet(null);
                 }}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800/80 hover:bg-white text-zinc-400 hover:text-black flex items-center justify-center transition-colors z-20"
+                className={`absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors z-20 ${isLightMode ? "bg-white/80 hover:bg-white text-zinc-600 hover:text-black shadow-sm" : "bg-zinc-800/80 hover:bg-white text-zinc-400 hover:text-black"}`}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
@@ -741,33 +741,30 @@ export default function PersonalPage() {
                   className="object-cover"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-b ${activeFacet.bgGradient} opacity-80`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111218] via-transparent to-transparent" />
+                <div className={`absolute inset-0 bg-gradient-to-t ${isLightMode ? "from-[#f4f7fb]" : "from-[#111218]"} via-transparent to-transparent`} />
                 <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
-                  <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">{activeFacet.category}</span>
-                  <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mt-2">{activeFacet.title}</h3>
+                  <span className={`text-xs font-mono uppercase tracking-widest ${isLightMode ? "text-zinc-600 font-semibold drop-shadow-md" : "text-zinc-300"}`}>{activeFacet.category}</span>
+                  <h3 className={`text-3xl md:text-4xl font-bold font-mono mt-2 ${isLightMode ? "text-slate-800 drop-shadow-md" : "text-white"}`}>{activeFacet.title}</h3>
                 </div>
               </div>
 
-              <div className="p-6 md:p-10 overflow-y-auto font-mono text-zinc-300 leading-relaxed text-sm md:text-base">
+              <div className={`p-6 md:p-10 overflow-y-auto font-mono leading-relaxed text-sm md:text-base ${isLightMode ? "text-[color:var(--fg)]" : "text-zinc-300"}`}>
                  <p className="whitespace-pre-line">{activeFacet.content}</p>
                  
                  {activeFacet.id === "fitness" && (
-                   <div className="mt-8 pt-8 border-t border-zinc-800 grid grid-cols-2 gap-4 text-xs">
-                     <div><span className="text-zinc-500">Height:</span> 180cm</div>
-                     <div><span className="text-zinc-500">Weight:</span> 70kg</div>
-                     <div><span className="text-zinc-500">Squat:</span> 100kg x 10</div>
-                     <div><span className="text-zinc-500">Pull-ups:</span> 17</div>
+                   <div className={`mt-8 pt-8 border-t ${isLightMode ? "border-zinc-300" : "border-zinc-800"} grid grid-cols-2 gap-4 text-xs`}>
+                     <div><span className={isLightMode ? "text-zinc-500 font-semibold" : "text-zinc-500"}>Height:</span> 177.8cm | 5'10 ft</div>
+                     <div><span className={isLightMode ? "text-zinc-500 font-semibold" : "text-zinc-500"}>Weight:</span> 68kg</div>
                    </div>
                  )}
                  {activeFacet.id === "language" && (
-                   <div className="mt-8 pt-8 border-t border-zinc-800 flex flex-col gap-2 text-xs">
-                     <div><span className="text-zinc-500 w-24 inline-block">English</span> Fluent</div>
-                     <div><span className="text-zinc-500 w-24 inline-block">Japanese</span> Currently improving</div>
-                     <div><span className="text-zinc-500 w-24 inline-block">German</span> Planning to learn</div>
+                   <div className={`mt-8 pt-8 border-t ${isLightMode ? "border-zinc-300" : "border-zinc-800"} flex flex-col gap-2 text-xs`}>
+                     <div><span className={`${isLightMode ? "text-zinc-500 font-semibold" : "text-zinc-500"} w-40 inline-block`}>Filipino (Tagalog)</span> Native</div>
+                     <div><span className={`${isLightMode ? "text-zinc-500 font-semibold" : "text-zinc-500"} w-40 inline-block`}>English</span> Fluent</div>
                    </div>
                  )}
                  {activeFacet.id === "music" && (
-                   <div className="mt-8 pt-8 border-t border-zinc-800">
+                   <div className={`mt-8 pt-8 border-t ${isLightMode ? "border-zinc-300" : "border-zinc-800"}`}>
                      <div className="relative overflow-hidden rounded-xl border border-zinc-700/70 bg-[#0b0e17] aspect-16/10">
                        <Image
                          src={guitarImage}
