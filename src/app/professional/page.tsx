@@ -156,7 +156,7 @@ function renderProjectIcon(icon: React.ReactElement, projectTitle: string, index
     return icon;
   }
 
-  return cloneElement(icon, { color: lightColor });
+  return cloneElement(icon as React.ReactElement<{ color?: string }>, { color: lightColor });
 }
 
 function expandingButtonTextClass(isLightMode: boolean, sizeClass: string) {
