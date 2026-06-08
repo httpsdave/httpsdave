@@ -190,7 +190,7 @@ const experienceData = [
   },
   {
     title: "Android Apps",
-    description: "Experience in mobile app development using Flutter, Dart, React Native, and Expo Go, integrated with lightweight backends like SQLite.",
+    description: "Some experience in mobile app development using Flutter, Dart, React Native, and Expo Go, integrated with lightweight backends like SQLite.",
     icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 z-10" />,
     delay: "-4.5s",
   }
@@ -199,7 +199,7 @@ const experienceData = [
 const journeyData = [
   {
     year: "2026",
-    text: "Nothing for 2026 yet. For now I’m focused on finding a fulfilling job where I can pour my passion into meaningful work and keep growing as a developer.",
+    text: "Interned at Ollopa Corporation as a Front-End Developer for a Social Media Management System (similar to Metricool) for two months. Our team focused on optimizing the user experience and interface while ensuring the system remained responsive, functional, and aligned with client requirements. Currently, I am seeking a fulfilling role where I can apply my passion to meaningful work and continue growing professionally.",
     images: []
   },
   {

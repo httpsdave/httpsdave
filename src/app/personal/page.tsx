@@ -93,12 +93,12 @@ const instagramPhotosList = [
 const lifeFacets = [
   {
     id: "books",
-    category: "Books",
+    category: "Quirks",
     title: "Niche",
     bgGradient: "from-emerald-900/60 to-[#0a0b14]",
     coverImage: nicheImage,
     coverAlt: "Niche interests cover image",
-    content: "I do not really read fiction novels, but I do enjoy digging into niche topics, specific interests, and whatever subject ends up grabbing my attention for a long stretch.",
+    content: "Some of my niche hobbies include watching reaction videos to movies, music, videos, or experiences that I've had or would like to have. I find it fascinating to see other people appreciate the things I enjoy and love in the same way I did—especially when their reactions are even stronger than my own. I’m not entirely sure why, but there’s something incredibly satisfying about seeing others experience that same excitement, wonder, or appreciation.",
   },
   {
     id: "music",
@@ -620,13 +620,53 @@ export default function PersonalPage() {
           <article className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
             <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music Enthusiast</h3>
             <p className={`text-sm font-mono leading-relaxed relative z-10 mb-6 max-w-sm ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
-              I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap.
+              I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap. heres a list of my current favorites.
             </p>
-            <div className="w-full flex-1 min-h-[4rem] rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center relative overflow-hidden mt-auto">
-              <div className="w-12 h-12 bg-red-600/90 rounded-xl flex items-center justify-center z-10 cursor-pointer hover:bg-red-500 transition-colors">
-                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[14px] border-l-white border-b-8 border-b-transparent ml-1"></div>
+            <div className={`w-full flex-1 rounded-2xl ${isLightMode ? "bg-white border-zinc-200/50" : "bg-zinc-900/80 border-zinc-700/50"} border flex flex-col p-4 sm:p-5 relative overflow-hidden mt-auto shadow-sm`}>
+              <div className="flex items-center gap-4 w-full">
+                {/* Cover Art */}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--accent)] to-purple-600 opacity-60"></div>
+                  <div className="w-full h-full flex items-center justify-center text-[10px] sm:text-xs text-white/70 font-mono absolute z-10">Cover</div>
+                </div>
+                
+                {/* Song Info */}
+                <div className="flex flex-col overflow-hidden flex-1 justify-center">
+                  <span className={`text-sm sm:text-base font-bold truncate ${isLightMode ? "text-slate-800" : "text-white"}`}>Song Title</span>
+                  <span className={`text-xs sm:text-sm truncate ${isLightMode ? "text-slate-500" : "text-zinc-400"}`}>Artist Name</span>
+                </div>
+
+                {/* Volume */}
+                <button className={`p-2 transition-colors flex-shrink-0 ${isLightMode ? "text-slate-400 hover:text-slate-700" : "text-zinc-400 hover:text-white"}`}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
               </div>
-              <span className="absolute bottom-4 left-4 text-xs font-mono text-zinc-500">[Guitar Video Snippet]</span>
+              
+              {/* Controls & Waveform */}
+              <div className="mt-5 flex items-center gap-2 sm:gap-3 w-full">
+                
+                {/* Skip Back */}
+                <button className={`p-1.5 sm:p-2 transition-colors flex-shrink-0 ${isLightMode ? "text-slate-600 hover:text-slate-900" : "text-zinc-300 hover:text-white"}`}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                </button>
+
+                {/* Play/Pause */}
+                <button className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full hover:scale-105 transition-transform flex-shrink-0 shadow-md ${isLightMode ? "bg-slate-800 text-white" : "bg-white text-black"}`}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5"><path d="M5 3l14 9-14 9V3z"/></svg>
+                </button>
+
+                {/* Skip Forward */}
+                <button className={`p-1.5 sm:p-2 transition-colors flex-shrink-0 ${isLightMode ? "text-slate-600 hover:text-slate-900" : "text-zinc-300 hover:text-white"}`}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                </button>
+
+                {/* Waveform */}
+                <div className="flex-1 flex items-center justify-between gap-[2px] h-8 sm:h-10 cursor-pointer overflow-hidden px-1">
+                  {Array.from({ length: 24 }).map((_, i) => (
+                    <div key={i} className={`w-[2px] sm:w-[3px] rounded-full transition-all ${i < 10 ? "bg-[color:var(--accent)] shadow-[0_0_8px_var(--accent)]" : (isLightMode ? "bg-slate-200" : "bg-zinc-700")}`} style={{ height: `${20 + Math.random() * 80}%` }}></div>
+                  ))}
+                </div>
+              </div>
             </div>
           </article>
 
