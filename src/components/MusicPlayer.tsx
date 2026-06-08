@@ -235,7 +235,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
         {/* Volume */}
         <div 
           ref={volumeRef} 
-          className="relative flex items-center justify-center"
+          className="relative flex items-center justify-center h-full"
           onMouseEnter={() => setShowVolume(true)}
           onMouseLeave={() => setShowVolume(false)}
         >
@@ -247,7 +247,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
             )}
           </button>
           {showVolume && (
-            <div className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 ${isLightMode ? "bg-white border-zinc-200/80 shadow-lg" : "bg-zinc-900 border-zinc-800 shadow-xl"} rounded-lg p-3 border z-20 flex items-center justify-center h-28 w-8`}>
+            <div className={`absolute left-1/2 -translate-x-1/2 bottom-full pb-1 z-20 flex items-center justify-center h-32 w-10`}>
               <input 
                 type="range" 
                 min="0" 
@@ -255,7 +255,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
                 step="0.05" 
                 value={isMuted ? 0 : volume} 
                 onChange={handleVolumeChange}
-                className={`w-20 h-1 rounded-lg appearance-none cursor-pointer -rotate-90 origin-center ${
+                className={`w-24 h-[3px] rounded-lg appearance-none cursor-pointer -rotate-90 origin-center ${
                   isLightMode 
                     ? "bg-slate-200 accent-emerald-500 [&::-webkit-slider-runnable-track]:bg-slate-200 [&::-webkit-slider-thumb]:bg-emerald-500 [&::-moz-range-track]:bg-slate-200 [&::-moz-range-thumb]:bg-emerald-500" 
                     : "bg-zinc-700 accent-white [&::-webkit-slider-runnable-track]:bg-zinc-700 [&::-webkit-slider-thumb]:bg-white [&::-moz-range-track]:bg-zinc-700 [&::-moz-range-thumb]:bg-white"

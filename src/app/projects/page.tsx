@@ -61,7 +61,7 @@ function renderProjectIcon(icon: React.ReactElement, index: number, isLightMode:
     return icon;
   }
 
-  return cloneElement(icon, { color: "#111827" });
+  return cloneElement(icon as React.ReactElement<{ color?: string }>, { color: "#111827" });
 }
 
 export default function ProjectsPage() {
@@ -137,7 +137,7 @@ export default function ProjectsPage() {
                   <div className={`backdrop-blur-md border px-4 py-2 rounded-full text-xs md:text-sm font-mono flex items-center justify-center whitespace-nowrap ${
                     isLightMode ? "bg-white/90 border-slate-900/10 text-[color:var(--fg)] shadow-[0_12px_24px_rgba(15,23,42,0.1)]" : "bg-[#0a0b14]/90 border-white/10 text-white/90 shadow-[0_0_20px_rgba(0,255,255,0.2)]"
                   }`}>
-                    {project.tooltip || project.linkUrl}
+                    {(project as any).tooltip || project.linkUrl}
                   </div>
                 </div>
 

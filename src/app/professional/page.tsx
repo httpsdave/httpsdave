@@ -1074,7 +1074,7 @@ export default function ProfessionalPage() {
                   {/* Tooltip / Link Popup */}
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-50 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:-translate-y-2">
                     <div className="bg-[#0a0b14]/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-white/90 text-xs md:text-sm font-mono flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.2)] whitespace-nowrap">
-                      {project.tooltip || (project.title === "Mining Auction System" ? "https://comexchange.mn" : project.linkUrl)}
+                      {(project as any).tooltip || (project.title === "Mining Auction System" ? "https://comexchange.mn" : project.linkUrl)}
                     </div>
                   </div>
 
