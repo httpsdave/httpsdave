@@ -15,6 +15,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
   const [loading, setLoading] = useState(true);
   const [showVolume, setShowVolume] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -35,20 +36,121 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
     };
   }, []);
 
-  // The Man Who Can't Be Moved - The Script
-  const songData = {
-    title: "The Man Who Can't Be Moved",
-    artist: "The Script",
-    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/2d/c6/72/2dc6728e-fe24-c7b3-970c-a24d8af1e4b6/dj.tjxgsvhv.jpg/100x100bb.jpg",
-    previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b7/3e/ad/b73ead6e-a8ca-b356-c5cc-8b538c6921ef/mzaf_9877841116191731936.plus.aac.p.m4a"
-  };
+  const songsData = [
+    {
+      title: "The Man Who Can't Be Moved",
+      artist: "The Script",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/2d/c6/72/2dc6728e-fe24-c7b3-970c-a24d8af1e4b6/dj.tjxgsvhv.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b7/3e/ad/b73ead6e-a8ca-b356-c5cc-8b538c6921ef/mzaf_9877841116191731936.plus.aac.p.m4a"
+    },
+    {
+      title: "Iris",
+      artist: "The Goo Goo Dolls",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2c/13/18/2c131801-00af-58b1-3cc2-13abf4ad5416/093624919162.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/60/17/35/60173512-3d5c-1d6f-549e-d8ddafa93e07/mzaf_5281658494050788067.plus.aac.p.m4a"
+    },
+    {
+      title: "Nothing",
+      artist: "The Script",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e6/61/17/e661179c-839a-6d13-a0f3-f97803b281ab/mzi.ccgtsdlp.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/96/48/0f/96480fda-5000-8a52-89f5-7e1e1d65fd5b/mzaf_8659604158170915315.plus.aac.p.m4a"
+    },
+    {
+      title: "Breakeven",
+      artist: "The Script",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/2d/c6/72/2dc6728e-fe24-c7b3-970c-a24d8af1e4b6/dj.tjxgsvhv.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a9/73/c1/a973c191-aefc-71b9-da8b-e1c0f76c0bae/mzaf_11607187956676107044.plus.aac.p.m4a"
+    },
+    {
+      title: "Di Naging (Tayo)",
+      artist: "Sleep Alley",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ba/79/94/ba7994f0-0398-917a-6ddf-c8b327c7bcaa/cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/1c/a4/ec/1ca4ec31-d255-abde-96a3-a65ec7fc849b/mzaf_2759685575329747214.plus.aac.p.m4a"
+    },
+    {
+      title: "Huling Sandali",
+      artist: "December Avenue",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ba/17/4f/ba174feb-8cf8-448c-7014-f4928caef696/194156969851_Cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/8e/6a/8f/8e6a8f24-174d-1cc3-bf7a-3316266be6cc/mzaf_16918415011702627204.plus.aac.p.m4a"
+    },
+    {
+      title: "Magkunwari",
+      artist: "December Avenue",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/43/c3/4d/43c34dac-2982-7847-64f3-fd612071ee43/193829841838_Cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/6c/15/16/6c151629-8dbb-2626-4f75-45dc92b001fd/mzaf_14022605532918467460.plus.aac.p.m4a"
+    },
+    {
+      title: "Bawat Piyesa",
+      artist: "Munimuni",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/01/80/31018093-3a85-cca4-cd47-980708cfd6dd/5059033650107_cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/34/d7/ff/34d7ffca-e8de-9807-d060-f00dbcbf3e06/mzaf_15737691693863312579.plus.aac.p.m4a"
+    },
+    {
+      title: "Janice",
+      artist: "Dilaw",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f0/86/8e/f0868e7f-9ce0-9a5b-17d5-ea5ba325efd5/5054197560132.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/92/f2/48/92f248fd-2dd0-86a8-672c-4ecff987c365/mzaf_16591498727505456893.plus.aac.p.m4a"
+    },
+    {
+      title: "Huwag Na Huwag Mong Sasabihin",
+      artist: "Kitchie Nadal",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4b/f2/39/4bf23908-cc93-0ca5-217e-8c7e426b1990/889211800933.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7d/2a/e5/7d2ae52b-dbde-845c-0803-9b12762cba75/mzaf_8377462403541839064.plus.aac.p.m4a"
+    },
+    {
+      title: "Thinking of You",
+      artist: "Katy Perry",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/57/dc/18/57dc1854-4483-52b2-fe7c-8a221edf9e88/13UABIM48773.rgb.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/86/d7/f8/86d7f803-7cd1-09b1-1d12-a2223db3247b/mzaf_7468635291986046090.plus.aac.p.m4a"
+    },
+    {
+      title: "Wag Mong Aminin",
+      artist: "Rico Blanco",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/13/68/81/136881da-a23f-29c3-7e70-53e6abd35f50/3614596121536_Cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/75/9f/a7/759fa7c6-b5ac-dbaa-2abe-040bc12a2a45/mzaf_8374738964806450737.plus.aac.p.m4a"
+    },
+    {
+      title: "Traitor",
+      artist: "Olivia Rodrigo",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/33/fd/32/33fd32b1-0e43-9b4a-8ed6-19643f23544e/21UMGIM26092.rgb.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4f/ae/6c/4fae6c93-6bb3-d320-00bf-f32310705b3f/mzaf_16796881619991035581.plus.aac.p.m4a"
+    },
+    {
+      title: "Dating Tayo",
+      artist: "TJ Monterde",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d0/58/7c/d0587c6c-e685-09f5-7170-71198b49cd8d/4800635087027.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/d0/ea/3ad0ea63-f96d-4ae8-cae2-04f61d532c5e/mzaf_13111098853833478134.plus.aac.p.m4a"
+    },
+    {
+      title: "Ganun Lang",
+      artist: "Paul Jensen Lara",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e7/6c/bd/e76cbd94-85c1-5622-2611-41e0ce1e90aa/859767385925_cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/31/2e/31/312e3181-6011-6997-2dac-cdcc244730a6/mzaf_6624675687468558132.plus.aac.p.m4a"
+    },
+    {
+      title: "Ere",
+      artist: "Juan Karlos",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/40/ae/c0/40aec0aa-7d69-7f5f-220e-eed9e458c4d1/c76b8e2a-a5cd-46ab-8df6-8f81fbabcfd4.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/89/47/6589471a-fca9-af28-348b-351bcc526f65/mzaf_16701343987806181431.plus.aac.p.m4a"
+    }
+  ];
+
+  const songData = songsData[currentSongIndex];
 
   // Fetch and decode audio to generate waveform peaks
   useEffect(() => {
     let isCancelled = false;
+    setLoading(true);
+    setProgress(0);
     
     const generateWaveform = async () => {
       try {
+        if (!songData.previewUrl) {
+          // Fallback random peaks
+          setPeaks(Array.from({length: 60}).map(() => Math.random()));
+          setLoading(false);
+          return;
+        }
         const response = await fetch(songData.previewUrl);
         const arrayBuffer = await response.arrayBuffer();
         const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -76,8 +178,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
         setPeaks(normalizedPeaks);
         setLoading(false);
       } catch (e) {
-        console.error('Error generating waveform', e);
-        // Fallback random peaks
+        // Fallback random peaks on actual error
         setPeaks(Array.from({length: 60}).map(() => Math.random()));
         setLoading(false);
       }
@@ -97,6 +198,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
   const handleEnded = () => {
     setIsPlaying(false);
     setProgress(0);
+    skipForward(); // Automatically play next track
   };
 
   const togglePlay = () => {
@@ -111,15 +213,15 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
   };
 
   const skipBackward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 5);
-    }
+    setCurrentSongIndex((prev) => (prev - 1 + songsData.length) % songsData.length);
+    setProgress(0);
+    setIsPlaying(false);
   };
 
   const skipForward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.min(audioRef.current.duration, audioRef.current.currentTime + 5);
-    }
+    setCurrentSongIndex((prev) => (prev + 1) % songsData.length);
+    setProgress(0);
+    setIsPlaying(false);
   };
 
   const toggleMute = () => {
@@ -214,7 +316,7 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
     <div className="w-full flex flex-col mt-4 relative">
       <audio 
         ref={audioRef} 
-        src={songData.previewUrl} 
+        src={songData.previewUrl || undefined} 
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
         preload="metadata"
