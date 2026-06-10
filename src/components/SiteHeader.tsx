@@ -124,15 +124,15 @@ export default function SiteHeader() {
                     English
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
-                    onClick={() => playSound("ui")}
+                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
+                    disabled
                     type="button"
                   >
                     Filipino
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
-                    onClick={() => playSound("ui")}
+                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
+                    disabled
                     type="button"
                   >
                     Japanese
