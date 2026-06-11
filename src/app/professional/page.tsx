@@ -92,15 +92,13 @@ const skillsData = [
   {
     category: "Machine Learning",
     skills: [
-      "Jupyter Notebook", "Google Colab", "NumPy", "Pandas", "Scikit-Learn",
-      "PyTorch", "TensorFlow", "NLTK", "spaCy", "Neural Networks",
-      "Natural Language Processing", "LLMs", "Deep Learning",
-      "Supervised ML", "Unsupervised ML"
+      "Google Colab", "NumPy", "Pandas", "Scikit-Learn",
+      "PyTorch", "TensorFlow", "NLTK"
     ],
   },
   {
     category: "Miscellaneous",
-    skills: ["Git", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva (Digital Art)"],
+    skills: ["Git", "GitHub", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva", "Vercel", "MS Word", "MS Excel"],
   }
 ];
 
@@ -109,7 +107,7 @@ const projectsData = [
     title: "ORBIT",
     description: "Student organization information system for better institutional tracking.",
     linkText: "Check Live Site",
-    linkUrl: "https://orbit-kappa-pink.vercel.app/login",
+    linkUrl: "https://orbit-kappa-pink.vercel.app/",
     image: "/orbitimage.png",
     icons: [<SiLaravel key="1" color="#FF2D20" />, <SiVuedotjs key="2" color="#4FC08D" />, <SiPhp key="3" color="#777BB4" />, <SiTailwindcss key="4" color="#06B6D4" />],
     isGithub: false
