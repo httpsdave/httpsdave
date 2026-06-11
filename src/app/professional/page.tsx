@@ -592,12 +592,40 @@ export default function ProfessionalPage() {
             <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors duration-300">Age</span>
           </button>
 
-          {/* Years of experience */}
-          <div className="flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start">
-            <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white">
+          {/* Years of experience (Under Construction) */}
+          <div className="relative flex items-center gap-1.5 sm:gap-4 group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start cursor-default">
+            {/* Playful crane that drops down on hover */}
+            <div className="absolute -top-8 sm:-top-10 left-4 sm:left-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-xl sm:text-3xl z-10 pointer-events-none drop-shadow-lg animate-bounce">
+              🏗️
+            </div>
+            <span className="relative text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white group-hover:text-[#eab308] transition-colors duration-300">
               <AnimatedCounter value={0} />
+              {/* Construction tape strip */}
+              <div className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1.5 sm:h-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -rotate-2 scale-110 shadow-sm animate-move-tape"
+                   style={{
+                     backgroundImage: 'linear-gradient(-45deg, #111827 25%, #eab308 25%, #eab308 50%, #111827 50%, #111827 75%, #eab308 75%, #eab308 100%)',
+                     backgroundSize: '20px 20px',
+                     borderRadius: '2px'
+                   }}
+              >
+                <style>{`
+                  @keyframes move-tape {
+                    0% { background-position: 0 0; }
+                    100% { background-position: 20px 0; }
+                  }
+                  .animate-move-tape {
+                    animation: move-tape 1s linear infinite;
+                  }
+                `}</style>
+              </div>
             </span>
-            <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left">Years of<br />experience</span>
+            <span className="relative text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[#fef08a] transition-colors duration-300">
+              Years of<br />experience
+              {/* Playful "building" text that appears */}
+              <span className="absolute -bottom-4 sm:-bottom-5 left-0 text-[8px] sm:text-[10px] text-[#eab308] opacity-0 group-hover:opacity-100 transition-all duration-300 tracking-widest font-bold uppercase whitespace-nowrap flex items-center gap-1">
+                🚧 IN PROGRESS
+              </span>
+            </span>
           </div>
 
           <button 
