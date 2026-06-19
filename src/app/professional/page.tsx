@@ -1104,6 +1104,19 @@ export default function ProfessionalPage() {
                     </div>
                   </div>
 
+                  {project.title === "ORBIT" && (
+                    <div className="absolute top-4 right-4 z-[60] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto flex flex-col gap-2">
+                      <a href="https://www.youtube.com/watch?v=KxHwqTz87Ow" target="_blank" rel="noopener noreferrer" className="bg-[#0a0b14]/90 backdrop-blur-md border border-[color:var(--accent)]/50 px-3 py-2 rounded-xl shadow-xl hover:scale-105 hover:bg-[#0a0b14] transition-all flex items-center gap-2 group/btn">
+                        <FaYoutube className="text-red-500 text-lg flex-shrink-0" />
+                        <span className="text-white text-xs font-mono font-bold whitespace-nowrap group-hover/btn:text-[color:var(--accent)] transition-colors">Video demo here!</span>
+                      </a>
+                      <a href="/GOZE ET AL. MANUSCRIPT.pdf" target="_blank" rel="noopener noreferrer" className="bg-[#0a0b14]/90 backdrop-blur-md border border-[color:var(--accent)]/50 px-3 py-2 rounded-xl shadow-xl hover:scale-105 hover:bg-[#0a0b14] transition-all flex items-center gap-2 group/btn2">
+                        <svg className="text-blue-400 w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        <span className="text-white text-xs font-mono font-bold whitespace-nowrap group-hover/btn2:text-[color:var(--accent)] transition-colors">See our paper</span>
+                      </a>
+                    </div>
+                  )}
+
                   {/* Image Wrapper */}
                   <div className="w-full h-[250px] md:h-[280px] p-3 md:p-4 pb-0 relative bg-[#13182b] flex items-end justify-center rounded-t-3xl">
 
