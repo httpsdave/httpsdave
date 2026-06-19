@@ -619,7 +619,7 @@ export default function PersonalPage() {
 
           {/* Box 4 (Bottom Right): Music */}
           <article className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group h-fit">
-            <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music Enthusiast</h3>
+            <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music</h3>
             <p className={`text-sm font-mono leading-relaxed relative z-10 mb-6 max-w-sm ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
               I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap. heres a list of my current favorites.
             </p>

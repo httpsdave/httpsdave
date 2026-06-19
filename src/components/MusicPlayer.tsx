@@ -132,6 +132,48 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
       artist: "Juan Karlos",
       coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/40/ae/c0/40aec0aa-7d69-7f5f-220e-eed9e458c4d1/c76b8e2a-a5cd-46ab-8df6-8f81fbabcfd4.jpg/100x100bb.jpg",
       previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/89/47/6589471a-fca9-af28-348b-351bcc526f65/mzaf_16701343987806181431.plus.aac.p.m4a"
+    },
+    {
+      title: "Scott Street",
+      artist: "Phoebe Bridgers",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/39/91/4f/39914f60-e9aa-4ae9-3962-44b0a5e5d570/656605150062.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a4/83/cf/a483cfa8-092e-a45c-dcda-09e5bbc27f7d/mzaf_3175459760410985113.plus.aac.p.m4a"
+    },
+    {
+      title: "Burnout",
+      artist: "3D Danao Dancel Dumas",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/8e/6a/0b8e6ad0-8a0d-8ce8-c518-9e973408fa7b/3616404205551.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d0/8c/29/d08c2923-eb87-6002-1648-cfaf9fe5ca42/mzaf_455399953804011734.plus.aac.p.m4a"
+    },
+    {
+      title: "The Way I Loved You (Taylor's Version)",
+      artist: "Taylor Swift",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/d0/1c/c3d01c88-73e7-187e-fd62-e1744de979a6/21UMGIM09915.rgb.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9e/7d/c7/9e7dc7b8-e736-be6a-00be-b0427bba2b21/mzaf_4148939288855554219.plus.aac.p.m4a"
+    },
+    {
+      title: "What if I miss you for the rest of my life?",
+      artist: "Janine Berdin",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0e/2f/dd/0e2fdd5d-5acb-cf75-d256-f82dd5dd011c/25UM2IM04461.rgb.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/34/e6/80/34e680c6-0872-fa0f-29d5-f05ab4d51350/mzaf_5393040363543523053.plus.aac.p.m4a"
+    },
+    {
+      title: "Castle on the Hill",
+      artist: "Ed Sheeran",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/07/be/08/07be085d-6f06-8b4e-cea1-f40b4dca3815/mzaf_12958775594313934161.plus.aac.p.m4a"
+    },
+    {
+      title: "Tagpuan",
+      artist: "Moira Dela Torre",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/a4/0f/e1a40f9d-71c1-3d08-af3d-899df6a2427e/199350852923.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0e/7d/55/0e7d55dd-5239-7b59-332d-8b6065322812/mzaf_18158791816821049041.plus.aac.p.m4a"
+    },
+    {
+      title: "Kung 'Di Rin Lang Ikaw",
+      artist: "December Avenue",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e1/7b/1e/e17b1e16-c364-d610-948f-b9224e13d165/840091303648_Cover.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/d3/e2/9b/d3e29b58-b10e-d90d-dbca-98443ee78d11/mzaf_16222250806160791422.plus.aac.p.m4a"
     }
   ];
 
