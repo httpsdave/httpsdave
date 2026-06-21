@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import NextTopLoader from "nextjs-toploader";
 import CustomCursor from "@/components/CustomCursor";
 import SocialSidebar from "@/components/SocialSidebar";
+import BackToTop from "@/components/BackToTop";
 import { SoundProvider } from "@/components/SoundContext";
 import { ThemeProvider } from "@/components/ThemeContext";
 import "./globals.css";
@@ -55,6 +56,7 @@ export default function RootLayout({
               <main id="main-content" className="flex-1">
                 {children}
               </main>
+              <BackToTop />
             </div>
           </SoundProvider>
         </ThemeProvider>

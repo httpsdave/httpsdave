@@ -543,3 +543,16 @@ html.light .personal-page .personal-outro-card h2:not(.text-transparent) {
 #nprogress .spinner {
   display: none !important;
 }
+
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 2.5s ease-in-out infinite;
+}
