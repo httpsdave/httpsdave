@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin, FaGithub, FaLocationArrow } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiVuedotjs, SiLaravel, SiPhp, SiNodedotjs } from "react-icons/si";
+import { HiOutlineChevronDoubleLeft } from "react-icons/hi2";
 import { useSound } from "@/components/SoundContext";
 import { useTheme } from "@/components/ThemeContext";
 
@@ -92,6 +93,7 @@ export default function ProjectsPage() {
   return (
     <div className={`projects-page min-h-screen relative overflow-hidden flex flex-col ${isLightMode ? "bg-[#f4f7fb]" : "bg-[#0a0b14]"}`}>
       <div className={`absolute inset-0 z-0 ${isLightMode ? "bg-transparent" : "bg-[#0a0b14]"}`} />
+
       <div className={`absolute top-0 w-full h-[600px] z-0 pointer-events-none ${
         isLightMode
           ? "bg-[radial-gradient(ellipse_at_center,rgba(8,124,97,0.12),transparent_70%)] opacity-90"
@@ -114,7 +116,30 @@ export default function ProjectsPage() {
       </div>
 
       <div className="relative z-10 w-full max-w-[1300px] mx-auto px-4 md:px-6 pt-32 pb-40">
-        <div className="mt-20 mb-32 flex flex-col w-full text-center">
+        <div className="mt-20 mb-32 flex flex-col w-full text-center relative">
+          <Link 
+            href="/professional#projects" 
+            onClick={() => playSound("ui")} 
+            onMouseEnter={() => playSound("hover")}
+            className="hidden md:flex absolute left-0 top-0 md:top-1 z-50 items-center justify-center text-gray-400 hover:!text-[#27f3b3] transition-colors duration-300 group"
+          >
+            <motion.div
+              animate={{ x: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="group-hover:!text-[#27f3b3] transition-colors duration-300"
+            >
+              <HiOutlineChevronDoubleLeft size={36} />
+            </motion.div>
+            
+            <div className="absolute top-12 left-1/2 -translate-x-1/2 z-50 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
+              <div className={`backdrop-blur-md border px-3 py-1.5 rounded-full text-xs font-mono flex items-center justify-center whitespace-nowrap ${
+                isLightMode ? "bg-white/90 border-slate-900/10 text-[color:var(--fg)] shadow-[0_12px_24px_rgba(15,23,42,0.1)]" : "bg-[#0a0b14]/90 border-white/10 text-white/90 shadow-[0_0_20px_rgba(0,255,255,0.2)]"
+              }`}>
+                go back?
+              </div>
+            </div>
+          </Link>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
