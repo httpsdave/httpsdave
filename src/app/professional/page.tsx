@@ -663,7 +663,7 @@ export default function ProfessionalPage() {
             className="flex items-center gap-1.5 sm:gap-4 cursor-pointer group transition-all duration-300 group-hover/stats:blur-[4px] group-hover/stats:opacity-50 hover:!blur-none hover:!opacity-100 justify-center md:justify-start"
           >
             <span className="text-3xl sm:text-6xl md:text-7xl font-bold font-mono tracking-tighter text-white inline-flex items-center group-hover:text-[color:var(--accent)] transition-colors">
-              <AnimatedCounter value={9} />
+              <AnimatedCounter value={10} />
             </span>
             <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left group-hover:text-[color:var(--accent)] transition-colors">Projects<br />Deployed</span>
           </button>

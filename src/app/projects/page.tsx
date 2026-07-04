@@ -10,6 +10,15 @@ import { useTheme } from "@/components/ThemeContext";
 
 const projectsData = [
   {
+    title: "FilmScale",
+    description: "Movie discovery website for browsing titles, checking ratings, reading reviews, watching trailers, and building personal watchlists.",
+    linkText: "Check Live Site",
+    linkUrl: "https://filmscale.vercel.app/",
+    image: "/filmscale.png",
+    icons: [<SiNextdotjs key="1" color="#ffffff" />, <SiReact key="2" color="#61DAFB" />, <SiTailwindcss key="3" color="#06B6D4" />, <SiTypescript key="4" color="#3178C6" />],
+    isGithub: false,
+  },
+  {
     title: "Dendro",
     description: "Comprehensive botanical encyclopedia.",
     linkText: "Check Live Site",
