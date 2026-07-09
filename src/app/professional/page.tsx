@@ -98,7 +98,7 @@ const skillsData = [
   },
   {
     category: "Miscellaneous",
-    skills: ["Git", "GitHub", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva", "Vercel", "MS Word", "MS Excel"],
+    skills: ["Git", "GitHub", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva", "Vercel", "MS Word", "MS Excel", "Software & Hardware Troubleshooting", "Software Installation", "OS Installation & Maintenance"],
   }
 ];
 
