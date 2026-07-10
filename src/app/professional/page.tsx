@@ -206,6 +206,11 @@ const journeyData = [
     images: [orbitPresImg.src, obitPres2Img.src]
   },
   {
+    year: "April 2025",
+    text: "Co-emceed a leadership training program and unexpectedly joined as a participant. Experiencing the training firsthand became a truly pivotal moment, deeply influencing my personal growth and academic journey.",
+    images: ["/masikhay1.jpg", "/masikhay3.jpg", "/masikhay4.jpg"]
+  },
+  {
     year: "2024",
     text: "Through my courses, I learned C++, C, and Python, with Python used mostly for machine learning. This was the period when our program began to focus more deeply on Intelligent Systems, which felt especially timely as AI continued to grow. I also started relying on Git for more than version control after learning the hard way how easy it is to lose progress, and I began building apps from start to finish instead of only isolated programs.",
     images: []
@@ -247,6 +252,74 @@ const BalloonSVG = ({ color }: { color: string }) => (
     <ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(30 12 12)" fill="white" fillOpacity="0.3"/>
   </svg>
 );
+
+
+function JourneyCarousel({ images, year }: { images: string[]; year: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  if (images.length === 0) return null;
+
+  if (images.length === 1) {
+    return (
+      <div className="mt-4 rounded-xl overflow-hidden border border-white/10 group cursor-pointer bg-[#13182b]">
+        <img
+          src={images[0]}
+          alt={`${year} event`}
+          className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+          style={{ objectPosition: 'center 70%' }}
+        />
+      </div>
+    );
+  }
+
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % images.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  return (
+    <div className="mt-4 relative rounded-xl overflow-hidden border border-white/10 group bg-[#13182b] w-full h-56 sm:h-72 md:h-80 lg:h-96">
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          alt={`${year} event`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100"
+          style={{ objectPosition: 'center 70%' }}
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 flex">
+        <div 
+          className="w-1/2 h-full cursor-pointer z-10" 
+          onClick={handlePrev}
+        />
+        <div 
+          className="w-1/2 h-full cursor-pointer z-10" 
+          onClick={handleNext}
+        />
+      </div>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {images.map((_, i) => (
+          <div 
+            key={i} 
+            className={`w-2 h-2 rounded-full transition-colors ${i === currentIndex ? 'bg-[color:var(--accent)]' : 'bg-white/30'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 export default function ProfessionalPage() {
   const myAge = calcMyAge();
@@ -1282,18 +1355,7 @@ export default function ProfessionalPage() {
                     </p>
 
                     {item.images && item.images.length > 0 && (
-                      <div className={`grid gap-4 mt-4 ${item.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                        {item.images.map((img, i) => (
-                          <div key={i} className="rounded-xl overflow-hidden border border-white/10 group cursor-pointer bg-[#13182b]">
-                            <img
-                              src={img}
-                              alt={`${item.year} event`}
-                              className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                                style={{ objectPosition: 'center 70%' }}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      <JourneyCarousel images={item.images} year={item.year} />
                     )}
                   </div>
                 </div>
