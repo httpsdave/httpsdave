@@ -187,9 +187,9 @@ const experienceData = [
     delay: "-3s",
   },
   {
-    title: "Android Apps",
-    description: "Some experience in mobile app development using Flutter, Dart, React Native, and Expo Go, integrated with lightweight backends like SQLite.",
-    icon: <FaMobileAlt className="text-5xl md:text-6xl text-cyan-400 z-10" />,
+    title: "IT Support",
+    description: "Experience with software and hardware troubleshooting, software and OS installation and maintenance, and utilization of various work apps like MS Office apps and utility tools.",
+    icon: <FaCogs className="text-5xl md:text-6xl text-cyan-400 z-10" />,
     delay: "-4.5s",
   }
 ];
