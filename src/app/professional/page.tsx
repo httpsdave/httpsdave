@@ -945,7 +945,17 @@ export default function ProfessionalPage() {
 
             {/* 2. Fluent in... */}
             <div className="group lg:col-span-1 lg:row-span-1 border border-white/5 rounded-[2rem] bg-[#0b0e17] p-8 flex flex-col justify-center relative overflow-hidden shadow-xl min-h-[170px] md:min-h-[205px]">
-               <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
+               {/* Background Words */}
+               <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+                 <span className={`absolute top-[-5px] right-[20px] text-lg font-bold tracking-wider ${isLightMode ? 'text-slate-900 opacity-5' : 'text-white opacity-5'}`}>Hello</span>
+                 <span className={`absolute top-[30px] right-[-20px] text-xl font-medium tracking-tight ${isLightMode ? 'text-slate-900 opacity-10' : 'text-white opacity-10'}`}>Kumusta ka?</span>
+                 <span className={`absolute bottom-[15px] right-[10px] text-3xl font-bold tracking-wide ${isLightMode ? 'text-slate-900 opacity-10' : 'text-white opacity-10'}`}>Salamat</span>
+                 <span className={`absolute bottom-[-5px] left-[20px] text-2xl font-semibold tracking-normal ${isLightMode ? 'text-slate-900 opacity-5' : 'text-white opacity-5'}`}>Thank you</span>
+                 <span className={`absolute top-[30px] left-[10px] text-sm tracking-normal ${isLightMode ? 'text-slate-900 opacity-10' : 'text-white opacity-10'}`}>Hi</span>
+                 <span className={`absolute bottom-[45px] left-[45%] text-base font-bold tracking-normal ${isLightMode ? 'text-slate-900 opacity-5' : 'text-white opacity-5'}`}>Mabuhay</span>
+               </div>
+
+               <h3 className="relative z-10 text-xl md:text-2xl font-mono font-bold text-white leading-snug group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-lg">
                   Fluent in English<br />
                   and Filipino<br />
                   (Tagalog)
