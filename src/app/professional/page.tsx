@@ -752,7 +752,7 @@ export default function ProfessionalPage() {
                 onMouseEnter={() => playSound("hover")}
                 className="inline-flex items-center cursor-pointer hover:text-[color:var(--accent)] transition-colors"
               >
-                <AnimatedCounter value={45} />
+                <AnimatedCounter value={46} />
               </button>
             </span>
             <span className="text-[9px] sm:text-sm font-mono text-[color:var(--muted)] leading-tight text-left">Microcredentials</span>
