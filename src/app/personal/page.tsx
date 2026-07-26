@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useSound } from "@/components/SoundContext";
 import { useTheme } from "@/components/ThemeContext";
 import MusicPlayer from "@/components/MusicPlayer";
+import HangingIcons from "@/components/HangingIcons";
 import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
@@ -509,7 +510,7 @@ export default function PersonalPage() {
       </section>
 
       {/* Hobbies Section */}
-      <section className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 pt-16 md:pt-36 pb-16 md:pb-24">
+      <section className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 pt-16 md:pt-36 pb-16 md:pb-44">
         <div className="mb-8 md:mb-12 text-center">
           <h2 className={`text-2xl sm:text-3xl md:text-5xl font-mono font-medium mb-2 md:mb-4 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Dave's Hobbies</h2>
           <p className={`font-mono text-xs sm:text-sm md:text-base px-4 ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-500"}`}>I like to stay active. I pick up new interests but some remain constant.</p>
@@ -617,14 +618,22 @@ export default function PersonalPage() {
             </div>
           </article>
 
-          {/* Box 4 (Bottom Right): Music */}
-          <article className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group h-fit">
-            <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music</h3>
-            <p className={`text-sm font-mono leading-relaxed relative z-10 mb-6 max-w-sm ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
-              I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap. heres a list of my current favorites.
-            </p>
-            <MusicPlayer isLightMode={isLightMode} />
-          </article>
+          {/* Box 4 & 5 Wrapper (Bottom Right) */}
+          <div className="md:col-start-6 md:col-span-7 md:row-start-6 md:row-span-3 relative h-fit flex flex-col items-end">
+            {/* Box 4: Music */}
+            <article className="w-full border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group h-fit">
+              <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Music</h3>
+              <p className={`text-sm font-mono leading-relaxed relative z-10 mb-6 max-w-sm ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
+                I'm learning to play the guitar, and I like listening to alternative rock music and a little bit of rap. heres a list of my current favorites.
+              </p>
+              <MusicPlayer isLightMode={isLightMode} />
+            </article>
+
+            {/* Box 5: Hanging Icons (Positioned exactly below Music box to avoid overlap) */}
+            <div className="hidden md:block absolute top-[calc(100%+24px)] left-0 w-[95%] lg:w-[340px]">
+               <HangingIcons />
+            </div>
+          </div>
 
         </div>
       </section>
