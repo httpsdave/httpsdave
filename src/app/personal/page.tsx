@@ -8,6 +8,7 @@ import { useSound } from "@/components/SoundContext";
 import { useTheme } from "@/components/ThemeContext";
 import MusicPlayer from "@/components/MusicPlayer";
 import HangingIcons from "@/components/HangingIcons";
+import GifWall from "@/components/GifWall";
 import bikeImage from "../../bike1.jpg";
 import nicheImage from "../../niche.png";
 import guitarImage from "../../guitarimage.jpg";
@@ -629,9 +630,14 @@ export default function PersonalPage() {
               <MusicPlayer isLightMode={isLightMode} />
             </article>
 
-            {/* Box 5: Hanging Icons (Positioned exactly below Music box to avoid overlap) */}
-            <div className="hidden md:block absolute top-[calc(100%+24px)] left-0 w-[90%] lg:w-[290px]">
-               <HangingIcons />
+            {/* Box 5 & 6: Sub-components row (Hanging Icons & Gif Wall) */}
+            <div className="hidden md:flex absolute top-[calc(100%+24px)] left-0 right-0 justify-between gap-4 lg:gap-6 pointer-events-none z-10">
+               <div className="w-[45%] lg:w-[290px] pointer-events-auto">
+                  <HangingIcons />
+               </div>
+               <div className="w-[50%] lg:w-[350px] pointer-events-auto">
+                  <GifWall />
+               </div>
             </div>
           </div>
 
