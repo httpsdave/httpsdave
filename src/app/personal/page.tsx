@@ -630,7 +630,7 @@ export default function PersonalPage() {
             </article>
 
             {/* Box 5: Hanging Icons (Positioned exactly below Music box to avoid overlap) */}
-            <div className="hidden md:block absolute top-[calc(100%+24px)] left-0 w-[95%] lg:w-[340px]">
+            <div className="hidden md:block absolute top-[calc(100%+24px)] left-0 w-[90%] lg:w-[290px]">
                <HangingIcons />
             </div>
           </div>
