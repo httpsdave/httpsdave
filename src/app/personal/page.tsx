@@ -635,7 +635,7 @@ export default function PersonalPage() {
                <div className="w-[45%] lg:w-[290px] pointer-events-auto">
                   <HangingIcons />
                </div>
-               <div className="w-[50%] lg:w-[350px] pointer-events-auto">
+               <div className="w-[55%] lg:w-[480px] pointer-events-auto">
                   <GifWall />
                </div>
             </div>

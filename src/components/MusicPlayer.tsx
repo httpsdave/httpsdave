@@ -174,6 +174,42 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
       artist: "December Avenue",
       coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e1/7b/1e/e17b1e16-c364-d610-948f-b9224e13d165/840091303648_Cover.jpg/100x100bb.jpg",
       previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/d3/e2/9b/d3e29b58-b10e-d90d-dbca-98443ee78d11/mzaf_16222250806160791422.plus.aac.p.m4a"
+    },
+    {
+      title: "Paubaya",
+      artist: "Moira Dela Torre",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5c/b1/ea/5cb1ead1-7dc2-5171-3fad-1a4d881913f9/4895241451683_3000.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c0/b3/b1/c0b3b17c-999d-ba4f-0c3c-1e9ecbf2da3f/mzaf_987254661491851641.plus.aac.p.m4a"
+    },
+    {
+      title: "the cure",
+      artist: "Olivia Rodrigo",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ea/cc/ad/eaccad77-3cb8-ddc2-a2e1-224c409aa26b/26UMGIM64019.rgb.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4b/de/df/4bdedfd6-4dd1-d3e3-d7de-b822006dcbc2/mzaf_13336856842728450769.plus.aac.p.m4a"
+    },
+    {
+      title: "Stigmatized",
+      artist: "The Calling",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e5/47/b0/e547b0ee-b253-8448-9c34-615cd81de662/mzi.dhcovkbe.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/78/0e/d3/780ed317-45ed-887b-0c29-35a6f675525c/mzaf_9371351475052675734.plus.aac.p.m4a"
+    },
+    {
+      title: "Adrienne",
+      artist: "The Calling",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e5/47/b0/e547b0ee-b253-8448-9c34-615cd81de662/mzi.dhcovkbe.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/20/63/99/2063994e-f9e5-4f6f-468c-b140c46ea01e/mzaf_1084695327006093018.plus.aac.p.m4a"
+    },
+    {
+      title: "Wherever You Will Go",
+      artist: "The Calling",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e5/47/b0/e547b0ee-b253-8448-9c34-615cd81de662/mzi.dhcovkbe.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e8/3f/3f/e83f3fe9-af12-9cf4-14ed-99b843132756/mzaf_18248585085969519607.plus.aac.p.m4a"
+    },
+    {
+      title: "Home",
+      artist: "Daughtry",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/ad/b9/9b/adb99b4b-a2f5-02f8-c9cb-90cbc95b3918/dj.qkzhughs.jpg/100x100bb.jpg",
+      previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/33/91/f2/3391f2c2-e2a0-cffb-30fb-99492852df31/mzaf_1510895950046909081.plus.aac.p.m4a"
     }
   ];
 

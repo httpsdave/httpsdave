@@ -26,7 +26,7 @@ export default function GifWall() {
       </div>
 
       {/* Grid of 6 GIFs (3 columns, 2 rows) */}
-      <div className="grid grid-cols-3 gap-3 p-4 flex-1 items-center justify-center">
+      <div className="grid grid-cols-3 grid-rows-2 gap-3 p-4 flex-1 min-h-0">
         {gifs.map((gif, index) => (
           <motion.div
             key={index}
@@ -36,7 +36,7 @@ export default function GifWall() {
               y: -5,
               transition: { duration: 0.3 } 
             }}
-            className="relative aspect-square rounded-xl overflow-hidden border border-zinc-800/80 bg-black/40 flex items-center justify-center cursor-pointer shadow-md"
+            className="relative w-full h-full min-h-0 min-w-0 rounded-none overflow-hidden border border-zinc-800/80 bg-black/40 flex items-center justify-center cursor-pointer shadow-md"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 

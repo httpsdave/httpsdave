@@ -3,9 +3,9 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useTheme } from "@/components/ThemeContext";
 import { 
   PiGraduationCap, 
-  PiPianoKeys, 
+  PiBicycle, 
   PiGuitar, 
-  PiBookOpenText, 
+  PiTelevision, 
   PiBarbell, 
   PiAirplaneTilt 
 } from "react-icons/pi";
@@ -67,6 +67,8 @@ function HangingItem({ item, isLightMode }: { item: IconItem; isLightMode: boole
           rotate.set(0); // Spring back smoothly to vertical
         }}
         whileHover={{ scale: 1.1 }}
+        style={{ touchAction: "none", userSelect: "none" }}
+        draggable={false}
         className={`w-8 h-8 sm:w-10 sm:h-10 rounded-[10px] sm:rounded-[12px] border border-zinc-700/60 shadow-lg flex justify-center items-center backdrop-blur-sm z-10 transition-colors cursor-grab active:cursor-grabbing
           ${isLightMode ? "bg-white text-zinc-700 hover:text-blue-500" : "bg-[#181a20] text-zinc-300 hover:text-blue-400"}
         `}
@@ -83,9 +85,9 @@ export default function HangingIcons() {
 
   const icons: IconItem[] = [
     { icon: PiGraduationCap, height: 80, delay: 0 },
-    { icon: PiPianoKeys, height: 40, delay: 0.2 },
+    { icon: PiBicycle, height: 40, delay: 0.2 },
     { icon: PiGuitar, height: 120, delay: 0.4 },
-    { icon: PiBookOpenText, height: 70, delay: 0.6 },
+    { icon: PiTelevision, height: 70, delay: 0.6 },
     { icon: PiBarbell, height: 100, delay: 0.8 },
     { icon: PiAirplaneTilt, height: 50, delay: 1.0 },
   ];
