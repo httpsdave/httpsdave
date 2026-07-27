@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -401,15 +402,28 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
       />
       
       <div className="flex items-center gap-4 w-full">
-        {/* Cover Art */}
-        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 shadow-md">
-          <img src={songData.coverUrl} alt="Cover" className="w-full h-full object-cover" />
-        </div>
-        
-        {/* Song Info */}
-        <div className="flex flex-col overflow-hidden flex-1 justify-center">
-          <span className={`text-sm sm:text-base font-bold truncate ${isLightMode ? "text-slate-800" : "text-white"}`}>{songData.title}</span>
-          <span className={`text-xs sm:text-sm truncate ${isLightMode ? "text-slate-500" : "text-zinc-400"}`}>{songData.artist}</span>
+        <div className="flex flex-1 items-center overflow-hidden relative min-h-[56px]">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={currentSongIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-4 w-full absolute inset-0"
+            >
+              {/* Cover Art */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 shadow-md">
+                <img src={songData.coverUrl} alt="Cover" className="w-full h-full object-cover" />
+              </div>
+              
+              {/* Song Info */}
+              <div className="flex flex-col overflow-hidden flex-1 justify-center h-full">
+                <span className={`text-sm sm:text-base font-bold truncate ${isLightMode ? "text-slate-800" : "text-white"}`}>{songData.title}</span>
+                <span className={`text-xs sm:text-sm truncate ${isLightMode ? "text-slate-500" : "text-zinc-400"}`}>{songData.artist}</span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Volume */}
@@ -435,14 +449,17 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
                 step="0.05" 
                 value={isMuted ? 0 : volume} 
                 onChange={handleVolumeChange}
-                className={`w-24 h-[3px] rounded-lg appearance-none cursor-pointer -rotate-90 origin-center ${
+                className={`w-24 h-[4px] rounded-lg appearance-none cursor-pointer -rotate-90 origin-center ${
                   isLightMode 
-                    ? "bg-slate-200 accent-emerald-500 [&::-webkit-slider-runnable-track]:bg-slate-200 [&::-webkit-slider-thumb]:bg-emerald-500 [&::-moz-range-track]:bg-slate-200 [&::-moz-range-thumb]:bg-emerald-500" 
-                    : "bg-zinc-700 accent-white [&::-webkit-slider-runnable-track]:bg-zinc-700 [&::-webkit-slider-thumb]:bg-white [&::-moz-range-track]:bg-zinc-700 [&::-moz-range-thumb]:bg-white"
+                    ? "accent-emerald-500 [&::-webkit-slider-thumb]:bg-emerald-500 [&::-moz-range-thumb]:bg-emerald-500" 
+                    : "accent-white [&::-webkit-slider-thumb]:bg-white [&::-moz-range-thumb]:bg-white"
                 }`}
                 style={{
                   outline: 'none',
                   boxShadow: 'none',
+                  background: isLightMode 
+                    ? `linear-gradient(to right, #10b981 ${(isMuted ? 0 : volume) * 100}%, #e2e8f0 ${(isMuted ? 0 : volume) * 100}%)`
+                    : `linear-gradient(to right, #ffffff ${(isMuted ? 0 : volume) * 100}%, #3f3f46 ${(isMuted ? 0 : volume) * 100}%)`,
                 }}
               />
             </div>
