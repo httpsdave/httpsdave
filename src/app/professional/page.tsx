@@ -1054,7 +1054,7 @@ export default function ProfessionalPage() {
                     The Inside<br/>Scoop
                   </p>
                   <h3 className="text-2xl md:text-[28px] lg:text-[34px] font-mono font-bold text-white leading-snug tracking-tight">
-                     Graduating soon,<br/>exploring what's next
+                     Just graduated!<br/>Exploring what's next
                   </h3>
                </div>
 
