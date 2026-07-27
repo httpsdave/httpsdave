@@ -17,32 +17,6 @@ import exerciseImage from "../../exercise.jpg";
 import japaneseImage from "../../japanese.jpg";
 import myIcon from "../../myicon.png";
 
-import instaPic1 from "../../instapics/httpdaev_2559363397777665299.jpg";
-import instaPic2 from "../../instapics/httpdaev_2819922726315621101.webp";
-import instaPic3 from "../../instapics/httpdaev_3039349538871366378.webp";
-import instaPic4 from "../../instapics/httpdaev_3039355235835269106.webp";
-import instaPic5 from "../../instapics/httpdaev_3052825230512094787.webp";
-import instaPic6 from "../../instapics/httpdaev_3073086386333871779.webp";
-import instaPic7 from "../../instapics/httpdaev_3088121521273459910.webp";
-import instaPic8 from "../../instapics/httpdaev_3131501267695497941.webp";
-import instaPic9 from "../../instapics/httpdaev_3258284693785591895.jpg";
-import instaPic10 from "../../instapics/httpdaev_3305403886267603932.jpg";
-import instaPic11 from "../../instapics/httpdaev_3385919832133947291.jpg";
-import instaPic12 from "../../instapics/httpdaev_3394952732078611563.jpg";
-import instaPic13 from "../../instapics/httpdaev_3419280490585775616.jpg";
-import instaPic14 from "../../instapics/httpdaev_3419281934030355528.jpg";
-import instaPic15 from "../../instapics/httpdaev_3419282618221929831.jpg";
-import instaPic16 from "../../instapics/httpdaev_3523557449083578717.jpg";
-import instaPic17 from "../../instapics/httpdaev_3563904156223493030.jpg";
-import instaPic18 from "../../instapics/httpdaev_3563907222385537353.jpg";
-import instaPic19 from "../../instapics/httpdaev_3614228481480375392.jpg";
-import instaPic20 from "../../instapics/httpdaev_3692150689397409735.jpg";
-import instaPic21 from "../../instapics/httpdaev_3692152440485733556.jpg";
-import instaPic22 from "../../instapics/httpdaev_3692160783342169360.jpg";
-import instaPic23 from "../../instapics/httpdaev_3692170300192719190.jpg";
-import instaPic24 from "../../instapics/httpdaev_3890068412042852422.jpg";
-import instaPic25 from "../../instapics/httpdaev_3890070787101253066.jpg";
-
 import avengersImg from "../../movieposters/Avengers_Infinity_war_poster.webp";
 import bcsImg from "../../movieposters/bettercallsaul.jpg";
 import bbImg from "../../movieposters/breakingbad.jpg";
@@ -65,33 +39,14 @@ const moviePostersList = [
   boysImg, gdImg, hobbitImg, notebookImg, twilightImg
 ];
 
-const instagramPhotosList = [
-  instaPic1,
-  instaPic2,
-  instaPic3,
-  instaPic4,
-  instaPic5,
-  instaPic6,
-  instaPic7,
-  instaPic8,
-  instaPic9,
-  instaPic10,
-  instaPic11,
-  instaPic12,
-  instaPic13,
-  instaPic14,
-  instaPic15,
-  instaPic16,
-  instaPic17,
-  instaPic18,
-  instaPic19,
-  instaPic20,
-  instaPic21,
-  instaPic22,
-  instaPic23,
-  instaPic24,
-  instaPic25,
-];
+let instagramPhotosList: any[] = [];
+try {
+  // @ts-ignore
+  const req = require.context("../../instapics", false, /\.(png|jpe?g|webp|gif)$/i);
+  instagramPhotosList = req.keys().map((key: string) => req(key).default || req(key));
+} catch (e) {
+  console.warn("Could not load instapics dynamically", e);
+}
 
 const lifeFacets = [
   {
