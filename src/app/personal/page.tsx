@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { PiArrowUpRight } from "react-icons/pi";
 import { useSound } from "@/components/SoundContext";
 import { useTheme } from "@/components/ThemeContext";
 import MusicPlayer from "@/components/MusicPlayer";
@@ -476,11 +477,14 @@ export default function PersonalPage() {
           
           {/* Box 1 (Top Left): Photography */}
           <article className="md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-3 border border-zinc-800/80 rounded-3xl bg-[#0a0b14]/50 shadow-2xl p-6 md:p-8 flex flex-col relative overflow-hidden group">
+            <Link href="https://www.instagram.com/domeng_dd/" target="_blank" className="absolute top-6 right-6 z-20 text-zinc-400 hover:text-emerald-500 transition-colors cursor-pointer">
+               <PiArrowUpRight size={24} />
+            </Link>
             <h3 className={`text-xl font-bold font-mono mb-3 relative z-10 ${isLightMode ? "text-[color:var(--fg)]" : "text-gray-200"}`}>Photography</h3>
             <p className={`text-sm font-mono leading-relaxed relative z-10 max-w-2xl mb-6 ${isLightMode ? "text-[color:var(--muted)]" : "text-gray-400"}`}>
               It's nothing professional and usually it's just using my phone or a friend's phone, then adding minor filters to them to remember places and things by: {" "}
-              <Link href="https://www.instagram.com/httpdaev/" target="_blank" className="text-emerald-500 hover:text-emerald-400 transition-colors inline-block">
-                @httpdaev
+              <Link href="https://www.instagram.com/domeng_dd/" target="_blank" className="text-emerald-500 hover:text-emerald-400 transition-colors inline-block">
+                @domeng_dd
               </Link>
             </p>
             {/* Infinite Carousel Background / Foreground */}
