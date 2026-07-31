@@ -117,25 +117,25 @@ export default function SiteHeader() {
               <div className="absolute right-0 top-full pt-2 w-40 opacity-0 pointer-events-none transition group-hover:opacity-100 group-hover:pointer-events-auto">
                 <div className="border border-[color:var(--stroke)] bg-[color:var(--card)] text-[color:var(--fg)] flex flex-col shadow-lg">
                   <button
-                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
+                    className="flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-150 hover:bg-[color:var(--accent)] hover:text-white dark:hover:text-[#06110d]"
                     onClick={() => playSound("ui")}
                     type="button"
                   >
-                    English
+                    <img src="https://flagcdn.com/us.svg" width="16" alt="US Flag" /> English
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
+                    className="flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
                     disabled
                     type="button"
                   >
-                    Filipino
+                    <img src="https://flagcdn.com/ph.svg" width="16" alt="PH Flag" /> Filipino
                   </button>
                   <button
-                    className="w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
+                    className="flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-150 text-[color:var(--muted)] cursor-not-allowed opacity-50"
                     disabled
                     type="button"
                   >
-                    Japanese
+                    <img src="https://flagcdn.com/jp.svg" width="16" alt="JP Flag" /> Japanese
                   </button>
                 </div>
               </div>
