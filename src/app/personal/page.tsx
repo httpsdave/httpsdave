@@ -590,11 +590,11 @@ export default function PersonalPage() {
             </article>
 
             {/* Box 5 & 6: Sub-components row (Hanging Icons & Gif Wall) */}
-            <div className="hidden md:flex absolute top-[calc(100%+24px)] left-0 right-0 justify-between gap-4 lg:gap-6 pointer-events-none z-10">
-               <div className="w-[45%] lg:w-[290px] pointer-events-auto">
+            <div className="flex flex-col md:flex-row relative md:absolute mt-4 md:mt-0 md:top-[calc(100%+24px)] left-0 right-0 justify-between gap-4 lg:gap-6 pointer-events-none z-10 w-full">
+               <div className="w-full md:w-[45%] lg:w-[290px] pointer-events-auto">
                   <HangingIcons />
                </div>
-               <div className="w-[55%] lg:w-[480px] pointer-events-auto">
+               <div className="w-full md:w-[55%] lg:w-[480px] pointer-events-auto">
                   <GifWall />
                </div>
             </div>
