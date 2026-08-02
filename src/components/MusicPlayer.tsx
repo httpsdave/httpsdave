@@ -393,6 +393,42 @@ export default function MusicPlayer({ isLightMode }: { isLightMode: boolean }) {
 
   return (
     <div className="w-full flex flex-col mt-4 relative">
+      <AnimatePresence>
+        {isPlaying && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
+            className="absolute -top-1 -right-1 flex pointer-events-none z-10"
+          >
+            <motion.span
+              animate={{ opacity: [0, 1, 0], y: [0, -10, -20], x: [0, -4, 0], rotate: [0, -10, 10] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className={`text-sm ${isLightMode ? 'text-slate-400' : 'text-zinc-400'} mr-1`}
+              style={{ display: 'inline-block' }}
+            >
+              ♪
+            </motion.span>
+            <motion.span
+              animate={{ opacity: [0, 1, 0], y: [4, -8, -18], x: [0, 4, 0], rotate: [0, 10, -10] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className={`text-xs ${isLightMode ? 'text-slate-400' : 'text-zinc-500'} mr-1`}
+              style={{ display: 'inline-block' }}
+            >
+              ♫
+            </motion.span>
+            <motion.span
+              animate={{ opacity: [0, 1, 0], y: [2, -12, -22], x: [0, -2, 2], rotate: [0, -5, 5] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className={`text-[10px] ${isLightMode ? 'text-slate-300' : 'text-zinc-600'}`}
+              style={{ display: 'inline-block' }}
+            >
+              ♪
+            </motion.span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <audio 
         ref={audioRef} 
         src={songData.previewUrl || undefined} 
