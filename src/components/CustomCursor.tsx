@@ -19,6 +19,7 @@ export default function CustomCursor() {
   // Element references for native DOM updating
   const headRef = useRef<HTMLDivElement>(null);
   const hoverTargetRef = useRef<HTMLDivElement>(null);
+  const trailSvgRef = useRef<SVGSVGElement>(null);
   const pathSegments = useRef<(SVGPathElement | null)[]>([]);
 
   useEffect(() => {
@@ -99,28 +100,29 @@ export default function CustomCursor() {
         hoverTargetRef.current.style.transform = `translate(${mouse.current.x}px, ${mouse.current.y}px) translate(-50%, -50%)`;
       }
 
-      // Generate a perfectly smooth Bezier spline by connecting midpoints, removing "polygonal" jagged edges
       for (let i = 0; i < TRAIL_LENGTH - 1; i++) {
-        const p1 = trail.current[i];
-        const p2 = trail.current[i + 1];
-        const p0 = i === 0 ? mouse.current : trail.current[i - 1];
-        
-        let d = "";
-        if (i === 0) {
-          // Connect actual mouse position gracefully into the curve
-          d = `M ${mouse.current.x} ${mouse.current.y} Q ${p1.x} ${p1.y} ${(p1.x + p2.x) / 2} ${(p1.y + p2.y) / 2}`;
-        } else {
-          // Trace through quadratic curves over midpoints
-          const startX = (p0.x + p1.x) / 2;
-          const startY = (p0.y + p1.y) / 2;
-          const endX = (p1.x + p2.x) / 2;
-          const endY = (p1.y + p2.y) / 2;
-          d = `M ${startX} ${startY} Q ${p1.x} ${p1.y} ${endX} ${endY}`;
-        }
-        
         const segment = pathSegments.current[i];
         if (segment) {
-          segment.setAttribute("d", d);
+          const scale = 1 - (i / TRAIL_LENGTH) * 0.5; // Scale down gradually
+          segment.setAttribute("transform", `translate(${trail.current[i].x}, ${trail.current[i].y}) scale(${scale})`);
+          
+          const baseOpacity = Math.max(0, 0.8 - i * 0.04);
+          segment.setAttribute("opacity", baseOpacity.toString());
+          segment.style.opacity = baseOpacity.toString();
+        }
+      }
+
+      const dx = mouse.current.x - trail.current[TRAIL_LENGTH - 1].x;
+      const dy = mouse.current.y - trail.current[TRAIL_LENGTH - 1].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (trailSvgRef.current) {
+        const trailOpacityMultiplier = Math.min(1, Math.max(0, (distance - 1) / 5));
+        if (distance < 1) {
+          trailSvgRef.current.style.visibility = "hidden";
+        } else {
+          trailSvgRef.current.style.visibility = "visible";
+          trailSvgRef.current.style.opacity = trailOpacityMultiplier.toString();
         }
       }
 
@@ -147,20 +149,24 @@ export default function CustomCursor() {
       className="pointer-events-none fixed inset-0"
       style={{ opacity: isVisible && !isCursorHidden ? 1 : 0, transition: "opacity 0.3s", zIndex: 10000 }}
     >
-      {/* Smooth bezier trailing comet tail */}
-      <svg className="fixed inset-0 w-full h-full overflow-visible" style={{ opacity: isHovering || isSelecting ? 0 : 1, transition: "opacity 0.2s" }}>
+      {/* Trail of cursor shapes */}
+      <svg 
+        ref={trailSvgRef}
+        className="fixed inset-0 w-full h-full overflow-visible pointer-events-none" 
+        style={{ 
+          opacity: isHovering || isSelecting ? 0 : 1, 
+          transition: "opacity 0.2s",
+        }}
+      >
         {Array.from({ length: TRAIL_LENGTH - 1 }).map((_, i) => {
-          const width = Math.max(1, 10 - i * 0.5); 
           const opacity = Math.max(0, 0.8 - i * 0.04);
           return (
             <path
               key={i}
               ref={(el) => { if (el) pathSegments.current[i] = el; }}
-              fill="none"
-              stroke="var(--accent)"
-              strokeWidth={width}
-              strokeOpacity={opacity}
-              strokeLinecap="round"
+              d="M0,0 L4,16 L6,6 L16,4 Z"
+              fill="var(--accent)"
+              opacity={opacity}
             />
           );
         })}
@@ -180,18 +186,35 @@ export default function CustomCursor() {
         }}
       />
 
-      {/* Core Comet Cursor Head (No Glow) */}
+      {/* Core Cursor Head */}
       <div
         ref={headRef}
-        className="fixed top-0 left-0 rounded-full"
+        className="fixed top-0 left-0"
         style={{ 
-          backgroundColor: "var(--accent)",
-          width: isHovering ? 8 : isSelecting ? 4 : 14,
-          height: isHovering ? 8 : isSelecting ? 22 : 14,
-          transition: "width 0.2s, height 0.2s",
+          backgroundColor: isHovering || isSelecting ? "var(--accent)" : "transparent",
+          borderRadius: isHovering || isSelecting ? "9999px" : "0px",
+          width: isHovering ? 8 : isSelecting ? 4 : 24,
+          height: isHovering ? 8 : isSelecting ? 22 : 24,
+          transition: "width 0.2s, height 0.2s, background-color 0.2s, border-radius 0.2s",
           willChange: "transform"
         }}
-      />
+      >
+        {!isHovering && !isSelecting && (
+          <svg 
+            width="16" 
+            height="16" 
+            viewBox="0 0 16 16" 
+            fill="var(--accent)"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+            }}
+          >
+            <path d="M0,0 L4,16 L6,6 L16,4 Z" />
+          </svg>
+        )}
+      </div>
     </div>
   );
 }
