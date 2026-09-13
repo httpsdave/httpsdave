@@ -2,7 +2,7 @@
 
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
-type SoundName = "ui" | "social" | "birthday" | "transition" | "card" | "hover" | "wind" | "fastWind";
+type SoundName = "ui" | "social" | "birthday" | "transition" | "card" | "hover" | "wind" | "fastWind" | "carHonk";
 
 type SoundOptions = {
   force?: boolean;
@@ -297,6 +297,15 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
             detune: -6,
             delay: 0.01,
           });
+          break;
+        case "carHonk":
+          try {
+            const audio = new Audio("/car_horn.wav");
+            audio.volume = 0.5;
+            audio.play().catch((e) => console.error("Error playing car horn:", e));
+          } catch (e) {
+            console.error("Audio not supported", e);
+          }
           break;
         default:
           master.gain.value = 0.35;

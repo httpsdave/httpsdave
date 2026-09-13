@@ -65,10 +65,15 @@ const educationData = [
     desc: ["Laguna College", "STEM Track", "Graduated with Honors"],
   },
   {
-    title: "Bachelor of Science in Computer Science",
+    title: (
+      <>
+        Bachelor of Science in Computer Science,{" "}
+        <span className="text-sm font-normal text-[color:var(--muted)] tracking-normal">Intelligent Systems</span>
+      </>
+    ),
     period: "Aug 19, 2022 - Jun 30, 2026",
     status: "GWA: 1.28",
-    desc: ["Laguna State Polytechnic University - San Pablo City Campus", "Major in Intelligent Systems", <i>magna cum laude</i>],
+    desc: ["Laguna State Polytechnic University - San Pablo City Campus", <i>magna cum laude</i>, <span className="text-[color:var(--accent)] font-bold">Civil Service Eligible (Honor Graduate Eligibility - PD 907)</span>],
   }
 ];
 
@@ -98,7 +103,7 @@ const skillsData = [
   },
   {
     category: "Miscellaneous",
-    skills: ["Git", "GitHub", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva", "Vercel", "MS Word", "MS Excel", "Software & Hardware Troubleshooting", "Software Installation", "OS Installation & Maintenance"],
+    skills: ["Git", "GitHub", "Fluent in English and Filipino", "APIs", "Arduino UNO", "Canva", "Vercel", "MS Word", "MS Excel", "Software & Hardware Troubleshooting", "Software Installation", "OS Installation & Maintenance", "Driving NC2 (TESDA)"],
   }
 ];
 
@@ -328,6 +333,7 @@ export default function ProfessionalPage() {
   const [showNav, setShowNav] = useState(false);
   const [showMicroPopup, setShowMicroPopup] = useState(false);
   const [showBirthdate, setShowBirthdate] = useState(false);
+  const [showCar, setShowCar] = useState(false);
   const [balloons, setBalloons] = useState<FloatingBalloon[]>([]);
   const [copied, setCopied] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -437,6 +443,49 @@ export default function ProfessionalPage() {
               <BalloonSVG color={b.color} />
             </motion.div>
           ))}
+        </AnimatePresence>
+
+        {/* Easter Egg Car */}
+        <AnimatePresence>
+          {showCar && (
+            <motion.div
+              initial={{ x: "-20vw", opacity: 0 }}
+              animate={{ x: "120vw", opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.8, ease: "linear" }}
+              className="absolute bottom-10 left-0 drop-shadow-2xl z-[110]"
+            >
+              <div className="flex items-end">
+                {/* Smoke Trail */}
+                <div className="flex flex-col justify-end gap-1 mb-2 mr-[-15px] z-0">
+                  <div className="w-3 h-3 bg-gray-400/60 rounded-full animate-[ping_0.6s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                  <div className="w-5 h-5 bg-gray-400/40 rounded-full animate-[ping_0.8s_cubic-bezier(0,0,0.2,1)_infinite] delay-100"></div>
+                  <div className="w-7 h-7 bg-gray-400/20 rounded-full animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite] delay-200"></div>
+                </div>
+                {/* The Car SVG */}
+                <svg viewBox="0 0 100 50" className="w-32 md:w-48 h-auto drop-shadow-xl scale-x-[-1] z-10">
+                  <path d="M 10 35 L 10 20 L 25 20 L 35 10 L 65 10 L 75 20 L 95 20 L 95 35 Z" fill="#ef4444" />
+                  <path d="M 28 20 L 37 12 L 50 12 L 50 20 Z" fill="#bfdbfe" />
+                  <path d="M 52 20 L 52 12 L 63 12 L 72 20 Z" fill="#bfdbfe" />
+                  <circle cx="12" cy="25" r="3" fill="#fef08a" />
+                  <rect x="92" y="23" width="3" height="6" fill="#fca5a5" />
+                  <rect x="95" y="32" width="4" height="2" fill="#6b7280" />
+                  <g className="origin-[25px_35px] animate-[spin_0.2s_linear_infinite]">
+                    <circle cx="25" cy="35" r="8" fill="#1f2937" />
+                    <circle cx="25" cy="35" r="4" fill="#9ca3af" />
+                    <line x1="25" y1="27" x2="25" y2="43" stroke="#d1d5db" strokeWidth="1.5" />
+                    <line x1="17" y1="35" x2="33" y2="35" stroke="#d1d5db" strokeWidth="1.5" />
+                  </g>
+                  <g className="origin-[75px_35px] animate-[spin_0.2s_linear_infinite]">
+                    <circle cx="75" cy="35" r="8" fill="#1f2937" />
+                    <circle cx="75" cy="35" r="4" fill="#9ca3af" />
+                    <line x1="75" y1="27" x2="75" y2="43" stroke="#d1d5db" strokeWidth="1.5" />
+                    <line x1="67" y1="35" x2="83" y2="35" stroke="#d1d5db" strokeWidth="1.5" />
+                  </g>
+                </svg>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 
@@ -1148,6 +1197,13 @@ export default function ProfessionalPage() {
                         visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
                       }}
                       onHoverStart={() => playSound("hover")}
+                      onClick={() => {
+                        if (skill === "Driving NC2 (TESDA)") {
+                          playSound("carHonk");
+                          setShowCar(true);
+                          setTimeout(() => setShowCar(false), 2000);
+                        }
+                      }}
                       className={`px-6 py-3 font-sans text-lg md:text-xl font-medium transition-colors cursor-grab active:cursor-grabbing ${
                         isLightMode
                           ? "bg-white/80 border border-emerald-900/15 text-[color:var(--accent)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] hover:bg-[color:var(--accent)] hover:text-white"
